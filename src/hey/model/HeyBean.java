@@ -3,35 +3,57 @@ package hey.model;
 
 
 
+import java.io.IOException;
+import java.rmi.registry.LocateRegistry;
 import java.util.ArrayList;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.net.MalformedURLException;
 import java.rmi.RemoteException;
 
-import rmiserver.RMIServerInterface;
+import rmiserver.GetPropertyValues;
 import rmiserver.RmiInterface;
 
 public class HeyBean {
-	private RMIServerInterface server;
+	private RmiInterface ri;
+
 	private String username; // username and password supplied by the user
 	private String password;
 
 	public HeyBean() {
 		try {
-			server = (RMIServerInterface) Naming.lookup("server");
+			//server = (RmiInterface) Naming.lookup("rmiServer2");
+			GetPropertyValues properties = new GetPropertyValues();
+			try {
+				properties.setPropValues();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			String rmiport = properties.getRmiport();
+			String rminame = properties.getRminame();
+			String registry = properties.getRegistry();
+			System.setProperty("java.rmi.server.hostname", registry);
+
+
+			ri = (RmiInterface) LocateRegistry.getRegistry(registry, Integer.parseInt(rmiport)).lookup(rminame);
 		}
-		catch(NotBoundException|MalformedURLException|RemoteException e) {
+		catch(NotBoundException|RemoteException e) {
 			e.printStackTrace(); // what happens *after* we reach this line?
 		}
 	}
 
+
 	public ArrayList<String> getAllUsers() throws RemoteException {
-		return server.getAllUsers(); // are you going to throw all exceptions?
+		ArrayList<String> bruh = new ArrayList<>();
+		bruh.add("A");
+		bruh.add("B");
+		return bruh;// are you going to throw all exceptions?
 	}
 
 	public boolean getUserMatchesPassword(String username, String password) throws RemoteException {
-		return server.userMatchesPassword(username, password);
+		boolean ret = ri.login(username, password);
+		System.out.println(ret);
+		return ret;
 	}
 	
 	public void setUsername(String username) {

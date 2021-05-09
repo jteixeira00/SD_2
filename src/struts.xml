@@ -35,7 +35,6 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
     <action name="login" class="hey.action.LoginAction" method="execute">
         <result name="success">/hey.jsp</result>
         <result name="admin" type="redirect">/pages/adminLanding.jsp</result>
-
         <result name="login">/index.jsp</result>
     </action>
 
