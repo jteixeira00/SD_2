@@ -15,7 +15,7 @@ import rmiserver.GetPropertyValues;
 import rmiserver.RmiInterface;
 
 public class HeyBean {
-	private RmiInterface ri;
+	private RmiInterface server;
 
 	private String username; // username and password supplied by the user
 	private String password;
@@ -35,7 +35,7 @@ public class HeyBean {
 			System.setProperty("java.rmi.server.hostname", registry);
 
 
-			ri = (RmiInterface) LocateRegistry.getRegistry(registry, Integer.parseInt(rmiport)).lookup(rminame);
+			server = (RmiInterface) LocateRegistry.getRegistry(registry, Integer.parseInt(rmiport)).lookup(rminame);
 		}
 		catch(NotBoundException|RemoteException e) {
 			e.printStackTrace(); // what happens *after* we reach this line?
@@ -51,7 +51,7 @@ public class HeyBean {
 	}
 
 	public boolean getUserMatchesPassword(String username, String password) throws RemoteException {
-		boolean ret = ri.login(username, password);
+		boolean ret = server.login(username, password);
 		System.out.println(ret);
 		return ret;
 	}
