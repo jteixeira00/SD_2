@@ -310,6 +310,7 @@ public class RmiServer extends UnicastRemoteObject implements RmiInterface {
             parseException.printStackTrace();
         }
 
+
         return null;
     }
 

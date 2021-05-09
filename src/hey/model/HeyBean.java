@@ -19,6 +19,10 @@ public class HeyBean {
 
 	private String username; // username and password supplied by the user
 	private String password;
+	private String rmiport;
+	private String rminame;
+	private String registry;
+
 
 	public HeyBean() {
 		try {
@@ -28,9 +32,9 @@ public class HeyBean {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			String rmiport = properties.getRmiport();
-			String rminame = properties.getRminame();
-			String registry = properties.getRegistry();
+			rmiport = properties.getRmiport();
+			rminame = properties.getRminame();
+			registry = properties.getRegistry();
 			System.setProperty("java.rmi.server.hostname", registry);
 
 
@@ -44,11 +48,11 @@ public class HeyBean {
 	public boolean tryRmi() throws RemoteException{
 		for (int i = 0; i <= 6; i++) {
 			try {
-				titulobool=ri.checkNomeEleicao(titulo);
-				break;
+				server.heartbeat();
+				return true;
 			} catch (RemoteException e) {
 				try {
-					ri = (RmiInterface) LocateRegistry.getRegistry(registry, Integer.parseInt(rmiport)).lookup(rminame);
+					server = (RmiInterface) LocateRegistry.getRegistry(registry, Integer.parseInt(rmiport)).lookup(rminame);
 				} catch (NotBoundException | RemoteException ignored) {
 
 				}
@@ -58,6 +62,14 @@ public class HeyBean {
 				}
 			}
 		}
+		return false;
+	}
+
+	public boolean checkTitulo(String titulo) throws RemoteException{
+		if(tryRmi()){
+			return server.checkNomeEleicao(titulo);
+		}
+		return false;
 	}
 
 
@@ -80,5 +92,19 @@ public class HeyBean {
 	
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public boolean criaEleicao(String titulo, String descricao, String datainicio, String horainicio, String minutoinicio, String datafim, String horafim, String minutofim, String s, String tipovoter) {
+		try {
+			if(tryRmi()){
+				if(server.createEleicaoRMI(titulo, descricao, datainicio, Integer.parseInt(horainicio), Integer.parseInt(minutoinicio), datafim, Integer.parseInt(horafim), Integer.parseInt(minutofim), "", Integer.parseInt(tipovoter)) != null){
+					return true;
+				}
+				return false;
+			}
+		}catch (RemoteException ignored){
+
+		}
+		return false;
 	}
 }

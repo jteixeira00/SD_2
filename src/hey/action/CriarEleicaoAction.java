@@ -5,6 +5,9 @@ import hey.model.HeyBean;
 import org.apache.struts2.interceptor.SessionAware;
 
 import java.rmi.RemoteException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 
 public class CriarEleicaoAction extends ActionSupport implements SessionAware {
@@ -16,25 +19,45 @@ public class CriarEleicaoAction extends ActionSupport implements SessionAware {
     @Override
     public String execute() {
 
-
-        /*
-
-        if(this.username != null && !username.equals("")) {
-            this.getHeyBean().setUsername(this.username);
-            this.getHeyBean().setPassword(this.password);
-
-            try {
-
-
-            } catch (RemoteException e) {
-                e.printStackTrace();
+        try {
+            if(!this.getHeyBean().checkTitulo(titulo)){
+                return ERROR;
             }
-            return SUCCESS;
-        }
-        else
 
-         */
-            return SUCCESS;
+            if(!isParsableDate(datainicio)){
+                return ERROR;
+            }
+
+            if (!isParsable(horainicio)) {
+                return ERROR;
+            }
+
+            if (!isParsable(minutoinicio)) {
+                return ERROR;
+            }
+
+            if(!isParsableDate(datafim)){
+                return ERROR;
+            }
+
+            if (!isParsable(horafim)) {
+                return ERROR;
+            }
+
+            if (!isParsable(minutofim)) {
+                return ERROR;
+            }
+
+            if (!tipovoter.equals("1") && !tipovoter.equals("2") && !tipovoter.equals("3")) {
+                return ERROR;
+            }
+
+        }catch (RemoteException e){
+            e.printStackTrace();
+        }
+
+        this.getHeyBean().criaEleicao(titulo, descricao, datainicio, horainicio, minutoinicio, datafim, horafim, minutofim, "", tipovoter);
+        return SUCCESS;
     }
 
     public HeyBean getHeyBean() {
@@ -86,6 +109,24 @@ public class CriarEleicaoAction extends ActionSupport implements SessionAware {
     @Override
     public void setSession(Map<String, Object> session) {
         this.session = session;
+    }
+
+    public static boolean isParsableDate(String input){
+        try {
+            Date startDate = new SimpleDateFormat("dd-MM-yyyy").parse(input);
+            return true;
+        } catch (ParseException e) {
+            return  false;
+        }
+    }
+
+    public static boolean isParsable(String input) {
+        try {
+            Integer.parseInt(input);
+            return true;
+        } catch (final NumberFormatException e) {
+            return false;
+        }
     }
 
 
