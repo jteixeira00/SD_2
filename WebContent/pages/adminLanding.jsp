@@ -12,12 +12,14 @@
 </head>
 <!DOCTYPE html>
 <body>
-  <form>
-    <h1>Admin Console</h1>
-    <div>
+<h1>Admin Console</h1>
+
+
+
         <form action = "criareleicao">
-            <button>Criar Eleição</button>
+            <button>Criar Eleicao</button>
         </form>
+
         <form action = "criarutilizador">
             <button>Criar Utilizador</button>
         </form>
@@ -30,7 +32,7 @@
         <form action = infouser>
             <button>Votos Utilizador</button>
         </form>
-    </div>
-  </form>
+
+
 </body>
 </html>

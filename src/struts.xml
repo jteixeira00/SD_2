@@ -34,17 +34,20 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
 	<!-- 'login' action calls 'execute' in 'LoginAction' -->
     <action name="login" class="hey.action.LoginAction" method="execute">
         <result name="success">/hey.jsp</result>
-        <result name="admin" type="redirect">/pages/adminLanding.jsp</result>
+	    <result name="admin" type="redirect">/pages/adminLanding.jsp</result>
+
         <result name="login">/index.jsp</result>
     </action>
 
 	  <!-- Admin Page -->
-	  <action name="criareleicao" >
-		  <result>/pages/criarEleicao.jsp</result>
+
+
+	  <action name="criareleicao">
+		  <result type="redirect">/pages/criarEleicao.jsp</result>
 	  </action>
 
 	  <action name="criarutilizador">
-		  <result>/pages/criarUtilizador.jsp</result>
+		  <result type="redirect">/pages/criarUtilizador.jsp</result>
 	  </action>
 
 	  <action name = "gerireleicao">
@@ -57,6 +60,22 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
 
 	  <action name = "infouser">
 		  <result>/pages/infoUser.jsp</result>
+	  </action>
+
+	  <!--actions concretas -->
+	  <action name = "criarEleicaoForm" class = "hey.action.CriarEleicaoAction" method= "execute">
+		  <result name="success">/pages/adminLanding.jsp</result>
+		  <result name="error">/pages/criarEleicao.jsp</result>
+	  </action>
+
+	  <action name = "criarUserForm" class = "hey.action.CriarUserAction" method= "execute">
+		  <result name="success">/pages/adminLanding.jsp</result>
+		  <result name="error">/pages/criarUtilizador.jsp</result>
+	  </action>
+
+	  <action name = "eleicoespassadasform" class = "hey.action.EleicoesPassadasAction" method = "execute">
+		  <result name="success">/pages/eleicoesPassadas.jsp</result>
+		  <result name="error">/pages/adminLanding.jsp</result>
 	  </action>
 
 
