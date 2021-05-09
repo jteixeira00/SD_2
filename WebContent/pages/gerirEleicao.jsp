@@ -1,3 +1,4 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: User
@@ -12,5 +13,11 @@
 </head>
 <body>
 
+    <form action="gerirleleicaoform" method="post">
+        <s:text name="Escolha a eleição pretendida:" />
+        <s:textarea value = "%res"/>
+
+
+    </form>
 </body>
 </html>
