@@ -22,7 +22,6 @@ public class HeyBean {
 
 	public HeyBean() {
 		try {
-			//server = (RmiInterface) Naming.lookup("rmiServer2");
 			GetPropertyValues properties = new GetPropertyValues();
 			try {
 				properties.setPropValues();
@@ -39,6 +38,25 @@ public class HeyBean {
 		}
 		catch(NotBoundException|RemoteException e) {
 			e.printStackTrace(); // what happens *after* we reach this line?
+		}
+	}
+
+	public boolean tryRmi() throws RemoteException{
+		for (int i = 0; i <= 6; i++) {
+			try {
+				titulobool=ri.checkNomeEleicao(titulo);
+				break;
+			} catch (RemoteException e) {
+				try {
+					ri = (RmiInterface) LocateRegistry.getRegistry(registry, Integer.parseInt(rmiport)).lookup(rminame);
+				} catch (NotBoundException | RemoteException ignored) {
+
+				}
+				if (i == 6) {
+					System.out.println("Impossivel conectar aos servidores RMI");
+					return false;
+				}
+			}
 		}
 	}
 

@@ -13,7 +13,7 @@
 </head>
 <body>
 
-<form action ="criarEleicaoForm" method = "post">
+<form action ="criarEleicaoForm.action" method = "post">
     <h1>Criar Eleição</h1>
 
     <label>Titulo da Eleiçao:<br></label>
@@ -32,7 +32,7 @@
     <s:textfield name = "minutoinicio" required="true"/>
 
     <label><br>Data de Fim (dd-MM-yyyy):<br></label>
-    <s:textfield name = "datainicio" required="true"/>
+    <s:textfield name = "datafim" required="true"/>
 
     <label><br>Hora de Fim:<br></label>
     <s:textfield name = "horafim" required="true"/>
