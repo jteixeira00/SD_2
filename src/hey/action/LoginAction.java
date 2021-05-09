@@ -9,7 +9,7 @@ import org.apache.struts2.interceptor.SessionAware;
 import java.rmi.RemoteException;
 import java.util.Map;
 import hey.model.HeyBean;
-import rmiserver.RMIServerInterface;
+import rmiserver.RmiInterface;
 
 public class LoginAction extends ActionSupport implements SessionAware {
 	private static final long serialVersionUID = 4L;

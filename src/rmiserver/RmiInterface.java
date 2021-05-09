@@ -41,6 +41,8 @@ public interface RmiInterface extends Remote {
 
     public String showPessoas() throws RemoteException;
 
+    public ArrayList<String> showPessoasArray() throws RemoteException;
+
     public int sizePessoas() throws RemoteException;
 
     public boolean addCandidateRMI(int indx, int lista, int add) throws RemoteException;
