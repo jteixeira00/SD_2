@@ -1,3 +1,4 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: User
@@ -9,8 +10,41 @@
 <html>
 <head>
     <title>Criar Utilizador</title>
+
 </head>
 <body>
+<form action ="criarUserForm" method = "post">
+    <h1>Criar Utilizador</h1>
 
+    <label>Nome: *<br></label>
+    <s:textfield name = "nome" required="true"/>
+
+    <label><br>Password: *<br></label>
+    <s:textfield name = "password" required="true"/>
+
+    <label><br>Número da Universidade: *<br></label>
+    <s:textfield name = "numerouni" required="true"/>
+
+    <label><br>Numero Cartao Cidadao:<br></label>
+    <s:textfield name = "ncc" required="false"/>
+
+    <label><br>Validade Cartao Cidadao:<br></label>
+    <s:textfield name = "valcc" required="false"/>
+
+    <label><br>Contacto Telefónico:<br></label>
+    <s:textfield name = "numerotelefonico" required="false"/>
+
+    <label><br>Morada:<br></label>
+    <s:textfield name = "morada" required="false"/>
+
+    <label><br>Departamento: *<br></label>
+    <s:textfield name = "departamento" required="true"/>
+
+    <label><br>Faculdade: <br></label>
+    <s:textfield name = "faculdade" required="true"/>
+
+    <br><br>
+    <button type = "submit">Submeter</button>
+</form>
 </body>
 </html>
