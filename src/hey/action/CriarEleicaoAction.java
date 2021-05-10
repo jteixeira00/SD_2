@@ -56,7 +56,12 @@ public class CriarEleicaoAction extends ActionSupport implements SessionAware {
             e.printStackTrace();
         }
 
-        this.getHeyBean().criaEleicao(titulo, descricao, datainicio, horainicio, minutoinicio, datafim, horafim, minutofim, "", tipovoter);
+
+        if(!this.getHeyBean().criaEleicao(titulo, descricao, datainicio, horainicio, minutoinicio, datafim, horafim, minutofim, "", tipovoter)) {
+            //data invalida
+            return ERROR;
+        }
+
         return SUCCESS;
     }
 

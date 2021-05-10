@@ -13,9 +13,13 @@
 </head>
 <body>
 
-    <form action="gerirleleicaoform" method="post">
+    <form action="gerirleleicaoform.action" method="post">
+        
+        <br><c:out value="${heyBean.allEleicoes}" /><br>
         <s:text name="Escolha a eleição pretendida:" />
         <s:textarea value = "%res"/>
+
+
 
 
     </form>

@@ -17,22 +17,22 @@
         <s:textfield name="numerouc"/><br>
 
         <label>Nome:<br></label>
-        <s:textfield name = "nome" required="false"/>
+        <s:textfield name = "nome"/>
 
         <label><br>Password: *<br></label>
-        <s:textfield name = "password" required="false"/>
+        <s:textfield name = "password"/>
 
         <label><br>Numero Cartao Cidadao:<br></label>
-        <s:textfield name = "ncc" required="false"/>
+        <s:textfield name = "ncc"/>
 
         <label><br>Validade Cartao Cidadao:<br></label>
-        <s:textfield name = "valcc" required="false"/>
+        <s:textfield name = "valcc"/>
 
         <label><br>Contacto Telefónico:<br></label>
-        <s:textfield name = "numerotelefonico" required="false"/>
+        <s:textfield name = "numerotelefonico"/>
 
         <label><br>Morada:<br></label>
-        <s:textfield name = "morada" required="false"/>
+        <s:textfield name = "morada"/>
 
         <label><br>Departamento: *<br></label>
         <s:textfield name = "departamento" required="true"/>

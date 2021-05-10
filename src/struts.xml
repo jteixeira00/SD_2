@@ -78,6 +78,11 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
 		  <result name="success">/pages/adminLanding.jsp</result>
 	  </action>
 
+	  <action name = "gerireleicaoform" class = "hey.action.GerirEleicaoAction" method = "execute">
+		  <result name="error">/pages/gerirEleicao.jsp</result>
+		  <result name="success">/pages/adminLanding.jsp</result>
+	  </action>
+
 
   </package>
 

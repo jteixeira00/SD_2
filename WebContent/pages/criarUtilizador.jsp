@@ -16,7 +16,11 @@
 <form action ="criarUserForm.action" method = "post">
     <h1>Criar Utilizador</h1>
 
-    <label>Nome: *<br></label>
+    <label><br>Tipo de Utilizador: *<br> </label>
+    <label>1: Estudante || 2: Docente || 3: Funcionário<br></label>
+    <s:textfield name = "tipo" required="true"/>
+
+    <label><br>Nome: *<br></label>
     <s:textfield name = "nome" required="true"/>
 
     <label><br>Password: *<br></label>
@@ -26,22 +30,22 @@
     <s:textfield name = "numerouni" required="true"/>
 
     <label><br>Numero Cartao Cidadao:<br></label>
-    <s:textfield name = "ncc" required="false"/>
+    <s:textfield name = "ncc"/>
 
     <label><br>Validade Cartao Cidadao:<br></label>
-    <s:textfield name = "valcc" required="false"/>
+    <s:textfield name = "valcc"/>
 
     <label><br>Contacto Telefónico:<br></label>
-    <s:textfield name = "numerotelefonico" required="false"/>
+    <s:textfield name = "numerotelefonico"/>
 
     <label><br>Morada:<br></label>
-    <s:textfield name = "morada" required="false"/>
+    <s:textfield name = "morada"/>
 
     <label><br>Departamento: *<br></label>
     <s:textfield name = "departamento" required="true"/>
 
     <label><br>Faculdade: <br></label>
-    <s:textfield name = "faculdade" required="true"/>
+    <s:textfield name = "faculdade" />
 
     <br><br>
     <button type = "submit">Submeter</button>

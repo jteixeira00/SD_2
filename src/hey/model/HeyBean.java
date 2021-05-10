@@ -80,6 +80,17 @@ public class HeyBean {
 		return bruh;// are you going to throw all exceptions?
 	}
 
+	public String getAllEleicoes() throws RemoteException {
+		try {
+			if(tryRmi()){
+				return server.showEleicoesFuturas();
+			}
+		}catch (RemoteException ignored){
+
+		}
+		return "";
+	}
+
 	public boolean getUserMatchesPassword(String username, String password) throws RemoteException {
 		boolean ret = server.login(username, password);
 		System.out.println(ret);
@@ -101,6 +112,17 @@ public class HeyBean {
 					return true;
 				}
 				return false;
+			}
+		}catch (RemoteException ignored){
+
+		}
+		return false;
+	}
+
+	public boolean createUser(String tipo, String nome, String password, String numerouni, String ncc, String valcc, String numerotelefonico, String morada, String departamento, String faculdade) {
+		try {
+			if(tryRmi()){
+				return server.createUserRMI(Integer.parseInt(tipo), nome, numerouni, departamento, faculdade, numerotelefonico, morada, ncc, valcc, password);
 			}
 		}catch (RemoteException ignored){
 
