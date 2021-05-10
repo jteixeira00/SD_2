@@ -25,6 +25,8 @@ public class HeyBean {
 	private String rminame;
 	private String registry;
 
+	private int choiceGerirEleicao;
+
 
 	public HeyBean() {
 		try {
@@ -110,6 +112,10 @@ public class HeyBean {
 		this.password = password;
 	}
 
+	public void setChoiceGerirEleicao(int choice) {
+		this.choiceGerirEleicao = choice;
+	}
+
 	public boolean criaEleicao(String titulo, String descricao, String datainicio, String horainicio, String minutoinicio, String datafim, String horafim, String minutofim, String s, String tipovoter) {
 		try {
 			if(tryRmi()){
@@ -147,4 +153,19 @@ public class HeyBean {
 		}
 		return -1;
 	}
+
+	public String getNomeEleicao(){
+		try {
+			if(tryRmi()){
+				return server.getEleicoesFuturas().get(choiceGerirEleicao - 1).getTitulo();
+			}
+			return "";
+
+		}catch (RemoteException ignored){
+
+		}
+		return "";
+
+	}
+
 }

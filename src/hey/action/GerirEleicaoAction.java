@@ -14,6 +14,7 @@ public class GerirEleicaoAction extends ActionSupport implements SessionAware {
     private static final long serialVersionUID = 4L;
     private Map<String, Object> session;
 
+
     private String choice = null;
     private  int intChoice;
     private int size;
@@ -28,15 +29,16 @@ public class GerirEleicaoAction extends ActionSupport implements SessionAware {
 
         if(isParsable(choice)){
             intChoice = Integer.parseInt(choice);
-            if(intChoice >= 1 && intChoice <= size)
+            if(intChoice >= 1 && intChoice <= size) {
+                this.getHeyBean().setChoiceGerirEleicao(intChoice);
                 return SUCCESS;
+            }
+            else
+                return ERROR;
         }
         else
             return ERROR;
 
-
-
-        return SUCCESS;
     }
 
     public HeyBean getHeyBean() {
@@ -68,6 +70,10 @@ public class GerirEleicaoAction extends ActionSupport implements SessionAware {
 
     public void setChoice(String choice) {
         this.choice = choice;
+    }
+
+    public String getChoice() {
+        return choice;
     }
 
 

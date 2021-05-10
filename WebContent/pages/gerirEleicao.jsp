@@ -14,7 +14,7 @@
 </head>
 <body>
 
-    <form action="gerirleleicaoform.action" method="post">
+    <form action="gerireleicaoform.action" method="post">
 
         <br><c:forEach items="${heyBean.allEleicoes}" var="value">
             <c:out value="${value}" /><br>
