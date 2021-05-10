@@ -13,11 +13,28 @@ import java.util.Map;
 public class GerirEleicaoAction extends ActionSupport implements SessionAware {
     private static final long serialVersionUID = 4L;
     private Map<String, Object> session;
-    private String titulo = null, descricao = null, datainicio = null, horainicio = null, minutoinicio = null;
-    private String datafim = null, horafim = null, minutofim = null, tipovoter = null;
+
+    private String choice = null;
+    private  int intChoice;
+    private int size;
 
     @Override
-    public String execute() {
+    public String execute() throws RemoteException {
+
+        size = this.getHeyBean().getSizeEleicoesFuturas();
+        if(size == -1){
+            return ERROR;
+        }
+
+        if(isParsable(choice)){
+            intChoice = Integer.parseInt(choice);
+            if(intChoice >= 1 && intChoice <= size)
+                return SUCCESS;
+        }
+        else
+            return ERROR;
+
+
 
         return SUCCESS;
     }
@@ -38,14 +55,6 @@ public class GerirEleicaoAction extends ActionSupport implements SessionAware {
         this.session = session;
     }
 
-    public static boolean isParsableDate(String input){
-        try {
-            Date startDate = new SimpleDateFormat("dd-MM-yyyy").parse(input);
-            return true;
-        } catch (ParseException e) {
-            return  false;
-        }
-    }
 
     public static boolean isParsable(String input) {
         try {
@@ -55,6 +64,12 @@ public class GerirEleicaoAction extends ActionSupport implements SessionAware {
             return false;
         }
     }
+
+
+    public void setChoice(String choice) {
+        this.choice = choice;
+    }
+
 
 
 }

@@ -10,6 +10,8 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.net.MalformedURLException;
 import java.rmi.RemoteException;
+import java.util.Arrays;
+import java.util.List;
 
 import rmiserver.GetPropertyValues;
 import rmiserver.RmiInterface;
@@ -80,15 +82,18 @@ public class HeyBean {
 		return bruh;// are you going to throw all exceptions?
 	}
 
-	public String getAllEleicoes() throws RemoteException {
+	public ArrayList<String> getAllEleicoes() throws RemoteException {
 		try {
 			if(tryRmi()){
-				return server.showEleicoesFuturas();
+				String array[] = server.showEleicoesFuturas().split("\n");
+				List<String> al = new ArrayList<String>();
+				al = Arrays.asList(array);
+				return new ArrayList<>(al);
 			}
 		}catch (RemoteException ignored){
 
 		}
-		return "";
+		return new ArrayList<>();
 	}
 
 	public boolean getUserMatchesPassword(String username, String password) throws RemoteException {
@@ -128,5 +133,18 @@ public class HeyBean {
 
 		}
 		return false;
+	}
+
+	public int getSizeEleicoesFuturas() throws RemoteException {
+		try {
+			if(tryRmi()){
+					return server.sizeEleicoesFuturas();
+				}
+				return -1;
+
+		}catch (RemoteException ignored){
+
+		}
+		return -1;
 	}
 }

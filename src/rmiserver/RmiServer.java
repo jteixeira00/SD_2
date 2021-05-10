@@ -51,10 +51,8 @@ public class RmiServer extends UnicastRemoteObject implements RmiInterface {
         this.rminame = properties.getRminame();
         this.registry = properties.getRegistry();
 
-        System.out.println(rminame);
-        System.out.println(registry);
-
         load();
+        System.out.println(showEleicoesFuturas());
     }
 
     public double add(double a, double b) throws RemoteException {

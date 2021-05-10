@@ -1,4 +1,5 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%--
   Created by IntelliJ IDEA.
   User: User
@@ -14,13 +15,16 @@
 <body>
 
     <form action="gerirleleicaoform.action" method="post">
-        
-        <br><c:out value="${heyBean.allEleicoes}" /><br>
-        <s:text name="Escolha a eleição pretendida:" />
-        <s:textarea value = "%res"/>
 
+        <br><c:forEach items="${heyBean.allEleicoes}" var="value">
+            <c:out value="${value}" /><br>
+        </c:forEach>
 
+        <label><br>Escolha a eleição pretendida: <br></label>
+        <s:textfield name = "choice" required="true"/>
 
+        <br><br>
+        <button type = "submit">Submeter</button>
 
     </form>
 </body>
