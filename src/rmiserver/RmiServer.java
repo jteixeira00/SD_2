@@ -756,7 +756,11 @@ public class RmiServer extends UnicastRemoteObject implements RmiInterface {
             case 3:
                 //alterar data inicio
                 try {
-                    eleicao.setStartDate(parseDateString(change));
+                    Date data = parseDateString(change);
+                    if(data.before(eleicao.getEndDate()))
+                        eleicao.setStartDate(data);
+                    else
+                        return false;
                 } catch (ParseException e) {
                     e.printStackTrace();
                     return false;
@@ -765,7 +769,12 @@ public class RmiServer extends UnicastRemoteObject implements RmiInterface {
             case 4:
                 //alterar data de fim
                 try {
-                    eleicao.setEndDate(parseDateString(change));
+                    Date data = parseDateString(change);
+                    if(data.after(eleicao.getStartDate()))
+                        eleicao.setEndDate(data);
+                    else
+                        return false;
+
                 } catch (ParseException e) {
                     e.printStackTrace();
                     return false;
