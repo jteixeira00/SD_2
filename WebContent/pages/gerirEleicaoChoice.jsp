@@ -13,37 +13,23 @@
     <title>Consultar Votos Utilizador</title>
 </head>
 <body>
-    <form action="gerireleicaochoiceform.action" method="post">
+<h1><c:out value="${heyBean.nomeEleicao}" /></h1>
 
-        <label>Nome:<br></label>
-        <c:out value="${heyBean.nomeEleicao}" /><br>
-        <s:textfield name = "nome"/>
+        <form action = "gerirmesas">
+            <button>Gerir Mesas</button>
+        </form>
 
-        <label><br>Password: *<br></label>
-        <s:textfield name = "password"/>
+        <form action = "gerirlistas">
+            <button>Gerir Listas</button>
+        </form>
 
-        <label><br>Numero Cartao Cidadao:<br></label>
-        <s:textfield name = "ncc"/>
+        <form action = "gerirDepartamentos">
+            <button>Gerir Departamentos</button>
+        </form>
 
-        <label><br>Validade Cartao Cidadao:<br></label>
-        <s:textfield name = "valcc"/>
-
-        <label><br>Contacto Telefónico:<br></label>
-        <s:textfield name = "numerotelefonico"/>
-
-        <label><br>Morada:<br></label>
-        <s:textfield name = "morada"/>
-
-        <label><br>Departamento: *<br></label>
-        <s:textfield name = "departamento" required="true"/>
-
-        <label><br>Faculdade: <br></label>
-        <s:textfield name = "faculdade" required="true"/>
-
-        <br><br>
-        <button type = "submit">Submeter</button>
-
-    </form>
+        <form action = "propriedadeseleicao">
+            <button>Gerir Propriedades Eleição</button>
+        </form>
 
 
 </body>

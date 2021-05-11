@@ -13,10 +13,11 @@
     <title>Gerir Eleição</title>
 </head>
 <body>
+<h1>Gerir Eleição</h1>
 
     <form action="gerireleicaoform.action" method="post">
 
-        <br><c:forEach items="${heyBean.allEleicoes}" var="value">
+        <c:forEach items="${heyBean.allEleicoes}" var="value">
             <c:out value="${value}" /><br>
         </c:forEach>
 

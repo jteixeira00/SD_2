@@ -743,6 +743,10 @@ public class RmiServer extends UnicastRemoteObject implements RmiInterface {
         switch (answer) {
             case 1:
                 //alterar titulo
+                for(Eleicao e : getEleicoesFuturas()){
+                    if(change.equals(e.getTitulo()))
+                        return false;
+                }
                 eleicao.setTitulo(change);
                 break;
             case 2:
@@ -755,6 +759,7 @@ public class RmiServer extends UnicastRemoteObject implements RmiInterface {
                     eleicao.setStartDate(parseDateString(change));
                 } catch (ParseException e) {
                     e.printStackTrace();
+                    return false;
                 }
                 break;
             case 4:
@@ -763,6 +768,7 @@ public class RmiServer extends UnicastRemoteObject implements RmiInterface {
                     eleicao.setEndDate(parseDateString(change));
                 } catch (ParseException e) {
                     e.printStackTrace();
+                    return false;
                 }
                 break;
 

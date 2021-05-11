@@ -84,7 +84,28 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
 	  </action>
 
 	  <action name = "gerireleicaochoiceform" class = "hey.action.GerirEleicaoChoiceAction" method = "execute">
-		  <result name="success">/pages/gerirEleicaoChoice.jsp</result>
+		  <result name="error">/pages/gerirEleicaoChoice.jsp</result>
+		  <result name="success">/pages/adminLanding.jsp</result>
+	  </action>
+
+	  <action name="gerirmesas">
+		  <result type="redirect">/pages/gerirMesas.jsp</result>
+	  </action>
+
+	  <action name="gerirlistas">
+		  <result type="redirect">/pages/gerirListas.jsp</result>
+	  </action>
+
+	  <action name = "gerirDepartamentos">
+		  <result type="redirect">/pages/gerirDepartamentos.jsp</result>
+	  </action>
+
+	  <action name = "propriedadeseleicao">
+		  <result type="redirect">/pages/propriedadesEleicao.jsp</result>
+	  </action>
+
+	  <action name = "propriedadeseleicaoform" class = "hey.action.propriedadesEleicaoAction" method = "execute">
+		  <result name="error">/pages/propriedadesEleicao.jsp</result>
 		  <result name="success">/pages/adminLanding.jsp</result>
 	  </action>
 

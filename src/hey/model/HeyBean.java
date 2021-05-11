@@ -5,12 +5,15 @@ package hey.model;
 
 import java.io.IOException;
 import java.rmi.registry.LocateRegistry;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.net.MalformedURLException;
 import java.rmi.RemoteException;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import rmiserver.GetPropertyValues;
@@ -25,7 +28,7 @@ public class HeyBean {
 	private String rminame;
 	private String registry;
 
-	private int choiceGerirEleicao;
+	private int choiceGerirEleicao = 0;
 
 
 	public HeyBean() {
@@ -75,7 +78,6 @@ public class HeyBean {
 		}
 		return false;
 	}
-
 
 	public ArrayList<String> getAllUsers() throws RemoteException {
 		ArrayList<String> bruh = new ArrayList<>();
@@ -166,6 +168,66 @@ public class HeyBean {
 		}
 		return "";
 
+	}
+
+	public String getDescricaoEleicao(){
+		try {
+			if(tryRmi()){
+				return server.getEleicoesFuturas().get(choiceGerirEleicao - 1).getDescricao();
+			}
+			return "";
+
+		}catch (RemoteException ignored){
+
+		}
+		return "";
+
+	}
+
+	public String getInicioEleicao(){
+		try {
+			if(tryRmi()){
+				return dateToString(server.getEleicoesFuturas().get(choiceGerirEleicao - 1).getStartDate());
+			}
+			return "";
+
+		}catch (RemoteException ignored){
+
+		}
+		return "";
+
+	}
+
+	public String getFimEleicao(){
+		try {
+			if(tryRmi()){
+				return dateToString(server.getEleicoesFuturas().get(choiceGerirEleicao - 1).getEndDate());
+			}
+			return "";
+
+		}catch (RemoteException ignored){
+
+		}
+		return "";
+
+	}
+
+	public String dateToString(Date date){
+		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy'T'HH:mm");
+		String strDate = dateFormat.format(date);
+		String[] arr = strDate.split("T");
+		return arr[0] + " " + arr[1];
+	}
+
+	public boolean changeEleicao(String change, int answer) {
+		try {
+			if(tryRmi()){
+				return server.changeEleicoesRMI(choiceGerirEleicao - 1,answer,change);
+			}
+		}catch (RemoteException ignored){
+
+		}
+		return false;
 	}
 
 }
