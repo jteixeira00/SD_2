@@ -15,15 +15,15 @@
 <body>
 <h1>Gerir Eleição</h1>
 
-    <form action="gerireleicaoform.action" method="post">
+    <form action="gerireleicaoform" method="post">
 
         <c:forEach items="${heyBean.allEleicoes}" var="value">
             <c:out value="${value}" /><br>
         </c:forEach>
 
         <label><br>Escolha a eleição pretendida: <br></label>
-        <s:textfield name = "choice" required="true"/>
-
+        <%--<s:textfield name = "choice" required="true"/>--%>
+        <s:select list="eleicoes" name="choice"/>
         <br><br>
         <button type = "submit">Submeter</button>
 
