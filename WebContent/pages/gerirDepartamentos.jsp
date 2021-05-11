@@ -14,18 +14,25 @@
 </head>
 <body>
 
-    <form action="gerireleicaoform.action" method="post">
+    <h1>Gerir Departamentos</h1>
 
-        <br><c:forEach items="${heyBean.allEleicoes}" var="value">
-            <c:out value="${value}" /><br>
-        </c:forEach>
-
-        <label><br>Escolha a eleição pretendida: <br></label>
-        <s:textfield name = "choice" required="true"/>
-
-        <br><br>
-        <button type = "submit">Submeter</button>
-
+    <form action = "adicionarDepartamento">
+        <button>Adicionar Departamento</button>
     </form>
+
+
+
+    <c:choose>
+        <c:when test="${(heyBean.sizeDepartamento > 0)== true}">
+            <form action = "removerDepartamento">
+                <button>Remover Departamentos</button>
+            </form>
+        </c:when>
+        <c:otherwise>
+            <button>Remover Departamentos</button>
+        </c:otherwise>
+    </c:choose>
+
+
 </body>
 </html>

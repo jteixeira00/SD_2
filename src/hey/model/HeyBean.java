@@ -100,6 +100,20 @@ public class HeyBean {
 		return new ArrayList<>();
 	}
 
+	public ArrayList<String> getAllDepartamentos() throws RemoteException {
+		try {
+			if(tryRmi()){
+				String array[] = server.showDepartamentos(choiceGerirEleicao - 1).split("\n");
+				List<String> al = new ArrayList<String>();
+				al = Arrays.asList(array);
+				return new ArrayList<>(al);
+			}
+		}catch (RemoteException ignored){
+
+		}
+		return new ArrayList<>();
+	}
+
 	public boolean getUserMatchesPassword(String username, String password) throws RemoteException {
 		boolean ret = server.login(username, password);
 		System.out.println(ret);
@@ -130,6 +144,43 @@ public class HeyBean {
 
 		}
 		return false;
+	}
+
+	public boolean addDepatamento(String nome) {
+		try {
+			if(tryRmi()){
+				server.addDepartamentos(choiceGerirEleicao - 1,nome);
+				return true;
+
+			}
+		}catch (RemoteException e){
+			return false;
+		}
+		return false;
+	}
+
+	public boolean delDepatamento(int index) {
+		try {
+			if(tryRmi()){
+				server.deleteDepartamentos(choiceGerirEleicao - 1, index - 1);
+				return true;
+
+			}
+		}catch (RemoteException e){
+			return false;
+		}
+		return false;
+	}
+
+	public int getsizeDepartamento() {
+		try {
+			if(tryRmi()){
+				return server.sizeDepartamentos(choiceGerirEleicao - 1);
+			}
+		}catch (RemoteException e){
+			return -1;
+		}
+		return -1;
 	}
 
 	public boolean createUser(String tipo, String nome, String password, String numerouni, String ncc, String valcc, String numerotelefonico, String morada, String departamento, String faculdade) {

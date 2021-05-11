@@ -109,6 +109,23 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
 		  <result name="success">/pages/adminLanding.jsp</result>
 	  </action>
 
+	  <action name = "adicionarDepartamento">
+		  <result type="redirect">/pages/adicionarDepartamento.jsp</result>
+	  </action>
+
+	  <action name = "removerDepartamento">
+		  <result type="redirect">/pages/removerDepartamento.jsp</result>
+	  </action>
+
+	  <action name = "adicionardepartamentoform" class = "hey.action.adicionarDepartamentoAction" method = "execute">
+		  <result name="error">/pages/adicionarDepartamento.jsp</result>
+		  <result name="success">/pages/adminLanding.jsp</result>
+	  </action>
+
+	  <action name = "removerdepartamentoform" class = "hey.action.removerDepartamentoAction" method = "execute">
+		  <result name="error">/pages/removerDepartamento.jsp</result>
+		  <result name="success">/pages/adminLanding.jsp</result>
+	  </action>
 
   </package>
 
