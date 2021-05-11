@@ -7,6 +7,7 @@ import org.apache.struts2.interceptor.SessionAware;
 import java.rmi.RemoteException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
 
@@ -19,6 +20,10 @@ public class GerirEleicaoAction extends ActionSupport implements SessionAware {
     private  int intChoice;
     private int size;
 
+
+
+    private ArrayList<String> eleicoes;
+    private String myElection;
     @Override
     public String execute() throws RemoteException {
 
@@ -26,15 +31,10 @@ public class GerirEleicaoAction extends ActionSupport implements SessionAware {
         if(size == -1){
             return ERROR;
         }
-
-        if(isParsable(choice)){
-            intChoice = Integer.parseInt(choice);
-            if(intChoice >= 1 && intChoice <= size) {
-                this.getHeyBean().setChoiceGerirEleicao(intChoice);
-                return SUCCESS;
-            }
-            else
-                return ERROR;
+        intChoice = this.getHeyBean().getAllEleicoes().indexOf(choice)+1;
+        if(intChoice >= 1 && intChoice <= size) {
+            this.getHeyBean().setChoiceGerirEleicao(intChoice);
+            return SUCCESS;
         }
         else
             return ERROR;
@@ -76,6 +76,17 @@ public class GerirEleicaoAction extends ActionSupport implements SessionAware {
         return choice;
     }
 
+    public ArrayList<String> getEleicoes() {
+        try {
 
+            return this.getHeyBean().getAllEleicoes();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return new ArrayList<String>();
+    }
+    public String get(){
+        return SUCCESS;
+    }
 
 }
