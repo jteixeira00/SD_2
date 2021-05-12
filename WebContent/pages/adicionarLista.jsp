@@ -20,15 +20,8 @@
         <label>Nome da Lista: <br></label>
         <s:textfield name = "nome" required="true"/><br>
 
-        <label><br>Adicionar Candidatos: <br></label>
-        <c:forEach items="${heyBean.allPessoas}" var="value">
-            <c:out value="${value}" /><br>
-        </c:forEach>
-
-        <s:textfield name = "choice" required="true"/>
-
         <br><br>
-        <button type = "submit">Submeter</button>
+        <button type = "submit">Continuar</button>
 
 </body>
 </html>

@@ -169,7 +169,20 @@ public class HeyBean {
 	public boolean addLista(String nome) {
 		try {
 			if(tryRmi()){
-				server.getEleicoesFuturas().get(choiceGerirEleicao).addLista(nome);
+				server.createListaRMI(choiceGerirEleicao - 1,nome);
+				return true;
+
+			}
+		}catch (RemoteException e){
+			return false;
+		}
+		return false;
+	}
+
+	public boolean addCandidato(int indx){
+		try {
+			if(tryRmi()){
+				server.addCandidateRMI(choiceGerirEleicao - 1,0, indx);
 				return true;
 
 			}
