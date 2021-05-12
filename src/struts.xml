@@ -35,19 +35,18 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
     <action name="login" class="hey.action.LoginAction" method="execute">
         <result name="success">/hey.jsp</result>
 	    <result name="admin" type="redirect">/pages/adminLanding.jsp</result>
-
         <result name="login">/index.jsp</result>
     </action>
 
 	  <!-- Admin Page -->
 
 
-	  <action name="criareleicao">
-		  <result type="redirect">/pages/criarEleicao.jsp</result>
+	  <action name="criareleicao" class = "hey.action.CriarEleicaoAction" method = "get">
+		  <result name="success">/pages/criarEleicao.jsp</result>
 	  </action>
 
-	  <action name="criarutilizador">
-		  <result type="redirect">/pages/criarUtilizador.jsp</result>
+	  <action name="criarutilizador" class = "hey.action.CriarUserAction" method = "get">
+		  <result name="success">/pages/criarUtilizador.jsp</result>
 	  </action>
 
 	  <action name = "gerireleicao" class = "hey.action.GerirEleicaoAction" method = "get">

@@ -7,6 +7,7 @@ import org.apache.struts2.interceptor.SessionAware;
 import java.rmi.RemoteException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
 
@@ -15,7 +16,7 @@ public class CriarEleicaoAction extends ActionSupport implements SessionAware {
     private Map<String, Object> session;
     private String titulo = null, descricao = null, datainicio = null, horainicio = null, minutoinicio = null;
     private String datafim = null, horafim = null, minutofim = null, tipovoter = null;
-
+    private ArrayList<String> tiposvoters = new ArrayList<String>();
     @Override
     public String execute() {
 
@@ -48,7 +49,7 @@ public class CriarEleicaoAction extends ActionSupport implements SessionAware {
                 return ERROR;
             }
 
-            if (!tipovoter.equals("1") && !tipovoter.equals("2") && !tipovoter.equals("3")) {
+            if (!tipovoter.equals("Estudantes") && !tipovoter.equals("Funcionários") && !tipovoter.equals("Funcionários")) {
                 return ERROR;
             }
 
@@ -56,8 +57,15 @@ public class CriarEleicaoAction extends ActionSupport implements SessionAware {
             e.printStackTrace();
         }
 
+        String tipovoterint = "1";
 
-        if(!this.getHeyBean().criaEleicao(titulo, descricao, datainicio, horainicio, minutoinicio, datafim, horafim, minutofim, "", tipovoter)) {
+        if (tipovoter.equals("Funcionários")){
+            tipovoterint = "3";
+        }
+        else if (tipovoter.equals("Docentes")){
+            tipovoterint = "2";
+        }
+        if(!this.getHeyBean().criaEleicao(titulo, descricao, datainicio, horainicio, minutoinicio, datafim, horafim, minutofim, "", tipovoterint)) {
             //data invalida
             return ERROR;
         }
@@ -78,7 +86,9 @@ public class CriarEleicaoAction extends ActionSupport implements SessionAware {
     public void setTitulo(String titulo){
         this.titulo = titulo;
     }
-
+    public String get(){
+        return SUCCESS;
+    }
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
@@ -132,6 +142,16 @@ public class CriarEleicaoAction extends ActionSupport implements SessionAware {
         } catch (final NumberFormatException e) {
             return false;
         }
+    }
+
+    public ArrayList<String> getTiposvoters(){
+        if(tiposvoters!=null && tiposvoters.size()<2){
+
+            tiposvoters.add("Estudantes");
+            tiposvoters.add("Docentes");
+            tiposvoters.add("Funcionários");
+        }
+        return tiposvoters;
     }
 
 

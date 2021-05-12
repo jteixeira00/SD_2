@@ -130,7 +130,9 @@ public class HeyBean {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	
+	public String getUsername(){
+		return this.username;
+	}
 	public void setPassword(String password) {
 		this.password = password;
 	}

@@ -13,7 +13,7 @@
 </head>
 <body>
 
-<form action ="criarEleicaoForm.action" method = "post">
+<form action ="criarEleicaoForm" method = "post">
     <h1>Criar Eleição</h1>
 
     <label>Titulo da Eleiçao:<br></label>
@@ -41,8 +41,7 @@
     <s:textfield name = "minutofim" required="true"/>
 
     <label><br>Restringir eleição<br> </label>
-    <label>1: Estudantes || 2: Docentes || 3: Funcionários<br></label>
-    <s:textfield name = "tipovoter" required="true"/>
+    <s:select list="tiposvoters" name="tipovoter"/>
     <br><br>
     <button type = "submit">Submeter</button>
 </form>
