@@ -24,6 +24,7 @@ public class GerirEleicaoAction extends ActionSupport implements SessionAware {
 
     private ArrayList<String> eleicoes;
     private String myElection;
+    private ArrayList<String> departamentos;
     @Override
     public String execute() throws RemoteException {
 
@@ -74,6 +75,15 @@ public class GerirEleicaoAction extends ActionSupport implements SessionAware {
 
     public String getChoice() {
         return choice;
+    }
+
+    public ArrayList<String> getDepartamentos(){
+        try {
+            return this.getHeyBean().getAllDepartamentos();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return new ArrayList<String>();
     }
 
     public ArrayList<String> getEleicoes() {

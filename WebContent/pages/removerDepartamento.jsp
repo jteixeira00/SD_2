@@ -14,14 +14,15 @@
 </head>
 <body>
 
-    <form action ="removerdepartamentoform.action" method = "post">
+    <form action ="removerdepartamentoform" method = "post">
         <h1>Remover Departamento</h1>
 
         <c:forEach items="${heyBean.allDepartamentos}" var="value">
             <c:out value="${value}" /><br>
         </c:forEach>
 
-        <br><s:textfield name = "index" required="true"/>
+        <!--<br><s:textfield name = "index" required="true"/>-->
+        <s:select list="departamentos" name="index"/>
         <br><br>
         <button type = "submit">Submeter</button>
 
