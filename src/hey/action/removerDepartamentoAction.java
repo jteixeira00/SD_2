@@ -4,6 +4,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import hey.model.HeyBean;
 import org.apache.struts2.interceptor.SessionAware;
 
+import java.rmi.RemoteException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -18,18 +19,13 @@ public class removerDepartamentoAction extends ActionSupport implements SessionA
     @Override
     public String execute() {
 
-        if(isParsable(index)) {
-            int indx = Integer.parseInt(index);
-            if(indx >= 1 && indx <= this.getHeyBean().getsizeDepartamento()){
-                if (this.getHeyBean().delDepatamento(indx))
-                    return SUCCESS;
-            }
-            else
-                return ERROR;
 
-        }else
-            return ERROR;
-
+                try {
+                    if (this.getHeyBean().delDepatamento(this.getHeyBean().getAllDepartamentos().indexOf(index)+1))
+                        return SUCCESS;
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
 
         return ERROR;
     }
