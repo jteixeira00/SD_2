@@ -14,18 +14,21 @@
 </head>
 <body>
 
-    <form action="gerireleicaoform.action" method="post">
+    <form action ="adicionarlistaform.action" method = "post">
+        <h1>Adiconar Lista</h1>
 
-        <br><c:forEach items="${heyBean.allEleicoes}" var="value">
+        <label>Nome da Lista: <br></label>
+        <s:textfield name = "nome" required="true"/><br>
+
+        <label><br>Adicionar Candidatos: <br></label>
+        <c:forEach items="${heyBean.allPessoas}" var="value">
             <c:out value="${value}" /><br>
         </c:forEach>
 
-        <label><br>Escolha a eleição pretendida: <br></label>
         <s:textfield name = "choice" required="true"/>
 
         <br><br>
         <button type = "submit">Submeter</button>
 
-    </form>
 </body>
 </html>
