@@ -135,6 +135,10 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
 		  <result type="redirect">/pages/removerLista.jsp</result>
 	  </action>
 
+	  <action name = "gerirCandidatos">
+		  <result type="redirect">/pages/removerLista.jsp</result>
+	  </action>
+
 	  <action name = "adicionarlistaform" class = "hey.action.adicionarListaAction" method = "execute">
 		  <result name="error">/pages/adicionarLista.jsp</result>
 		  <result name="success">/pages/adicionarCandidatos.jsp</result>
@@ -142,6 +146,11 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
 
 	  <action name = "adicionarcandidatosform" class = "hey.action.adicionarCandidatosAction" method = "execute">
 		  <result name="error">/pages/adicionarCandidatos.jsp</result>
+		  <result name="success">/pages/adminLanding.jsp</result>
+	  </action>
+
+	  <action name = "removercandidatosform" class = "hey.action.removerCandidatosAction" method = "execute">
+		  <result name="error">/pages/removerCandidatos.jsp</result>
 		  <result name="success">/pages/adminLanding.jsp</result>
 	  </action>
 
