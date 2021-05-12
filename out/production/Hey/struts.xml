@@ -93,7 +93,7 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
 	  </action>
 
 	  <action name="gerirlistas">
-		  <result type="redirect">/pages/gerirListas.jsp</result>
+		  <result type="redirect">/pages/gerirLista.jsp</result>
 	  </action>
 
 	  <action name = "gerirDepartamentos">
@@ -124,6 +124,24 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
 
 	  <action name = "removerdepartamentoform" class = "hey.action.removerDepartamentoAction" method = "execute">
 		  <result name="error">/pages/removerDepartamento.jsp</result>
+		  <result name="success">/pages/adminLanding.jsp</result>
+	  </action>
+
+	  <action name = "adicionarLista">
+		  <result type="redirect">/pages/adicionarLista.jsp</result>
+	  </action>
+
+	  <action name = "removerLista">
+		  <result type="redirect">/pages/removerLista.jsp</result>
+	  </action>
+
+	  <action name = "adicionarlistaform" class = "hey.action.adicionarListaAction" method = "execute">
+		  <result name="error">/pages/adicionarLista.jsp</result>
+		  <result name="success">/pages/adminLanding.jsp</result>
+	  </action>
+
+	  <action name = "removerlistaform" class = "hey.action.removerListaAction" method = "execute">
+		  <result name="error">/pages/removerLista.jsp</result>
 		  <result name="success">/pages/adminLanding.jsp</result>
 	  </action>
 

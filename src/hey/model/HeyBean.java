@@ -79,11 +79,18 @@ public class HeyBean {
 		return false;
 	}
 
-	public ArrayList<String> getAllUsers() throws RemoteException {
-		ArrayList<String> bruh = new ArrayList<>();
-		bruh.add("A");
-		bruh.add("B");
-		return bruh;// are you going to throw all exceptions?
+	public ArrayList<String> getAllPessoas() throws RemoteException {
+		try {
+			if(tryRmi()){
+				String array[] = server.showPessoas().split("\n");
+				List<String> al = new ArrayList<String>();
+				al = Arrays.asList(array);
+				return new ArrayList<>(al);
+			}
+		}catch (RemoteException ignored){
+
+		}
+		return new ArrayList<>();
 	}
 
 	public ArrayList<String> getAllEleicoes() throws RemoteException {
@@ -159,6 +166,19 @@ public class HeyBean {
 		return false;
 	}
 
+	public boolean addLista(String nome) {
+		try {
+			if(tryRmi()){
+				server.getEleicoesFuturas().get(choiceGerirEleicao).addLista(nome);
+				return true;
+
+			}
+		}catch (RemoteException e){
+			return false;
+		}
+		return false;
+	}
+
 	public boolean delDepatamento(int index) {
 		try {
 			if(tryRmi()){
@@ -176,6 +196,17 @@ public class HeyBean {
 		try {
 			if(tryRmi()){
 				return server.sizeDepartamentos(choiceGerirEleicao - 1);
+			}
+		}catch (RemoteException e){
+			return -1;
+		}
+		return -1;
+	}
+
+	public int getsizeLista() {
+		try {
+			if(tryRmi()){
+				return server.getEleicoesFuturas().get(choiceGerirEleicao - 1).getListasCandidatas().size();
 			}
 		}catch (RemoteException e){
 			return -1;

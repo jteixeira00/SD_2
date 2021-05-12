@@ -127,6 +127,11 @@ public class Eleicao implements Serializable{
         listasCandidatas.add(0, lista);
     }
 
+    public void addLista(String nome) {
+        Lista l = new Lista(null,nome);
+        listasCandidatas.add(0, l);
+    }
+
     public void setListasCandidatas(ArrayList<Lista> listasCandidatas) {
         this.listasCandidatas = listasCandidatas;
     }
