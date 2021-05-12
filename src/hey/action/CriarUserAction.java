@@ -7,6 +7,7 @@ import org.apache.struts2.interceptor.SessionAware;
 import java.rmi.RemoteException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
 
@@ -15,13 +16,21 @@ public class CriarUserAction extends ActionSupport implements SessionAware {
     private Map<String, Object> session;
     private String tipo = null, nome = null, password = null, numerouni = null, ncc = null, valcc = null;
     private String numerotelefonico = null, morada = null, departamento = null, faculdade = null;
-
+    private ArrayList<String> tiposusers = new ArrayList<String>();
     @Override
     public String execute() {
 
-        if (!tipo.equals("1") && !tipo.equals("2") && !tipo.equals("3")) {
-            return ERROR;
+        if(tipo.equals("Estudante")){
+            tipo = "1";
         }
+
+        else if (tipo.equals("Funcionário")){
+            tipo = "3";
+        }
+        else if (tipo.equals("Docente")){
+            tipo = "2";
+        }
+
 
         if(!this.getHeyBean().createUser(tipo,nome,password,numerouni,ncc,valcc,numerotelefonico,morada,departamento,faculdade)){
             //numerouni já existe
@@ -42,7 +51,9 @@ public class CriarUserAction extends ActionSupport implements SessionAware {
         this.session.put("heyBean", heyBean);
     }
 
-
+    public String get(){
+        return SUCCESS;
+    }
     @Override
     public void setSession(Map<String, Object> session) {
         this.session = session;
@@ -104,5 +115,15 @@ public class CriarUserAction extends ActionSupport implements SessionAware {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public ArrayList<String> getTiposusers(){
+        if(tiposusers!=null && tiposusers.size()<2){
+
+            tiposusers.add("Estudante");
+            tiposusers.add("Docente");
+            tiposusers.add("Funcionário");
+        }
+        return tiposusers;
     }
 }

@@ -17,8 +17,7 @@
     <h1>Criar Utilizador</h1>
 
     <label><br>Tipo de Utilizador: *<br> </label>
-    <label>1: Estudante || 2: Docente || 3: Funcionário<br></label>
-    <s:textfield name = "tipo" required="true"/>
+    <s:select list="tiposusers" name ="tipo"/>
 
     <label><br>Nome: *<br></label>
     <s:textfield name = "nome" required="true"/>

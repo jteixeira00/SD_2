@@ -160,17 +160,14 @@ public class RmiServer extends UnicastRemoteObject implements RmiInterface {
 
     @Override
     public boolean login(String numero, String password) throws RemoteException {
-        //System.out.println("Procurando utilizador com nº " + numero);
-        //Pessoa p = getPessoabyNumber(numero);
-        /*
+        System.out.println("Procurando utilizador com nº " + numero);
+        Pessoa p = getPessoabyNumber(numero);
+
         if (p.getPassword().equals(password)) {
             return true;
         } else {
             return false;
         }
-
-         */
-        return true;
     }
 
     public void logout(String numero) throws RemoteException {

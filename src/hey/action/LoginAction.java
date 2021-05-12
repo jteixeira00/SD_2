@@ -36,7 +36,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 				}
 				else{
 					session.put("loggedin", false); // this marks the user as logged in
-					return SUCCESS;
+					return LOGIN;
 				}
 
 			} catch (RemoteException e) {
