@@ -254,6 +254,19 @@ public class HeyBean {
 
 	}
 
+	public ArrayList<String> getEleicoesUser(){
+		try {
+			if(tryRmi()){
+				return server.getEleicoesUser(this.username);
+			}
+			return new ArrayList<>();
+
+		}catch (RemoteException ignored){
+
+		}
+		return new ArrayList<>();
+	}
+
 	public String getDescricaoEleicao(){
 		try {
 			if(tryRmi()){
@@ -279,6 +292,21 @@ public class HeyBean {
 
 		}
 		return "";
+
+	}
+
+	public ArrayList<String> getListasEleicao(String eleicao){
+
+		try {
+			if(tryRmi()){
+				return server.getListasEleicao(eleicao);
+			}
+			return new ArrayList<>();
+
+		}catch (RemoteException ignored){
+
+		}
+		return new ArrayList<>();
 
 	}
 
