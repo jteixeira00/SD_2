@@ -31,6 +31,9 @@ public class HeyBean {
 	private int choiceGerirEleicao = 0;
 
 
+	private int choiceLista= 0;
+
+
 	public HeyBean() {
 		try {
 			GetPropertyValues properties = new GetPropertyValues();
@@ -96,7 +99,21 @@ public class HeyBean {
 	public ArrayList<String> getAllEleicoes() throws RemoteException {
 		try {
 			if(tryRmi()){
-				String array[] = server.showEleicoesFuturas().split("\n");
+				String[] array = server.showEleicoesFuturas().split("\n");
+				List<String> al = new ArrayList<String>();
+				al = Arrays.asList(array);
+				return new ArrayList<>(al);
+			}
+		}catch (RemoteException ignored){
+
+		}
+		return new ArrayList<>();
+	}
+
+	public ArrayList<String> getAllListas() throws RemoteException {
+		try {
+			if(tryRmi()){
+				String[] array = server.getEleicoesFuturas().get(choiceGerirEleicao - 1).showListasCandidatas().split("\n");
 				List<String> al = new ArrayList<String>();
 				al = Arrays.asList(array);
 				return new ArrayList<>(al);
@@ -111,6 +128,21 @@ public class HeyBean {
 		try {
 			if(tryRmi()){
 				String array[] = server.showDepartamentos(choiceGerirEleicao - 1).split("\n");
+				List<String> al = new ArrayList<String>();
+				al = Arrays.asList(array);
+				return new ArrayList<>(al);
+			}
+		}catch (RemoteException ignored){
+
+		}
+		return new ArrayList<>();
+	}
+
+	public ArrayList<String> getAllCandidatos() throws RemoteException {
+		try {
+			if(tryRmi()){
+				String array[] = server.getEleicoesFuturas().get(choiceGerirEleicao - 1).getListasCandidatas().get(choiceLista - 1).showCandidatos().split("\n");
+				System.out.println(array);
 				List<String> al = new ArrayList<String>();
 				al = Arrays.asList(array);
 				return new ArrayList<>(al);
@@ -171,7 +203,33 @@ public class HeyBean {
 	public boolean addLista(String nome) {
 		try {
 			if(tryRmi()){
-				server.getEleicoesFuturas().get(choiceGerirEleicao).addLista(nome);
+				server.createListaRMI(choiceGerirEleicao - 1,nome);
+				return true;
+
+			}
+		}catch (RemoteException e){
+			return false;
+		}
+		return false;
+	}
+
+	public boolean addCandidato(int indx, int indxL){
+		try {
+			if(tryRmi()){
+				server.addCandidateRMI(choiceGerirEleicao - 1,indxL, indx - 1);
+				return true;
+
+			}
+		}catch (RemoteException e){
+			return false;
+		}
+		return false;
+	}
+
+	public boolean delCandidato(int indx, int indxL){
+		try {
+			if(tryRmi()){
+				server.deleteCandidateRMI(choiceGerirEleicao - 1,indxL, indx - 1);
 				return true;
 
 			}
@@ -214,6 +272,25 @@ public class HeyBean {
 			return -1;
 		}
 		return -1;
+	}
+
+	public int getsizeCandidatos() {
+		try {
+			if(tryRmi()){
+				return server.getEleicoesFuturas().get(choiceGerirEleicao - 1).getListasCandidatas().get(choiceLista - 1).getSize();
+			}
+		}catch (RemoteException e){
+			return -1;
+		}
+		return -1;
+	}
+
+	public int getChoiceLista() {
+		return choiceLista;
+	}
+
+	public void setChoiceLista(int choiceLista) {
+		this.choiceLista = choiceLista;
 	}
 
 	public boolean createUser(String tipo, String nome, String password, String numerouni, String ncc, String valcc, String numerotelefonico, String morada, String departamento, String faculdade) {

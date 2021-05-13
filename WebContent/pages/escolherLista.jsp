@@ -10,18 +10,20 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Gerir Eleição</title>
+    <title>Escolher Lista</title>
 </head>
 <body>
+<h1>Escolher Lista</h1>
 
-    <form action ="adicionarlistaform.action" method = "post">
-        <h1>Adiconar Lista</h1>
+    <form action="escolherlistaform" method="post">
 
-        <label>Nome da Lista: <br></label>
-        <s:textfield name = "nome" required="true"/><br>
+        <label><br>Escolha a lista pretendida: <br></label>
+
+        <s:select list="listas" name="choice"/>
 
         <br><br>
-        <button type = "submit">Continuar</button>
+        <button type = "submit">Submeter</button>
 
+    </form>
 </body>
 </html>

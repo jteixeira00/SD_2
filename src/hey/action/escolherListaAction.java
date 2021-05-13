@@ -5,39 +5,38 @@ import hey.model.HeyBean;
 import org.apache.struts2.interceptor.SessionAware;
 
 import java.rmi.RemoteException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Map;
 
-public class GerirEleicaoAction extends ActionSupport implements SessionAware {
+public class escolherListaAction extends ActionSupport implements SessionAware {
     private static final long serialVersionUID = 4L;
     private Map<String, Object> session;
 
 
     private String choice = null;
     private  int intChoice;
-    private int size;
-
-
-
-    private ArrayList<String> eleicoes;
-    private String myElection;
-    private ArrayList<String> departamentos;
+    private int size = -1;
+    private ArrayList<String> listas;
 
 
     @Override
     public String execute() throws RemoteException {
 
-        size = this.getHeyBean().getSizeEleicoesFuturas();
+        choice  = choice.split(" ")[0];
+
+        size = this.getHeyBean().getsizeLista();
         if(size == -1){
             return ERROR;
         }
-        intChoice = this.getHeyBean().getAllEleicoes().indexOf(choice)+1;
-        if(intChoice >= 1 && intChoice <= size) {
-            this.getHeyBean().setChoiceGerirEleicao(intChoice);
-            return SUCCESS;
+
+        if(isParsable(choice)){
+            intChoice = Integer.parseInt(choice);
+            if(intChoice >= 1 && intChoice <= size) {
+                this.getHeyBean().setChoiceLista(intChoice);
+                return SUCCESS;
+            }
+            else
+                return ERROR;
         }
         else
             return ERROR;
@@ -79,29 +78,20 @@ public class GerirEleicaoAction extends ActionSupport implements SessionAware {
         return choice;
     }
 
-    public ArrayList<String> getDepartamentos(){
+    public ArrayList<String> getListas() {
         try {
-            return this.getHeyBean().getAllDepartamentos();
+
+            return this.getHeyBean().getAllListas();
         } catch (RemoteException e) {
             e.printStackTrace();
         }
         return new ArrayList<String>();
     }
-
-    public ArrayList<String> getEleicoes() {
-        try {
-
-            return this.getHeyBean().getAllEleicoes();
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-        return new ArrayList<String>();
-    }
-
-
 
     public String get(){
         return SUCCESS;
     }
+
+
 
 }

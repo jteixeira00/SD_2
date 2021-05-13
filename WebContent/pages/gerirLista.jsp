@@ -10,11 +10,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Gerir Eleição</title>
+    <title>Gerir Listas</title>
 </head>
 <body>
 
-    <h1>Gerir Departamentos</h1>
+    <h1>Gerir Listas</h1>
 
     <form action = "adicionarLista">
         <button>Adicionar Lista</button>
@@ -30,6 +30,18 @@
         </c:when>
         <c:otherwise>
             <button>Remover Lista</button>
+        </c:otherwise>
+    </c:choose>
+
+
+    <c:choose>
+        <c:when test="${(heyBean.sizeLista > 0)== true}">
+            <form action = "escolherLista">
+                <button>Gerir Candidatos</button>
+            </form>
+        </c:when>
+        <c:otherwise>
+            <button>Gerir Candidatos</button>
         </c:otherwise>
     </c:choose>
 

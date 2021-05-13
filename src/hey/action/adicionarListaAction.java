@@ -13,19 +13,16 @@ public class adicionarListaAction extends ActionSupport implements SessionAware 
     private static final long serialVersionUID = 4L;
     private Map<String, Object> session;
     private String nome = null;
-    private String add = null;
-    private String end = null;
-    private String choice = null;
+
 
 
     @Override
     public String execute() {
 
-        if (add.equals("Adicionar"))
-            System.out.println("HERE");
-        if(end != null)
+        if (this.getHeyBean().addLista(nome)) {
+            this.getHeyBean().setChoiceLista(1);
             return SUCCESS;
-
+        }
         return ERROR;
     }
 
@@ -48,35 +45,6 @@ public class adicionarListaAction extends ActionSupport implements SessionAware 
         this.session = session;
     }
 
-    public static boolean isParsableDate(String input){
-        try {
-            Date startDate = new SimpleDateFormat("dd-MM-yyyy").parse(input);
-            return true;
-        } catch (ParseException e) {
-            return  false;
-        }
-    }
-
-    public static boolean isParsable(String input) {
-        try {
-            Integer.parseInt(input);
-            return true;
-        } catch (final NumberFormatException e) {
-            return false;
-        }
-    }
-
-    public void setAdd(String add) {
-        this.add = add;
-    }
-
-    public void setEnd(String end) {
-        this.end = end;
-    }
-
-    public void setChoice(String choice) {
-        this.choice = choice;
-    }
 
 
 }
