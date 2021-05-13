@@ -13,22 +13,29 @@ public class removerListaAction extends ActionSupport implements SessionAware {
     private static final long serialVersionUID = 4L;
     private Map<String, Object> session;
     private String index = null;
-    private int indx;
+    private String del = null;
+    private String exit = null;
 
     @Override
     public String execute() {
 
-        if(isParsable(index)) {
+        if(index != null){
+            index = index.split(" ")[0];
+        }
+
+        if(del != null && index != null && isParsable(index)) {
             int indx = Integer.parseInt(index);
-            if(indx >= 1 && indx <= this.getHeyBean().getsizeDepartamento()){
-                if (this.getHeyBean().delDepatamento(indx))
-                    return SUCCESS;
+            if(indx >= 1 && indx <= this.getHeyBean().getsizeLista()){
+                if (this.getHeyBean().delLista(indx))
+                    return ERROR;
             }
             else
                 return ERROR;
 
-        }else
-            return ERROR;
+        }
+
+        if(exit != null)
+            return SUCCESS;
 
 
         return ERROR;
@@ -46,6 +53,14 @@ public class removerListaAction extends ActionSupport implements SessionAware {
 
     public void setIndex(String index){
         this.index = index;
+    }
+
+    public void setDel(String del){
+        this.del = del;
+    }
+
+    public void setExit(String exit){
+        this.exit = exit;
     }
 
     @Override
