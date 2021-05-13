@@ -10,16 +10,22 @@ public class removerCandidatosAction extends ActionSupport implements SessionAwa
     private static final long serialVersionUID = 4L;
     private Map<String, Object> session;
 
-    private String add = null;
+    private String del = null;
     private String exit = null;
     private String choice = null;
 
 
     @Override
     public String execute() {
-        if (add != null && choice != null && isParsable(choice))
-            if(this.getHeyBean().addCandidato(Integer.parseInt(choice),0))
+
+        if(choice != null){
+            choice = choice.split(" ")[0];
+        }
+
+        if (del != null && choice != null && isParsable(choice))
+            if(this.getHeyBean().delCandidato(Integer.parseInt(choice),this.getHeyBean().getChoiceLista() - 1)) {
                 return ERROR;
+            }
 
         if(exit != null)
             return SUCCESS;
@@ -43,8 +49,8 @@ public class removerCandidatosAction extends ActionSupport implements SessionAwa
         this.session = session;
     }
 
-    public void setAdd(String add) {
-        this.add = add;
+    public void setDel(String add) {
+        this.del = add;
     }
 
     public void setExit(String exit) {

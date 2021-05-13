@@ -23,7 +23,7 @@
 
 
     <c:choose>
-        <c:when test="${(heyBean.sizeLista > 0)== true}">
+        <c:when test="${(heyBean.sizeCandidatos > 0)== true}">
             <form action = "removerCandidatos">
                 <button>Remover Candidatos</button>
             </form>

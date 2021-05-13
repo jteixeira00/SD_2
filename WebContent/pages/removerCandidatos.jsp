@@ -15,17 +15,26 @@
 <body>
 
     <form action ="removercandidatosform.action" method = "post">
-        <h1>Adicionar Lista</h1>
+        <h1>Remover Candidatos</h1>
 
-        <label><br>Adicionar Candidatos: <br></label><br>
-        <c:forEach items="${heyBean.allPessoas}" var="value">
+        <c:choose>
+        <c:when test="${(heyBean.sizeCandidatos > 0)== true}">
+        <br>
+        <c:forEach items="${heyBean.allCandidatos}" var="value">
             <c:out value="${value}" /><br>
         </c:forEach>
 
         <br><s:textfield name = "choice"/>
 
         <br><br>
-        <input type="submit" name="add" value="Adicionar" />
+        <input type="submit" name="del" value="Remover" />
         <input type="submit" name="exit" value="Sair" />
+        </c:when>
+        <c:otherwise>
+            <c:redirect url="gerirCandidatos.jsp"/>
+        </c:otherwise>
+        </c:choose>
+
+
 </body>
 </html>

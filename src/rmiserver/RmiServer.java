@@ -325,7 +325,7 @@ public class RmiServer extends UnicastRemoteObject implements RmiInterface {
     //eliminar candidato com index delete, na lista com index choice, na eleição com index indx na lista de eleições futuras
     @Override
     public boolean deleteCandidateRMI(int indx, int choice, int delete) throws RemoteException {
-        ArrayList<Lista> aux = getEleicoesFuturas().get(indx).getListasCandidatas();
+         ArrayList<Lista> aux = getEleicoesFuturas().get(indx).getListasCandidatas();
         aux.get(choice).getMembros().remove(delete);
         getEleicoesFuturas().get(indx).setListasCandidatas(aux);
         save();

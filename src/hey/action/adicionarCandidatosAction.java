@@ -18,12 +18,15 @@ public class adicionarCandidatosAction extends ActionSupport implements SessionA
     @Override
     public String execute() {
 
+
         if(choice != null){
             choice = choice.split(" ")[0];
         }
+
         if (add != null && choice != null && isParsable(choice))
-            if(this.getHeyBean().addCandidato(Integer.parseInt(choice),this.getHeyBean().getChoiceLista() - 1))
+            if(this.getHeyBean().addCandidato(Integer.parseInt(choice),this.getHeyBean().getChoiceLista() - 1)) {
                 return ERROR;
+            }
 
         if(exit != null)
             return SUCCESS;

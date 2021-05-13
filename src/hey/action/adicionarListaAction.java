@@ -20,6 +20,7 @@ public class adicionarListaAction extends ActionSupport implements SessionAware 
     public String execute() {
 
         if (this.getHeyBean().addLista(nome)) {
+            this.getHeyBean().setChoiceLista(1);
             return SUCCESS;
         }
         return ERROR;
