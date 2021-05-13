@@ -73,7 +73,7 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
 	  </action>
 
 	  <action name = "eleicoespassadasform" class = "hey.action.EleicoesPassadasAction" method = "execute">
-		  <result name="errpr">/pages/eleicoesPassadas.jsp</result>
+		  <result name="error">/pages/eleicoesPassadas.jsp</result>
 		  <result name="success">/pages/adminLanding.jsp</result>
 	  </action>
 
@@ -130,8 +130,25 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
 		  <result type="redirect">/pages/adicionarLista.jsp</result>
 	  </action>
 
+	  <action name = "adicionarCandidatos">
+		  <result type="redirect">/pages/adicionarCandidatos.jsp</result>
+	  </action>
+
+	  <action name = "removerCandidatos">
+		  <result type="redirect">/pages/removerCandidatos.jsp</result>
+	  </action>
+
 	  <action name = "removerLista">
 		  <result type="redirect">/pages/removerLista.jsp</result>
+	  </action>
+
+	  <action name = "escolherLista" class = "hey.action.escolherListaAction" method = "get">
+		  <result name="success">/pages/escolherLista.jsp</result>
+	  </action>
+
+	  <action name = "escolherlistaform" class = "hey.action.escolherListaAction" method = "execute">
+		  <result name="error">/pages/escolherLista.jsp</result>
+		  <result name="success">/pages/gerirCandidatos.jsp</result>
 	  </action>
 
 	  <action name = "adicionarlistaform" class = "hey.action.adicionarListaAction" method = "execute">
@@ -141,6 +158,11 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
 
 	  <action name = "adicionarcandidatosform" class = "hey.action.adicionarCandidatosAction" method = "execute">
 		  <result name="error">/pages/adicionarCandidatos.jsp</result>
+		  <result name="success">/pages/adminLanding.jsp</result>
+	  </action>
+
+	  <action name = "removercandidatosform" class = "hey.action.removerCandidatosAction" method = "execute">
+		  <result name="error">/pages/removerCandidatos.jsp</result>
 		  <result name="success">/pages/adminLanding.jsp</result>
 	  </action>
 

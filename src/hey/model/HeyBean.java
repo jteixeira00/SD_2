@@ -31,6 +31,9 @@ public class HeyBean {
 	private int choiceGerirEleicao = 0;
 
 
+	private int choiceLista= 0;
+
+
 	public HeyBean() {
 		try {
 			GetPropertyValues properties = new GetPropertyValues();
@@ -96,7 +99,21 @@ public class HeyBean {
 	public ArrayList<String> getAllEleicoes() throws RemoteException {
 		try {
 			if(tryRmi()){
-				String array[] = server.showEleicoesFuturas().split("\n");
+				String[] array = server.showEleicoesFuturas().split("\n");
+				List<String> al = new ArrayList<String>();
+				al = Arrays.asList(array);
+				return new ArrayList<>(al);
+			}
+		}catch (RemoteException ignored){
+
+		}
+		return new ArrayList<>();
+	}
+
+	public ArrayList<String> getAllListas() throws RemoteException {
+		try {
+			if(tryRmi()){
+				String[] array = server.getEleicoesFuturas().get(choiceGerirEleicao - 1).showListasCandidatas().split("\n");
 				List<String> al = new ArrayList<String>();
 				al = Arrays.asList(array);
 				return new ArrayList<>(al);
@@ -181,10 +198,10 @@ public class HeyBean {
 		return false;
 	}
 
-	public boolean addCandidato(int indx){
+	public boolean addCandidato(int indx, int indxL){
 		try {
 			if(tryRmi()){
-				server.addCandidateRMI(choiceGerirEleicao - 1,0, indx);
+				server.addCandidateRMI(choiceGerirEleicao - 1,indxL, indx);
 				return true;
 
 			}
@@ -227,6 +244,14 @@ public class HeyBean {
 			return -1;
 		}
 		return -1;
+	}
+
+	public int getChoiceLista() {
+		return choiceLista;
+	}
+
+	public void setChoiceLista(int choiceLista) {
+		this.choiceLista = choiceLista;
 	}
 
 	public boolean createUser(String tipo, String nome, String password, String numerouni, String ncc, String valcc, String numerotelefonico, String morada, String departamento, String faculdade) {
