@@ -41,7 +41,7 @@
             </form>
         </c:when>
         <c:otherwise>
-            <button>Gerir Candidatos</button>
+            <button><br>Gerir Candidatos</button>
         </c:otherwise>
     </c:choose>
 
