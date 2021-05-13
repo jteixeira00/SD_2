@@ -130,12 +130,12 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
 		  <result type="redirect">/pages/adicionarLista.jsp</result>
 	  </action>
 
-	  <action name = "adicionarCandidatos">
-		  <result type="redirect">/pages/adicionarCandidatos.jsp</result>
+	  <action name = "adicionarCandidatos" class = "hey.action.adicionarCandidatosAction" method="get">
+		  <result name="success">/pages/adicionarCandidatos.jsp</result>
 	  </action>
 
-	  <action name = "removerCandidatos">
-		  <result type="redirect">/pages/removerCandidatos.jsp</result>
+	  <action name = "removerCandidatos" class = "hey.action.removerCandidatosAction" method = "get">
+		  <result name = "success">/pages/removerCandidatos.jsp</result>
 	  </action>
 
 	  <action name = "removerLista">

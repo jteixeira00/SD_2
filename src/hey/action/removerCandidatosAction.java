@@ -4,6 +4,8 @@ import com.opensymphony.xwork2.ActionSupport;
 import hey.model.HeyBean;
 import org.apache.struts2.interceptor.SessionAware;
 
+import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.Map;
 
 public class removerCandidatosAction extends ActionSupport implements SessionAware {
@@ -18,29 +20,43 @@ public class removerCandidatosAction extends ActionSupport implements SessionAwa
     @Override
     public String execute() {
 
-        if(choice != null){
+        if (choice != null) {
             choice = choice.split(" ")[0];
         }
 
         if (del != null && choice != null && isParsable(choice))
-            if(this.getHeyBean().delCandidato(Integer.parseInt(choice),this.getHeyBean().getChoiceLista() - 1)) {
+            if (this.getHeyBean().delCandidato(Integer.parseInt(choice), this.getHeyBean().getChoiceLista() - 1)) {
                 return ERROR;
             }
 
-        if(exit != null)
+        if (exit != null)
             return SUCCESS;
 
         return ERROR;
     }
 
     public HeyBean getHeyBean() {
-        if(!session.containsKey("heyBean"))
+        if (!session.containsKey("heyBean"))
             this.setHeyBean(new HeyBean());
         return (HeyBean) session.get("heyBean");
     }
 
     public void setHeyBean(HeyBean heyBean) {
         this.session.put("heyBean", heyBean);
+    }
+
+    public String get() {
+        return SUCCESS;
+    }
+
+    public ArrayList<String> getCandidatos()
+    {
+        try {
+            return this.getHeyBean().getAllCandidatos();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return new ArrayList<>();
     }
 
 
