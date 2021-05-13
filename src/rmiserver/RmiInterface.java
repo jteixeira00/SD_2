@@ -106,7 +106,8 @@ public interface RmiInterface extends Remote {
     public boolean doesItBelong(String departamento, int choice, String numeroUc, String tipoUser) throws RemoteException;
     public void terminarMesa(String departamento) throws RemoteException;
     public void newTerminal(String departamento) throws RemoteException;
-
+    public ArrayList<String> getEleicoesUser(String username) throws RemoteException;
+    public ArrayList<String> getListasEleicao(String eleicao) throws RemoteException;
     //public String showMesasEstados() throws RemoteException;
 
    // public String showMesasCount() throws RemoteException;

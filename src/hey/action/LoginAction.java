@@ -7,6 +7,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.interceptor.SessionAware;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.Map;
 import hey.model.HeyBean;
 import rmiserver.RmiInterface;
@@ -16,6 +17,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	private Map<String, Object> session;
 	private String username = null, password = null;
 
+	private ArrayList<String> eleicoes = new ArrayList<>();
 	@Override
 	public String execute() {
 
@@ -69,5 +71,9 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	@Override
 	public void setSession(Map<String, Object> session) {
 		this.session = session;
+	}
+
+	public ArrayList<String> getEleicoes(){
+		return this.getHeyBean().getEleicoesUser();
 	}
 }

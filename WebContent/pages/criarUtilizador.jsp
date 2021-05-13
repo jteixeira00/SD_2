@@ -13,7 +13,7 @@
 
 </head>
 <body>
-<form action ="criarUserForm.action" method = "post">
+<form action ="criarUserForm" method = "post">
     <h1>Criar Utilizador</h1>
 
     <label><br>Tipo de Utilizador: *<br> </label>

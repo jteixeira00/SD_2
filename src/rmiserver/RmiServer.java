@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 
@@ -1025,6 +1026,35 @@ public class RmiServer extends UnicastRemoteObject implements RmiInterface {
                 //ignore
             }
         }
+    }
+
+    public ArrayList<String> getEleicoesUser(String username) throws RemoteException{
+        ArrayList<String> res = new ArrayList<>();
+        Date date = new Date();
+        for (Eleicao e : listaEleicoes) {
+            if(e.getEndDate().after(date) && e.getStartDate().before(date)) {
+                if(e.getTipoVoters().toString().equals(getPessoabyNumber(username).getType().toString())){
+                    for(String dep : e.getDepartamentos()){
+                        if(getPessoabyNumber(username).getDepartamento().equals(dep)){
+                            res.add(e.getTitulo());
+                        }
+                    }
+                }
+            }
+        }
+        return res;
+    }
+
+    public ArrayList<String> getListasEleicao(String eleicao) throws RemoteException{
+        ArrayList<String> res = new ArrayList<>();
+        for(Eleicao e: listaEleicoes){
+            if(e.getTitulo().equals(eleicao)){
+                for(Lista l: e.getListasCandidatas()){
+                    res.add(l.getNome());
+                }
+            }
+        }
+        return res;
     }
 
 }
