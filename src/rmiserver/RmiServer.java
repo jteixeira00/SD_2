@@ -13,6 +13,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
@@ -626,7 +627,8 @@ public class RmiServer extends UnicastRemoteObject implements RmiInterface {
     public void addDepartamentos(String nome, String departamento) throws RemoteException {
         for(Eleicao e: getEleicoesFuturas()){
             if(e.getTitulo().equals(nome)){
-                e.addDepartamento(departamento);
+                if(!e.getDepartamentos().contains(departamento))
+                    e.addDepartamento(departamento);
             }
         }
     }
@@ -635,7 +637,8 @@ public class RmiServer extends UnicastRemoteObject implements RmiInterface {
     @Override
     public void addDepartamentos(int indexE, String departamento) throws RemoteException {
         Eleicao e = getEleicoesFuturas().get(indexE);
-        e.addDepartamento(departamento);
+        if(!e.getDepartamentos().contains(departamento))
+            e.addDepartamento(departamento);
     }
 
     //elimina o departamento com o index departamento na eleição com o indexE na lista de eleições futuras

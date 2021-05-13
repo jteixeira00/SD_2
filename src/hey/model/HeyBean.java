@@ -239,6 +239,19 @@ public class HeyBean {
 		return false;
 	}
 
+	public boolean delLista(int indx){
+		try {
+			if(tryRmi()){
+				server.eliminarListaCandidatos(choiceGerirEleicao - 1, indx - 1);
+				return true;
+
+			}
+		}catch (RemoteException e){
+			return false;
+		}
+		return false;
+	}
+
 	public boolean delDepatamento(int index) {
 		try {
 			if(tryRmi()){

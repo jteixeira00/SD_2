@@ -14,16 +14,26 @@
 </head>
 <body>
 
-    <form action ="removerdepartamentoform.action" method = "post">
-        <h1>Remover Departamento</h1>
+    <form action ="removerlistaform.action" method = "post">
+        <h1>Remover Lista</h1>
 
-        <c:forEach items="${heyBean.allDepartamentos}" var="value">
+        <c:choose>
+        <c:when test="${(heyBean.sizeLista > 0)== true}">
+        <br>
+        <c:forEach items="${heyBean.allListas}" var="value">
             <c:out value="${value}" /><br>
         </c:forEach>
 
-        <br><s:textfield name = "index" required="true"/>
+        <br><s:textfield name = "index"/>
+
         <br><br>
-        <button type = "submit">Submeter</button>
+        <input type="submit" name="del" value="Remover" />
+        <input type="submit" name="exit" value="Sair" />
+        </c:when>
+        <c:otherwise>
+            <c:redirect url="gerirEleicaoChoice.jsp"/>
+        </c:otherwise>
+        </c:choose>
 
 </body>
 </html>
