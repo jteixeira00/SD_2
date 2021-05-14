@@ -40,6 +40,10 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
 
 	  <!-- Admin Page -->
 
+	  <action name = "adminLanding">
+		  <result>/pages/adminLanding.jsp</result>
+	  </action>
+
 
 	  <action name="criareleicao" class = "hey.action.CriarEleicaoAction" method = "get">
 		  <result name="success">/pages/criarEleicao.jsp</result>
@@ -53,7 +57,7 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
 		  <result name = "success">/pages/gerirEleicao.jsp</result>
 	  </action>
 
-	  <action name = "eleicoespassadas">
+	  <action name = "eleicoesPassadas">
 		  <result>/pages/eleicoesPassadas.jsp</result>
 	  </action>
 
