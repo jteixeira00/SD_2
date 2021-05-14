@@ -4,6 +4,8 @@ import com.opensymphony.xwork2.ActionSupport;
 import hey.model.HeyBean;
 import org.apache.struts2.interceptor.SessionAware;
 
+import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.Map;
 
 public class adicionarCandidatosAction extends ActionSupport implements SessionAware {
@@ -71,6 +73,17 @@ public class adicionarCandidatosAction extends ActionSupport implements SessionA
         }
     }
 
+    public ArrayList<String> getPessoas(){
+        try {
+            return this.getHeyBean().getAllPessoas();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return new ArrayList<>();
+    }
 
+    public String get(){
+        return SUCCESS;
+    }
 
 }

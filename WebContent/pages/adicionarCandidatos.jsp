@@ -18,11 +18,9 @@
         <h1>Adicionar Lista</h1>
 
         <label><br>Adicionar Candidatos: <br></label><br>
-        <c:forEach items="${heyBean.allPessoas}" var="value">
-            <c:out value="${value}" /><br>
-        </c:forEach>
 
-        <br><s:textfield name = "choice"/>
+        <s:select list="pessoas" name="choice"/>
+
 
         <br><br>
         <input type="submit" name="add" value="Adicionar" />

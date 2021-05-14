@@ -20,12 +20,7 @@
         <c:choose>
         <c:when test="${(heyBean.sizeCandidatos > 0)== true}">
         <br>
-        <c:forEach items="${heyBean.allCandidatos}" var="value">
-            <c:out value="${value}" /><br>
-        </c:forEach>
-
-        <br><s:textfield name = "choice"/>
-
+        <br><s:select list="candidatos" name="choice"/>
         <br><br>
         <input type="submit" name="del" value="Remover" />
         <input type="submit" name="exit" value="Sair" />
