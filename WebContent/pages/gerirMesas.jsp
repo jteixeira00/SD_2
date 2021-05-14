@@ -14,18 +14,31 @@
 </head>
 <body>
 
-    <form action="gerireleicaoform.action" method="post">
+    <h1>Gerir Mesas</h1>
 
-        <br><c:forEach items="${heyBean.allEleicoes}" var="value">
-            <c:out value="${value}" /><br>
-        </c:forEach>
 
-        <label><br>Escolha a eleição pretendida: <br></label>
-        <s:textfield name = "choice" required="true"/>
+    <c:choose>
+        <c:when test="${(heyBean.sizeMesas > 0)== true}">
+            <form action = "adicionarMesas">
+                <button>Adicionar Mesas</button>
+            </form>
+        </c:when>
+        <c:otherwise>
+            <button>Adicionar Mesas</button>
+        </c:otherwise>
+    </c:choose>
 
-        <br><br>
-        <button type = "submit">Submeter</button>
 
-    </form>
+    <c:choose>
+        <c:when test="${(heyBean.sizeMesasEleicao > 0)== true}">
+            <form action = "removerMesas">
+                <button>Remover Mesas</button>
+            </form>
+        </c:when>
+        <c:otherwise>
+            <br><br><button>Remover Mesas</button>
+        </c:otherwise>
+    </c:choose>
+
 </body>
 </html>

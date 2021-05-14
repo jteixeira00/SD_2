@@ -91,6 +91,24 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
 		  <result type="redirect">/pages/gerirMesas.jsp</result>
 	  </action>
 
+	  <action name = "adicionarMesa">
+		  <result type="redirect">/pages/adicionarMesa.jsp</result>
+	  </action>
+
+	  <action name = "removerMesa">
+		  <result type="redirect">/pages/removerMesa.jsp</result>
+	  </action>
+
+	  <action name = "adicionarmesaform" class = "hey.action.adicionarMesaAction" method = "execute">
+		  <result name="error">/pages/adicionarMesa.jsp</result>
+		  <result name="success">/pages/adminLanding.jsp</result>
+	  </action>
+
+	  <action name = "removermesaform" class = "hey.action.removerMesaAction" method = "execute">
+		  <result name="error">/pages/removerMesa.jsp</result>
+		  <result name="success">/pages/adminLanding.jsp</result>
+	  </action>
+
 	  <action name="gerirlistas">
 		  <result type="redirect">/pages/gerirLista.jsp</result>
 	  </action>
