@@ -33,6 +33,8 @@ public class HeyBean {
 
 	private int choiceLista= 0;
 
+	private int choiceUser = -1;
+
 
 	public HeyBean() {
 		try {
@@ -86,7 +88,7 @@ public class HeyBean {
 		try {
 			if(tryRmi()){
 				String array[] = server.showPessoas().split("\n");
-				List<String> al = new ArrayList<String>();
+								List<String> al = new ArrayList<String>();
 				al = Arrays.asList(array);
 				return new ArrayList<>(al);
 			}
@@ -138,6 +140,20 @@ public class HeyBean {
 		return new ArrayList<>();
 	}
 
+	public ArrayList<String> getVotosUser() throws RemoteException {
+		try {
+			if(tryRmi()){
+				String array[] = server.showVotoDetalhesRMI(choiceUser - 1).split("\n");
+				List<String> al = new ArrayList<String>();
+				al = Arrays.asList(array);
+				return new ArrayList<>(al);
+			}
+		}catch (RemoteException ignored){
+
+		}
+		return new ArrayList<>();
+	}
+
 	public ArrayList<String> getAllCandidatos() throws RemoteException {
 		try {
 			if(tryRmi()){
@@ -167,6 +183,14 @@ public class HeyBean {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public void setChoiceUser(int choice) {
+		this.choiceUser = choice;
+	}
+
+	public int getChoiceUser() {
+		return choiceUser;
 	}
 
 	public void setChoiceGerirEleicao(int choice) {

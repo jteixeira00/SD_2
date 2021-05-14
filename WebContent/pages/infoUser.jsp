@@ -1,4 +1,5 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%--
   Created by IntelliJ IDEA.
   User: User
@@ -12,35 +13,31 @@
     <title>Consultar Votos Utilizador</title>
 </head>
 <body>
-    <form>
-        <label>Numero UC do utilizador que pretende alterar:</label>
-        <s:textfield name="numerouc"/><br>
 
-        <label>Nome:<br></label>
-        <s:textfield name = "nome"/>
+        <form action ="votosuserform" method = "post">
+            <h1>Votos Utilizador</h1>
 
-        <label><br>Password: *<br></label>
-        <s:textfield name = "password"/>
+            <c:forEach items="${heyBean.allPessoas}" var="value">
+                <c:out value="${value}" /><br>
+            </c:forEach>
 
-        <label><br>Numero Cartao Cidadao:<br></label>
-        <s:textfield name = "ncc"/>
+            <s:textfield name = "choice" />
 
-        <label><br>Validade Cartao Cidadao:<br></label>
-        <s:textfield name = "valcc"/>
+            <br><br>
+            <input type="submit" name="select" value="Selecionar" />
+            <input type="submit" name="exit" value="Sair" />
+            <br>
 
-        <label><br>Contacto Telefónico:<br></label>
-        <s:textfield name = "numerotelefonico"/>
+            <c:choose>
+                <c:when test="${(heyBean.choiceUser != -1)== true}">
+                    <c:forEach items="${heyBean.votosUser}" var="value">
+                        <c:out value="${value}" /><br>
+                    </c:forEach>
+                </c:when>
+            </c:choose>
 
-        <label><br>Morada:<br></label>
-        <s:textfield name = "morada"/>
 
-        <label><br>Departamento: *<br></label>
-        <s:textfield name = "departamento" required="true"/>
 
-        <label><br>Faculdade: <br></label>
-        <s:textfield name = "faculdade" required="true"/>
-
-    </form>
 
 
 </body>

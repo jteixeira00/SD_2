@@ -62,6 +62,11 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
 	  </action>
 
 	  <!--actions concretas -->
+	  <action name = "votosuserform" class = "hey.action.votosUserAction" method= "execute">
+		  <result name="success">/pages/adminLanding.jsp</result>
+		  <result name="error">/pages/infoUser.jsp</result>
+	  </action>
+
 	  <action name = "criarEleicaoForm" class = "hey.action.CriarEleicaoAction" method= "execute">
 		  <result name="success">/pages/adminLanding.jsp</result>
 		  <result name="error">/pages/criarEleicao.jsp</result>
