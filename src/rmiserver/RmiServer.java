@@ -1060,12 +1060,61 @@ public class RmiServer extends UnicastRemoteObject implements RmiInterface {
         return res;
     }
 
+    public boolean votarbrancoweb(String nomeEleicao, String number) throws RemoteException{
+        Pessoa p = getPessoabyNumber(number);
+        Eleicao e= null;
+        for (Eleicao e1 : getEleicoes()) {
+            if(e1.getTitulo().equals(nomeEleicao)) {
+                e = e1;
+            }
+        }
+
+        for(Voto v: e.getVotos()){
+            if(v.getEleitor() == p){
+                return false;
+            }
+        }
+        if(e==null){
+            return false;
+        }
+        e.addVotoBranco();
+        Voto v = new Voto(p, "WEB");
+        e.addVoto(v);
+        save();
+        return true;
+    }
+
+    public boolean votarnuloweb(String nomeEleicao, String number) throws RemoteException{
+        Pessoa p = getPessoabyNumber(number);
+        Eleicao e= null;
+        for (Eleicao e1 : getEleicoes()) {
+            if(e1.getTitulo().equals(nomeEleicao)) {
+                e = e1;
+            }
+        }
+
+        for(Voto v: e.getVotos()){
+            if(v.getEleitor() == p){
+                return false;
+            }
+        }
+        if(e==null){
+            return false;
+        }
+        e.addVotoNulo();
+        Voto v = new Voto(p, "WEB");
+        e.addVoto(v);
+        save();
+        return true;
+    }
+
 
     public boolean votarweb(String nomeEleicao, String nomeLista, String number, String departamento) throws RemoteException{
-        ArrayList<Eleicao> eArray = new ArrayList<>();
+
         Date date = new Date();
         Pessoa p = getPessoabyNumber(number);
         Eleicao e = null;
+
 
 
         for (Eleicao e1 : getEleicoes()) {
@@ -1073,7 +1122,11 @@ public class RmiServer extends UnicastRemoteObject implements RmiInterface {
                 e = e1;
             }
         }
-
+        for(Voto v: e.getVotos()){
+            if(v.getEleitor() == p){
+                return false;
+            }
+        }
         if(e==null){
             return false;
         }

@@ -51,6 +51,7 @@ public class votingpageAction extends ActionSupport implements SessionAware
     }
     public void setChoice(String choice){
         this.choice = choice;
+        this.getHeyBean().setEleicaoChoice(choice);
     }
     public ArrayList<String> getListas(){
         return this.getHeyBean().getListasEleicao(choice);
@@ -61,7 +62,22 @@ public class votingpageAction extends ActionSupport implements SessionAware
 
     public String votar(){
 
-        this.getHeyBean().votar(choice, voto);
-        return SUCCESS;
+        if(this.getHeyBean().votar(voto)){
+            return SUCCESS;
+        }
+        return "alreadyvoted";
+    }
+
+    public String votoBranco(){
+        if(this.getHeyBean().votoBranco()){
+            return  SUCCESS;
+        }
+        return "alreadyvoted";
+    }
+    public String votoNulo(){
+        if(this.getHeyBean().votoNulo()){
+            return  SUCCESS;
+        }
+        return "alreadyvoted";
     }
 }

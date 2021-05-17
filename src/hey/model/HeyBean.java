@@ -37,7 +37,7 @@ public class HeyBean {
 	private String name;
 
 	private int choiceGerirEleicao = 0;
-
+	private String eleicaoChoice;
 
 	private int choiceLista= 0;
 
@@ -579,15 +579,35 @@ public class HeyBean {
 		return false;
 	}
 
-	public boolean votar(String eleicao, String voto){
+	public void setEleicaoChoice(String choice){
+		this.eleicaoChoice = choice;
+	}
+
+	public boolean votar( String voto){
 		try {
-			if(server.votarweb(eleicao, voto, username, "WEB")){
-				return true;
-			}
-			return false;
+			System.out.println(eleicaoChoice);
+			System.out.println(voto);
+			return server.votarweb(eleicaoChoice, voto, username, "WEB");
 		} catch (RemoteException e) {
 			return false;
 		}
+	}
+
+	public boolean votoBranco(){
+		try{
+			return server.votarbrancoweb(eleicaoChoice,username);
+		} catch (RemoteException e) {
+			return false;
+		}
+
+	}
+	public boolean votoNulo(){
+		try{
+			return server.votarnuloweb(eleicaoChoice,username);
+		} catch (RemoteException e) {
+			return false;
+		}
+
 	}
 
 	//FACEBOOK BEAN

@@ -321,7 +321,7 @@ public class MulticastServer extends Thread implements Serializable{
                 }
 
                 if(!auxbool){
-                    System.out.println("[EROO] Não pertence ao grupo que pode votar nessa eleição");
+                    System.out.println("[ERRO] Não pertence ao grupo que pode votar nessa eleição");
                     run();
                     return;
                 }
