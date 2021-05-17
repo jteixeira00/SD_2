@@ -10,20 +10,21 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Gerir Eleição</title>
+    <title>Adicionar Mesa</title>
 </head>
 <body>
 
 <form action ="adicionarmesaform" method = "post">
-    <h1>Remover Departamento</h1>
+    <h1>Adicionar Mesa</h1>
 
     <c:forEach items="${heyBean.allMesas}" var="value">
         <c:out value="${value}" /><br>
     </c:forEach>
 
-    <!--<br><s:textfield name = "index" required="true"/>-->
-    <s:select list="departamentos" name="index"/>
+    <s:textfield name = "choice"/>
+
     <br><br>
-    <button type = "submit">Submeter</button>
+    <input type="submit" name="add" value="Adicionar" />
+    <input type="submit" name="exit" value="Sair" />
 </body>
 </html>

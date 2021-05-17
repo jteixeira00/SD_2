@@ -19,7 +19,7 @@
 
     <c:choose>
         <c:when test="${(heyBean.sizeMesas > 0)== true}">
-            <form action = "adicionarMesas">
+            <form action = "adicionarMesa">
                 <button>Adicionar Mesas</button>
             </form>
         </c:when>
@@ -31,7 +31,7 @@
 
     <c:choose>
         <c:when test="${(heyBean.sizeMesasEleicao > 0)== true}">
-            <form action = "removerMesas">
+            <form action = "removerMesa">
                 <button>Remover Mesas</button>
             </form>
         </c:when>

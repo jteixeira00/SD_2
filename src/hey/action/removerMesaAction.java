@@ -10,9 +10,8 @@ public class removerMesaAction extends ActionSupport implements SessionAware {
     private static final long serialVersionUID = 4L;
     private Map<String, Object> session;
 
-    private String del = null;
-    private String exit = null;
     private String choice = null;
+    private int size = 0;
 
 
     @Override
@@ -22,13 +21,11 @@ public class removerMesaAction extends ActionSupport implements SessionAware {
             choice = choice.split(" ")[0];
         }
 
-        if (del != null && choice != null && isParsable(choice))
-            if(this.getHeyBean().delCandidato(Integer.parseInt(choice),this.getHeyBean().getChoiceLista() - 1)) {
-                return ERROR;
+        if (isParsable(choice))
+            size = Integer.parseInt(choice);
+            if(size > 0 & size <= this.getHeyBean().getsizeMesasEleicao() && this.getHeyBean().delMesa(size)) {
+                return SUCCESS;
             }
-
-        if(exit != null)
-            return SUCCESS;
 
         return ERROR;
     }
@@ -47,14 +44,6 @@ public class removerMesaAction extends ActionSupport implements SessionAware {
     @Override
     public void setSession(Map<String, Object> session) {
         this.session = session;
-    }
-
-    public void setDel(String add) {
-        this.del = add;
-    }
-
-    public void setExit(String exit) {
-        this.exit = exit;
     }
 
     public void setChoice(String choice) {

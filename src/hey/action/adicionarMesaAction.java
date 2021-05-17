@@ -10,9 +10,10 @@ public class adicionarMesaAction extends ActionSupport implements SessionAware {
     private static final long serialVersionUID = 4L;
     private Map<String, Object> session;
 
-    private String del = null;
+    private String add = null;
     private String exit = null;
     private String choice = null;
+    int size = 0;
 
 
     @Override
@@ -22,8 +23,9 @@ public class adicionarMesaAction extends ActionSupport implements SessionAware {
             choice = choice.split(" ")[0];
         }
 
-        if (del != null && choice != null && isParsable(choice))
-            if(this.getHeyBean().delCandidato(Integer.parseInt(choice),this.getHeyBean().getChoiceLista() - 1)) {
+        if (add != null && choice != null && isParsable(choice))
+            size = Integer.parseInt(choice);
+            if(size > 0 & size <= this.getHeyBean().getsizeMesas() && this.getHeyBean().addMesa(Integer.parseInt(choice))){
                 return ERROR;
             }
 
@@ -49,8 +51,8 @@ public class adicionarMesaAction extends ActionSupport implements SessionAware {
         this.session = session;
     }
 
-    public void setDel(String add) {
-        this.del = add;
+    public void setAdd(String add) {
+        this.add = add;
     }
 
     public void setExit(String exit) {

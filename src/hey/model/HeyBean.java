@@ -288,6 +288,32 @@ public class HeyBean {
 		return false;
 	}
 
+	public boolean addMesa(int index) {
+		try {
+			if(tryRmi()){
+				server.criaMesaRMI(choiceGerirEleicao - 1,index - 1);
+				return true;
+
+			}
+		}catch (RemoteException e){
+			return false;
+		}
+		return false;
+	}
+
+	public boolean delMesa(int index) {
+		try {
+			if(tryRmi()){
+				server.deleteMesaRMI(choiceGerirEleicao - 1,index - 1);
+				return true;
+
+			}
+		}catch (RemoteException e){
+			return false;
+		}
+		return false;
+	}
+
 	public int getsizeDepartamento() {
 		try {
 			if(tryRmi()){
