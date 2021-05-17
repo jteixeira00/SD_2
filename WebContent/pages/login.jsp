@@ -1,3 +1,4 @@
+
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%--
@@ -14,15 +15,8 @@
 </head>
 <body>
 
-    <h1>Gerir Listas</h1>
 
-    <form action = "adicionarLista">
-        <button>Adicionar Lista</button>
-    </form>
-
-
-
-   <p><a href = "<c out values="${facebookBean.authURL}"/>"/>Login with Facebook</p>
+   <p><a href="<c:out value="${HeyBean.authURL}"/>" /> Login with Facebook</p>
 
 
 </body>

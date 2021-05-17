@@ -38,9 +38,15 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
         <result name="login">/index.jsp</result>
     </action>
 
-	  <!--<action name="fblogin" class="hey.action.FacebookLoginAction"  method="execute">
-		  <result> pages/login.jsp </result>
-	  </action>-->
+
+	  <action name="loginFB" class="hey.action.LoginFBAction"  method="execute">
+		  <result> login.jsp </result>
+	  </action>
+
+
+	  <action name="fblogin" class="hey.action.FacebookLoginAction"  method="execute">
+		  <result> pages/fbprofile.jsp </result>
+	  </action>
 
 	  <!-- Admin Page -->
 

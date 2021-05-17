@@ -3,22 +3,21 @@ package hey.model;
 
 
 
+import com.github.scribejava.core.model.OAuth2AccessToken;
+import org.json.simple.parser.ParseException;
+import rmiserver.GetPropertyValues;
+import rmiserver.RmiInterface;
+
 import java.io.IOException;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.rmi.Naming;
-import java.rmi.NotBoundException;
-import java.net.MalformedURLException;
-import java.rmi.RemoteException;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-
-import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
-import rmiserver.GetPropertyValues;
-import rmiserver.RmiInterface;
 
 public class HeyBean {
 	private RmiInterface server;
@@ -28,6 +27,14 @@ public class HeyBean {
 	private String rmiport;
 	private String rminame;
 	private String registry;
+	private FacebookREST fb;
+	private String authURL;
+	private String authCode;
+
+
+	private String secretState;
+	private OAuth2AccessToken accessToken;
+	private String name;
 
 	private int choiceGerirEleicao = 0;
 
@@ -38,6 +45,8 @@ public class HeyBean {
 
 
 	public HeyBean() {
+		this.fb = new FacebookREST();
+
 		try {
 			GetPropertyValues properties = new GetPropertyValues();
 			try {
@@ -56,6 +65,7 @@ public class HeyBean {
 		catch(NotBoundException|RemoteException e) {
 			e.printStackTrace(); // what happens *after* we reach this line?
 		}
+
 	}
 
 	public boolean tryRmi() throws RemoteException{
@@ -578,5 +588,38 @@ public class HeyBean {
 		} catch (RemoteException e) {
 			return false;
 		}
+	}
+
+	//FACEBOOK BEAN
+
+	public boolean getAccessToken(){
+		this.accessToken = this.fb.getAccessToken(this.authCode,this.secretState);
+		return this.accessToken != null;
+	}
+
+	public String getAuthURL(){
+		this.authURL = this.fb.getAuthorizationURL();
+		return authURL;
+	}
+	public String getAuthCode() {
+		return authCode;
+	}
+
+	public void setAuthCode(String authCode) {
+		this.authCode = authCode;
+	}
+
+	public String getSecretState() {
+		return secretState;
+	}
+
+	public void setSecretState(String secretState) {
+		this.secretState = secretState;
+	}
+
+	public void setName(String name){this.name = name;}
+
+	public String getName() throws ParseException {
+		return this.fb.getAccountName(this.accessToken);
 	}
 }
