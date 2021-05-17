@@ -13,7 +13,8 @@
 
 <body>
     <form action = "votarAction">
-        <h1>Eleição "${action.votingPageAction.choice}"</h1>
+
+
         <s:select list ="listas" name ="voto"/>
         <button type = "submit">Votar</button>
     </form>

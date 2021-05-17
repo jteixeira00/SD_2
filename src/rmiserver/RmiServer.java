@@ -165,6 +165,9 @@ public class RmiServer extends UnicastRemoteObject implements RmiInterface {
         System.out.println("Procurando utilizador com nº " + numero);
         Pessoa p = getPessoabyNumber(numero);
 
+        if(p == null)
+            return false;
+
         if (p.getPassword().equals(password)) {
             return true;
         } else {
@@ -314,7 +317,7 @@ public class RmiServer extends UnicastRemoteObject implements RmiInterface {
     @Override
     public boolean createUserRMI(int tipo, String nome, String numero, String dep, String fac, String contacto, String morada, String cc, String validadecc, String password) throws RemoteException {
         for (Pessoa aux : getPessoas()) {
-            if (aux.getNumero().equals(numero) || aux.getCc().equals(cc)) {
+            if (aux.getNumero().equals(numero)) {
                 return false;
             }
         }

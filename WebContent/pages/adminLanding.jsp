@@ -31,14 +31,14 @@
                 </form>
             </c:when>
             <c:otherwise>
-                <br><button>Eleições Passadas</button>
+                <button>Eleições Passadas</button><br>
             </c:otherwise>
         </c:choose>
 
             <c:choose>
                 <c:when test="${(heyBean.sizePessoas > 0)== true}">
                     <form action = infouser>
-                        <button>Votos Utilizador</button>
+                        <br> <button>Votos Utilizador</button>
                     </form>
                 </c:when>
                 <c:otherwise>
