@@ -13,7 +13,17 @@ public class votingpageAction extends ActionSupport implements SessionAware
     private Map<String, Object> session;
 
     private ArrayList<String> eleicoes;
-    private String choice = null, voto = null;
+    private String choice = null;
+
+    public String getVoto() {
+        return voto;
+    }
+
+    public void setVoto(String voto) {
+        this.voto = voto;
+    }
+
+    private String voto = null;
     private ArrayList<String> listas = new ArrayList<>();
 
     @Override
@@ -43,6 +53,12 @@ public class votingpageAction extends ActionSupport implements SessionAware
         return this.getHeyBean().getListasEleicao(choice);
     }
     public String get(){
+        return SUCCESS;
+    }
+
+    public String votar(){
+
+        this.getHeyBean().votar(choice, voto);
         return SUCCESS;
     }
 }

@@ -432,4 +432,14 @@ public class HeyBean {
 		return false;
 	}
 
+	public boolean votar(String eleicao, String voto){
+		try {
+			if(server.votarweb(eleicao, voto, username, "WEB")){
+				return true;
+			}
+			return false;
+		} catch (RemoteException e) {
+			return false;
+		}
+	}
 }

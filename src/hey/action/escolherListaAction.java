@@ -80,7 +80,6 @@ public class escolherListaAction extends ActionSupport implements SessionAware {
 
     public ArrayList<String> getListas() {
         try {
-
             return this.getHeyBean().getAllListas();
         } catch (RemoteException e) {
             e.printStackTrace();

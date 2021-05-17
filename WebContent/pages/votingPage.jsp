@@ -17,5 +17,11 @@
         <s:select list ="listas" name ="voto"/>
         <button type = "submit">Votar</button>
     </form>
+    <form action ="votoBranco">
+        <button type ="submit">Voto Branco</button>
+    </form>
+    <form action = "votoNulo">
+        <button type = "submit">Voto Nulo</button>
+    </form>
 </body>
 </html>
