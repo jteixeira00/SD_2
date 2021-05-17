@@ -14,8 +14,8 @@ import java.util.Map;
 public class CriarUserAction extends ActionSupport implements SessionAware {
     private static final long serialVersionUID = 4L;
     private Map<String, Object> session;
-    private String tipo = null, nome = null, password = null, numerouni = null, ncc = null, valcc = null;
-    private String numerotelefonico = null, morada = null, departamento = null, faculdade = null;
+    private String tipo = "null", nome = "null", password = "null", numerouni = "null", ncc = "null", valcc = "10-10-2022";
+    private String numerotelefonico = "null", morada = "null", departamento = "null", faculdade = "null";
     private ArrayList<String> tiposusers = new ArrayList<String>();
     @Override
     public String execute() {

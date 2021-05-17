@@ -16,6 +16,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
 import rmiserver.GetPropertyValues;
 import rmiserver.RmiInterface;
 
@@ -32,6 +33,8 @@ public class HeyBean {
 
 
 	private int choiceLista= 0;
+
+	private int choiceUser = -1;
 
 
 	public HeyBean() {
@@ -86,7 +89,7 @@ public class HeyBean {
 		try {
 			if(tryRmi()){
 				String array[] = server.showPessoas().split("\n");
-				List<String> al = new ArrayList<String>();
+								List<String> al = new ArrayList<String>();
 				al = Arrays.asList(array);
 				return new ArrayList<>(al);
 			}
@@ -138,11 +141,24 @@ public class HeyBean {
 		return new ArrayList<>();
 	}
 
+	public ArrayList<String> getVotosUser() throws RemoteException {
+		try {
+			if(tryRmi()){
+				String array[] = server.showVotoDetalhesRMI(choiceUser - 1).split("\n");
+				List<String> al = new ArrayList<String>();
+				al = Arrays.asList(array);
+				return new ArrayList<>(al);
+			}
+		}catch (RemoteException ignored){
+
+		}
+		return new ArrayList<>();
+	}
+
 	public ArrayList<String> getAllCandidatos() throws RemoteException {
 		try {
 			if(tryRmi()){
 				String array[] = server.getEleicoesFuturas().get(choiceGerirEleicao - 1).getListasCandidatas().get(choiceLista - 1).showCandidatos().split("\n");
-				System.out.println(array);
 				List<String> al = new ArrayList<String>();
 				al = Arrays.asList(array);
 				return new ArrayList<>(al);
@@ -155,7 +171,6 @@ public class HeyBean {
 
 	public boolean getUserMatchesPassword(String username, String password) throws RemoteException {
 		boolean ret = server.login(username, password);
-		System.out.println(ret);
 		return ret;
 	}
 	
@@ -167,6 +182,14 @@ public class HeyBean {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public void setChoiceUser(int choice) {
+		this.choiceUser = choice;
+	}
+
+	public int getChoiceUser() {
+		return choiceUser;
 	}
 
 	public void setChoiceGerirEleicao(int choice) {
@@ -276,6 +299,39 @@ public class HeyBean {
 		return -1;
 	}
 
+	public int getsizeMesas() {
+		try {
+			if(tryRmi()){
+				return server.sizeMesas();
+			}
+		}catch (RemoteException e){
+			return -1;
+		}
+		return -1;
+	}
+
+	public int getsizePessoas() {
+		try {
+			if(tryRmi()){
+				return server.sizePessoas();
+			}
+		}catch (RemoteException e){
+			return -1;
+		}
+		return -1;
+	}
+
+	public int getsizeMesasEleicao() {
+		try {
+			if(tryRmi()){
+				return server.getEleicoesFuturas().get(choiceGerirEleicao - 1).getMesas().size();
+			}
+		}catch (RemoteException e){
+			return -1;
+		}
+		return -1;
+	}
+
 	public int getsizeLista() {
 		try {
 			if(tryRmi()){
@@ -296,6 +352,33 @@ public class HeyBean {
 			return -1;
 		}
 		return -1;
+	}
+
+
+
+	public int getsizeEleicoesEnded() {
+		try {
+			if(tryRmi()){
+				return server.getEleicoesEnded().size();
+			}
+		}catch (RemoteException e){
+			return -1;
+		}
+		return -1;
+	}
+
+	public ArrayList<String> getEleicoesPassadas() throws RemoteException {
+		try {
+			if(tryRmi()){
+				String array[] = server.eleicoesEndedRMI().split("\n");
+				List<String> al = new ArrayList<String>();
+				al = Arrays.asList(array);
+				return new ArrayList<>(al);
+			}
+		}catch (RemoteException ignored){
+
+		}
+		return new ArrayList<>();
 	}
 
 	public int getChoiceLista() {
@@ -398,6 +481,34 @@ public class HeyBean {
 		}
 		return new ArrayList<>();
 
+	}
+
+	public ArrayList<String> getAllMesas() throws RemoteException {
+		try {
+			if(tryRmi()){
+				String array[] = server.showMesas().split("\n");
+				List<String> al = new ArrayList<String>();
+				al = Arrays.asList(array);
+				return new ArrayList<>(al);
+			}
+		}catch (RemoteException ignored){
+
+		}
+		return new ArrayList<>();
+	}
+
+	public ArrayList<String> getAllMesasEleicao() throws RemoteException {
+		try {
+			if(tryRmi()){
+				String array[] = server.showMesasEleicao(choiceGerirEleicao - 1).split("\n");
+				List<String> al = new ArrayList<String>();
+				al = Arrays.asList(array);
+				return new ArrayList<>(al);
+			}
+		}catch (RemoteException ignored){
+
+		}
+		return new ArrayList<>();
 	}
 
 	public String getFimEleicao(){

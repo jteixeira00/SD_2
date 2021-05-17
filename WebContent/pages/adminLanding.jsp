@@ -1,11 +1,7 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: User
-  Date: 08/05/2021
-  Time: 16:48
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <head>
     <title>Admin Console</title>
@@ -26,13 +22,29 @@
         <form action = gerireleicao>
             <button>Gerir Eleicao</button>
         </form>
-        <form action = eleicoesPassadas>
-            <button>Eleições Passadas</button>
-        </form>
-        <form action = infouser>
-            <button>Votos Utilizador</button>
-        </form>
 
+
+        <c:choose>
+            <c:when test="${(heyBean.sizeEleicoesEnded > 0)== true}">
+                <form action = eleicoesPassadas>
+                    <button>Eleições Passadas</button>
+                </form>
+            </c:when>
+            <c:otherwise>
+                <button>Eleições Passadas</button><br>
+            </c:otherwise>
+        </c:choose>
+
+            <c:choose>
+                <c:when test="${(heyBean.sizePessoas > 0)== true}">
+                    <form action = infouser>
+                        <br> <button>Votos Utilizador</button>
+                    </form>
+                </c:when>
+                <c:otherwise>
+                    <br><button>Votos Utilizador</button>
+                </c:otherwise>
+            </c:choose>
 
 </body>
 </html>

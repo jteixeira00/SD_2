@@ -4,25 +4,26 @@
   Created by IntelliJ IDEA.
   User: User
   Date: 08/05/2021
-  Time: 18:34
+  Time: 18:29
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Eleições Passadas</title>
+    <title>Gerir Eleição</title>
 </head>
 <body>
 
-    <c:forEach items="${heyBean.eleicoesPassadas}" var="value">
+<form action ="adicionarmesaform" method = "post">
+    <h1>Remover Departamento</h1>
+
+    <c:forEach items="${heyBean.allMesas}" var="value">
         <c:out value="${value}" /><br>
     </c:forEach>
 
-    <form action = adminLanding>
-        <button>Exit</button>
-    </form>
-
-
-
+    <!--<br><s:textfield name = "index" required="true"/>-->
+    <s:select list="departamentos" name="index"/>
+    <br><br>
+    <button type = "submit">Submeter</button>
 </body>
 </html>

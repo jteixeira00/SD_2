@@ -32,13 +32,17 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
     </action>
 
 	<!-- 'login' action calls 'execute' in 'LoginAction' -->
-    <action name="login" class="hey.action.LoginAction" method="execute">
+    <action name="login" class="hey.action.LoginAction"  method="execute">
         <result name="success">/pages/escolherEleicao.jsp</result>
 	    <result name="admin" type="redirect">/pages/adminLanding.jsp</result>
         <result name="login">/index.jsp</result>
     </action>
 
 	  <!-- Admin Page -->
+
+	  <action name = "adminLanding">
+		  <result>/pages/adminLanding.jsp</result>
+	  </action>
 
 
 	  <action name="criareleicao" class = "hey.action.CriarEleicaoAction" method = "get">
@@ -53,7 +57,7 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
 		  <result name = "success">/pages/gerirEleicao.jsp</result>
 	  </action>
 
-	  <action name = "eleicoespassadas">
+	  <action name = "eleicoesPassadas">
 		  <result>/pages/eleicoesPassadas.jsp</result>
 	  </action>
 
@@ -62,6 +66,11 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
 	  </action>
 
 	  <!--actions concretas -->
+	  <action name = "votosuserform" class = "hey.action.votosUserAction" method= "execute">
+		  <result name="success">/pages/adminLanding.jsp</result>
+		  <result name="error">/pages/infoUser.jsp</result>
+	  </action>
+
 	  <action name = "criarEleicaoForm" class = "hey.action.CriarEleicaoAction" method= "execute">
 		  <result name="success">/pages/adminLanding.jsp</result>
 		  <result name="error">/pages/criarEleicao.jsp</result>
@@ -89,6 +98,24 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
 
 	  <action name="gerirmesas">
 		  <result type="redirect">/pages/gerirMesas.jsp</result>
+	  </action>
+
+	  <action name = "adicionarMesa">
+		  <result type="redirect">/pages/adicionarMesa.jsp</result>
+	  </action>
+
+	  <action name = "removerMesa">
+		  <result type="redirect">/pages/removerMesa.jsp</result>
+	  </action>
+
+	  <action name = "adicionarmesaform" class = "hey.action.adicionarMesaAction" method = "execute">
+		  <result name="error">/pages/adicionarMesa.jsp</result>
+		  <result name="success">/pages/adminLanding.jsp</result>
+	  </action>
+
+	  <action name = "removermesaform" class = "hey.action.removerMesaAction" method = "execute">
+		  <result name="error">/pages/removerMesa.jsp</result>
+		  <result name="success">/pages/adminLanding.jsp</result>
 	  </action>
 
 	  <action name="gerirlistas">
