@@ -13,6 +13,7 @@ public class votingpageAction extends ActionSupport implements SessionAware
     private Map<String, Object> session;
 
     private ArrayList<String> eleicoes;
+
     private String choice = null;
 
     public String getVoto() {

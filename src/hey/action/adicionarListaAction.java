@@ -4,8 +4,10 @@ import com.opensymphony.xwork2.ActionSupport;
 import hey.model.HeyBean;
 import org.apache.struts2.interceptor.SessionAware;
 
+import java.rmi.RemoteException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
 
@@ -14,7 +16,7 @@ public class adicionarListaAction extends ActionSupport implements SessionAware 
     private Map<String, Object> session;
     private String nome = null;
 
-
+    private ArrayList<String> pessoas;
 
     @Override
     public String execute() {
@@ -46,5 +48,12 @@ public class adicionarListaAction extends ActionSupport implements SessionAware 
     }
 
 
-
+    public ArrayList<String> getPessoas(){
+        try {
+            return this.getHeyBean().getAllPessoas();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return new ArrayList<>();
+    }
 }

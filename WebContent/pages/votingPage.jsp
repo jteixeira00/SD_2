@@ -1,3 +1,4 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: User
@@ -13,8 +14,6 @@
 
 <body>
     <form action = "votarAction">
-
-
         <s:select list ="listas" name ="voto"/>
         <button type = "submit">Votar</button>
     </form>
