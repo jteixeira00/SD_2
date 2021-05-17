@@ -208,6 +208,12 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
 
 	  <action name = "votarAction" class = "hey.action.votingpageAction" method = "votar">
 		  <result name = "success">/logout.jsp</result>
+		  <result name = "alreadyvoted">/pages/alreadyvoted.jsp</result>
+	  </action>
+
+	  <action name = "logoutAction">
+		  <result>/index.jsp</result>
+
 	  </action>
   </package>
 

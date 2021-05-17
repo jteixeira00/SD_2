@@ -11,6 +11,9 @@
     <title>Title</title>
 </head>
 <body>
-    <label>Dar logout aqui</label>
+    <label>Sucesso a votar</label><br>
+    <form action="logoutaction">
+        <button type = "submit">Logout</button>
+    </form>
 </body>
 </html>
