@@ -27,10 +27,12 @@ public class votingpageAction extends ActionSupport implements SessionAware
     private String voto = null;
     private ArrayList<String> listas = new ArrayList<>();
 
+
     @Override
-    public void setSession(Map<String, Object> map) {
+    public void setSession(Map<String, Object> session) {
         this.session = session;
     }
+
     public HeyBean getHeyBean() {
         if(!session.containsKey("heyBean"))
             this.setHeyBean(new HeyBean());
