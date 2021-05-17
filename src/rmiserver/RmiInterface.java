@@ -108,6 +108,7 @@ public interface RmiInterface extends Remote {
     public void newTerminal(String departamento) throws RemoteException;
     public ArrayList<String> getEleicoesUser(String username) throws RemoteException;
     public ArrayList<String> getListasEleicao(String eleicao) throws RemoteException;
+    public boolean votarweb(String nomeEleicao, String choiceLista, String number, String departamento) throws RemoteException;
     //public String showMesasEstados() throws RemoteException;
 
    // public String showMesasCount() throws RemoteException;

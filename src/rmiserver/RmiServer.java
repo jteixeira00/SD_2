@@ -1060,5 +1060,46 @@ public class RmiServer extends UnicastRemoteObject implements RmiInterface {
         return res;
     }
 
+
+    public boolean votarweb(String nomeEleicao, String nomeLista, String number, String departamento) throws RemoteException{
+        ArrayList<Eleicao> eArray = new ArrayList<>();
+        Date date = new Date();
+        Pessoa p = getPessoabyNumber(number);
+        Eleicao e = null;
+
+
+        for (Eleicao e1 : getEleicoes()) {
+            if(e1.getTitulo().equals(nomeEleicao)) {
+                e = e1;
+            }
+        }
+
+        if(e==null){
+            return false;
+        }
+
+
+        Voto v = new Voto(p, departamento);
+        System.out.println(e.getTitulo());
+        for(Lista l: e.getListasCandidatas()){
+            if(l.getNome().equals(nomeLista)){
+                l.addVoto();
+            }
+        }
+        e.addVoto(v);
+
+
+        int tableCount = countVotosDep(departamento);
+
+        for(AdminTerminalInterface ad: terminais){
+            try{
+                ad.voteUpdate(departamento, tableCount);}
+            catch(RemoteException e1){
+                //ignore
+            }
+        }
+        save();
+        return true;
+    }
 }
 

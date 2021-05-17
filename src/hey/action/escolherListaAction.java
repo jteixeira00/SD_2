@@ -3,6 +3,7 @@ package hey.action;
 import com.opensymphony.xwork2.ActionSupport;
 import hey.model.HeyBean;
 import org.apache.struts2.interceptor.SessionAware;
+import rmiserver.Pessoa;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ public class escolherListaAction extends ActionSupport implements SessionAware {
     private  int intChoice;
     private int size = -1;
     private ArrayList<String> listas;
-
+    private ArrayList<String> pessoas;
 
     @Override
     public String execute() throws RemoteException {
@@ -80,12 +81,20 @@ public class escolherListaAction extends ActionSupport implements SessionAware {
 
     public ArrayList<String> getListas() {
         try {
-
             return this.getHeyBean().getAllListas();
         } catch (RemoteException e) {
             e.printStackTrace();
         }
         return new ArrayList<String>();
+    }
+
+    public ArrayList<String> getPessoas(){
+        try {
+            return this.getHeyBean().getAllPessoas();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return new ArrayList<>();
     }
 
     public String get(){

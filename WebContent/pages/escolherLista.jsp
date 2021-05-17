@@ -16,11 +16,8 @@
 <h1>Escolher Lista</h1>
 
     <form action="escolherlistaform" method="post">
-
         <label><br>Escolha a lista pretendida: <br></label>
-
         <s:select list="listas" name="choice"/>
-
         <br><br>
         <button type = "submit">Submeter</button>
 

@@ -3,6 +3,7 @@ package hey.action;
 import com.opensymphony.xwork2.ActionSupport;
 import hey.model.HeyBean;
 import org.apache.struts2.interceptor.SessionAware;
+import rmiserver.Pessoa;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ public class adicionarCandidatosAction extends ActionSupport implements SessionA
     private String exit = null;
     private String choice = null;
 
-
+    private ArrayList<String> pessoas;
     @Override
     public String execute() {
 
