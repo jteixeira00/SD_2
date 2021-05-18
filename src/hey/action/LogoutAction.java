@@ -7,6 +7,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import hey.model.HeyBean;
 import org.apache.struts2.interceptor.SessionAware;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -20,13 +21,13 @@ public class LogoutAction extends ActionSupport implements SessionAware {
 
 	private ArrayList<String> eleicoes = new ArrayList<>();
 	@Override
-	public String execute() {
+	public String execute() throws RemoteException {
 
 		// any username is accepted without confirmation (should check using RMI)
-		this.getHeyBean().setUsername(null);
-		this.getHeyBean().setPassword(null);
-		session.put("username", null);
-		session.put("loggedin", false);
+		//this.getHeyBean().logout();
+		session.put("loggedin",false);
+		//session.put("username",null);
+		//session.put("password",null);
 		return SUCCESS;
 
 	}
