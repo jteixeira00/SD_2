@@ -80,6 +80,24 @@ public class FacebookREST {
 		return "";
 	}
 
+	public String getAccountID(OAuth2AccessToken accessToken) throws ParseException{
+		OAuthRequest request = new OAuthRequest(Verb.GET,PROTECTED_RESOURCE_URL);
+		this.service.signRequest(accessToken,request);
+		try (Response response = this.service.execute(request)){
+			String reply = response.getBody();
+			JSONParser parser = new JSONParser();
+			JSONObject json = (JSONObject) parser.parse(reply);
+			return (String) json.get("id");
+		}catch (InterruptedException e){
+			e.printStackTrace();
+		}catch (ExecutionException e){
+			e.printStackTrace();
+		}catch (IOException e){
+			e.printStackTrace();
+		}
+		return "";
+	}
+
 
 
 

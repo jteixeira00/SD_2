@@ -2,10 +2,8 @@ package rmiserver;
 
 import hey.model.AdminTerminalInterface;
 
-import javax.lang.model.type.ArrayType;
 import java.io.*;
 import java.rmi.NotBoundException;
-import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -13,9 +11,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 
@@ -624,6 +620,34 @@ public class RmiServer extends UnicastRemoteObject implements RmiInterface {
             }
         }
         return null;
+    }
+
+    public void setFacebookID_PessoabyNumber(String numero,String facebookID) throws RemoteException{
+        for (Pessoa p : this.listaPessoas) {
+            if (p.getNumero().equals(numero)) {
+                p.setFacebookID(facebookID);
+            }
+        }
+    }
+
+    public int findFacebookID_Pessoa(String facebookID) throws RemoteException{
+        int index = 0;
+        for (Pessoa p : this.listaPessoas) {
+            index++;
+            if (p.getFacebookID().equals(facebookID)) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    public String getFacebookID_PessoabyNumber(String numero) throws RemoteException{
+        for (Pessoa p : this.listaPessoas) {
+            if (p.getNumero().equals(numero)) {
+                return p.getFacebookID();
+            }
+        }
+        return "";
     }
 
     //adiciona departamento à eleição com o nome nome

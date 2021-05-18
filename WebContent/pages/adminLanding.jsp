@@ -46,9 +46,5 @@
                 </c:otherwise>
             </c:choose>
 
-            <form action = loginFB>
-                <button>Login Facebook</button>
-            </form>
-
 </body>
 </html>

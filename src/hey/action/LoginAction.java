@@ -4,18 +4,20 @@
 package hey.action;
 
 import com.opensymphony.xwork2.ActionSupport;
+import hey.model.HeyBean;
 import org.apache.struts2.interceptor.SessionAware;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Map;
-import hey.model.HeyBean;
-import rmiserver.RmiInterface;
 
 public class LoginAction extends ActionSupport implements SessionAware {
 	private static final long serialVersionUID = 4L;
 	private Map<String, Object> session;
 	private String username = null, password = null;
+
+
+	private String login = null, facebook = null;
 
 	private ArrayList<String> eleicoes = new ArrayList<>();
 	@Override
@@ -37,7 +39,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 					return SUCCESS;
 				}
 				else{
-					session.put("loggedin", false); // this marks the user as logged in
+					session.put("loggedin", false); // this marks the user as logged out
 					return LOGIN;
 				}
 
@@ -47,6 +49,9 @@ public class LoginAction extends ActionSupport implements SessionAware {
 			return LOGIN;
 		}
 		else
+			if(facebook != null) {
+				return "facebook";
+			}
 			return LOGIN;
 	}
 	
@@ -59,8 +64,9 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	}
 	
 	public HeyBean getHeyBean() {
-		if(!session.containsKey("heyBean"))
+		if(!session.containsKey("heyBean")) {
 			this.setHeyBean(new HeyBean());
+		}
 		return (HeyBean) session.get("heyBean");
 	}
 
@@ -71,6 +77,23 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	@Override
 	public void setSession(Map<String, Object> session) {
 		this.session = session;
+	}
+
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public String getFacebook() {
+		return facebook;
+	}
+
+	public void setFacebook(String facebook) {
+		this.facebook = facebook;
 	}
 
 	public ArrayList<String> getEleicoes(){

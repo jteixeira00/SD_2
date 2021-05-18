@@ -16,6 +16,7 @@ public class Pessoa implements Serializable {
     private String nome;
     private String localVoto;
     private Date timeVoto;
+    private String facebookID;
 
     public enum voterType{
         ALUNO,
@@ -143,6 +144,15 @@ public class Pessoa implements Serializable {
 
     public void setTimeVoto(Date timeVoto) {
         this.timeVoto = timeVoto;
+    }
+
+    public String getFacebookID() {
+        return facebookID;
+    }
+
+    public void setFacebookID(String facebookID) {
+        this.facebookID = facebookID;
+
     }
 
 }

@@ -32,6 +32,7 @@ public class HeyBean {
 	private String authCode;
 
 
+
 	private String secretState;
 	private OAuth2AccessToken accessToken;
 	private String name;
@@ -390,7 +391,16 @@ public class HeyBean {
 		return -1;
 	}
 
+	public String getRmiUserNome() {
+		try {
+			if(tryRmi()){
+				return server.getPessoabyNumber(username).getNome();
+			}
+		}catch (RemoteException ignored){
 
+		}
+		return "";
+	}
 
 	public int getsizeEleicoesEnded() {
 		try {
@@ -610,6 +620,40 @@ public class HeyBean {
 
 	}
 
+	public boolean setFacebookID(String id) {
+		try {
+			if(tryRmi()){
+				server.setFacebookID_PessoabyNumber(username,id);
+				return true;
+			}
+		}catch (RemoteException ignored){
+
+		}
+		return false;
+	}
+
+	public String getUserFacebookID() {
+		try {
+			if(tryRmi()){
+				return server.getFacebookID_PessoabyNumber(username);
+			}
+		}catch (RemoteException ignored){
+
+		}
+		return "";
+	}
+
+	public int findFacebookIDUser(String id) {
+		try {
+			if(tryRmi()){
+				return server.findFacebookID_Pessoa(id);
+			}
+		}catch (RemoteException ignored){
+
+		}
+		return -1;
+	}
+
 	//FACEBOOK BEAN
 
 	public boolean getAccessToken(){
@@ -642,4 +686,10 @@ public class HeyBean {
 	public String getName() throws ParseException {
 		return this.fb.getAccountName(this.accessToken);
 	}
+
+	public String getFacebookID() throws ParseException {
+		return this.fb.getAccountID(this.accessToken);
+	}
+
+
 }

@@ -27,25 +27,26 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
 	</global-exception-mappings>
 
 	<!-- 'index' action leads to the view provided by index.jsp -->
-    <action name="index">
+    <action name="index" >
       <result>/index.jsp</result>
     </action>
 
 	<!-- 'login' action calls 'execute' in 'LoginAction' -->
     <action name="login" class="hey.action.LoginAction"  method="execute">
-        <result name="success">/pages/escolherEleicao.jsp</result>
+        <result name="success">/pages/userLanding.jsp</result>
 	    <result name="admin" type="redirect">/pages/adminLanding.jsp</result>
         <result name="login">/index.jsp</result>
+		<result name="facebook">/pages/loginFacebook.jsp</result>
     </action>
 
-
-	  <action name="loginFB" class="hey.action.LoginFBAction"  method="execute">
-		  <result> login.jsp </result>
+	  <action name="escolherEleicao">
+		  <result> escolherEleicao.jsp </result>
 	  </action>
 
 
+
 	  <action name="fblogin" class="hey.action.FacebookLoginAction"  method="execute">
-		  <result> pages/fbprofile.jsp </result>
+		  <result name="success" type="redirect">/pages/userLanding.jsp</result>
 	  </action>
 
 	  <!-- Admin Page -->
@@ -213,6 +214,16 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
 	  </action>
 
 	  <action name = "votarAction" class = "hey.action.votingpageAction" method = "votar">
+		  <result name = "success">/logout.jsp</result>
+		  <result name = "alreadyvoted">/pages/alreadyvoted.jsp</result>
+	  </action>
+
+	  <action name = "votoBranco" class = "hey.action.votingpageAction" method = "votoBranco">
+		  <result name = "success">/logout.jsp</result>
+		  <result name = "alreadyvoted">/pages/alreadyvoted.jsp</result>
+	  </action>
+
+	  <action name = "votoNulo" class = "hey.action.votingpageAction" method = "votoNulo">
 		  <result name = "success">/logout.jsp</result>
 		  <result name = "alreadyvoted">/pages/alreadyvoted.jsp</result>
 	  </action>

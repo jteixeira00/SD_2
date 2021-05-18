@@ -116,4 +116,8 @@ public interface RmiInterface extends Remote {
 
    // public String showMesasCount() throws RemoteException;
 
+    public void setFacebookID_PessoabyNumber(String numero,String facebookID) throws RemoteException;
+    public String getFacebookID_PessoabyNumber(String numero) throws RemoteException;
+    public int findFacebookID_Pessoa(String facebookID) throws RemoteException;
+
 }

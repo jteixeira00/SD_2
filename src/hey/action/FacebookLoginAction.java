@@ -6,6 +6,7 @@ package hey.action;
 import com.opensymphony.xwork2.ActionSupport;
 import hey.model.HeyBean;
 import org.apache.struts2.interceptor.SessionAware;
+import org.json.simple.parser.ParseException;
 
 import java.util.Map;
 
@@ -16,25 +17,32 @@ public class FacebookLoginAction extends ActionSupport implements SessionAware {
 
 
 	@Override
-	public String execute() {
+	public String execute() throws ParseException {
 		HeyBean fb = this.getHeyBean();
 		fb.setAuthCode(this.code);
 		fb.setSecretState(this.state);
 		if(fb.getAccessToken()){
-			session.put("loggedin",true);
+			if(session.get("loggedin").equals(true)){
+				fb.setFacebookID(fb.getFacebookID());
+			}else{
+				if(fb.findFacebookIDUser(fb.getFacebookID()) != -1)
+					System.out.println("I EXIST");
+				session.put("loggedin",true);
+			}
+
 			return SUCCESS;
 		}
 		return ERROR;
 	}
 
 	public HeyBean getHeyBean(){
-		if(!session.containsKey("fbBean"))
+		if(!session.containsKey("heyBean"))
 			this.setHeyBean(new HeyBean());
-		return (HeyBean) session.get("fbBean");
+		return (HeyBean) session.get("heyBean");
 	}
 
 	public void setHeyBean(HeyBean fbBean){
-		this.session.put("fbBean",fbBean);
+		this.session.put("heyBean",fbBean);
 	}
 
 
