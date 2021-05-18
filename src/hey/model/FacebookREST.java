@@ -29,7 +29,6 @@ public class FacebookREST {
 		this.service = new ServiceBuilder(apiKey)
 				.apiKey(apiKey)
 				.apiSecret(apiSecret)
-				//configurar para correr como https? guia oficial? :crying_emojie:
 				.callback("http://localhost:8080/Hey/fblogin.action")
 				.build(FacebookApi.instance());
 		this.secretState = "secret" + new Random().nextInt(999_999);

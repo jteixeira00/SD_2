@@ -8,6 +8,7 @@ import hey.model.HeyBean;
 import org.apache.struts2.interceptor.SessionAware;
 import org.json.simple.parser.ParseException;
 
+import java.rmi.RemoteException;
 import java.util.Map;
 
 public class FacebookLoginAction extends ActionSupport implements SessionAware {
@@ -17,17 +18,25 @@ public class FacebookLoginAction extends ActionSupport implements SessionAware {
 
 
 	@Override
-	public String execute() throws ParseException {
+	public String execute() throws ParseException, RemoteException {
 		HeyBean fb = this.getHeyBean();
+		System.out.println(fb);
 		fb.setAuthCode(this.code);
 		fb.setSecretState(this.state);
+
+
 		if(fb.getAccessToken()){
-			if(session.get("loggedin").equals(true)){
+			if(session.get("loggedin") != null && session.get("loggedin").equals(true)){
 				fb.setFacebookID(fb.getFacebookID());
 			}else{
-				if(fb.findFacebookIDUser(fb.getFacebookID()) != -1)
-					System.out.println("I EXIST");
-				session.put("loggedin",true);
+				if(fb.findFacebookIDUser(fb.getFacebookID()) != -1) {
+					String username = fb.getNumeroPessoa((fb.findFacebookIDUser(fb.getFacebookID())));
+					System.out.println(username);
+					fb.setUsername(username);
+					session.put("username", username);
+					session.put("loggedin", true);
+					return "facebook";
+				}
 			}
 
 			return SUCCESS;
@@ -35,16 +44,16 @@ public class FacebookLoginAction extends ActionSupport implements SessionAware {
 		return ERROR;
 	}
 
-	public HeyBean getHeyBean(){
-		if(!session.containsKey("heyBean"))
+	public HeyBean getHeyBean() {
+		if(!session.containsKey("heyBean")) {
 			this.setHeyBean(new HeyBean());
+		}
 		return (HeyBean) session.get("heyBean");
 	}
 
-	public void setHeyBean(HeyBean fbBean){
-		this.session.put("heyBean",fbBean);
+	public void setHeyBean(HeyBean heyBean) {
+		this.session.put("heyBean", heyBean);
 	}
-
 
 	@Override
 	public void setSession(Map<String, Object> session) {

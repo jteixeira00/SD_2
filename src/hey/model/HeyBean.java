@@ -40,12 +40,13 @@ public class HeyBean {
 	private int choiceGerirEleicao = 0;
 	private String eleicaoChoice;
 
-	private int choiceLista= 0;
+	private int choiceLista = 0;
 
 	private int choiceUser = -1;
 
 
 	public HeyBean() {
+		System.out.println("START");
 		this.fb = new FacebookREST();
 
 		try {
@@ -96,11 +97,12 @@ public class HeyBean {
 		return false;
 	}
 
+
 	public ArrayList<String> getAllPessoas() throws RemoteException {
 		try {
 			if(tryRmi()){
 				String array[] = server.showPessoas().split("\n");
-								List<String> al = new ArrayList<String>();
+				List<String> al = new ArrayList<String>();
 				al = Arrays.asList(array);
 				return new ArrayList<>(al);
 			}
@@ -108,6 +110,17 @@ public class HeyBean {
 
 		}
 		return new ArrayList<>();
+	}
+
+	public String getNumeroPessoa(int index) throws RemoteException {
+		try {
+			if(tryRmi()){
+				return server.getPessoas().get(index - 1).getNumero();
+			}
+		}catch (RemoteException ignored){
+
+		}
+		return "";
 	}
 
 	public ArrayList<String> getAllEleicoes() throws RemoteException {
@@ -181,8 +194,7 @@ public class HeyBean {
 	}
 
 	public boolean getUserMatchesPassword(String username, String password) throws RemoteException {
-		boolean ret = server.login(username, password);
-		return ret;
+		return server.login(username, password);
 	}
 	
 	public void setUsername(String username) {
@@ -392,6 +404,9 @@ public class HeyBean {
 	}
 
 	public String getRmiUserNome() {
+		System.out.println("HERE");
+		System.out.println(this.username);
+		System.out.println(this);
 		try {
 			if(tryRmi()){
 				return server.getPessoabyNumber(username).getNome();
@@ -662,6 +677,7 @@ public class HeyBean {
 	}
 
 	public String getAuthURL(){
+		System.out.println(this);
 		this.authURL = this.fb.getAuthorizationURL();
 		return authURL;
 	}

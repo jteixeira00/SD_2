@@ -24,34 +24,40 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	public String execute() {
 
 		// any username is accepted without confirmation (should check using RMI)
-		if(this.username != null && !username.equals("")) {
-			this.getHeyBean().setUsername(this.username);
-			this.getHeyBean().setPassword(this.password);
-
-			try {
-				if(this.username.equals("admin") && this.password.equals("admin")){
-					return "admin";
-				}
-
-				if(this.getHeyBean().getUserMatchesPassword(this.username, this.password)){
-					session.put("username", username);
-					session.put("loggedin", true); // this marks the user as logged in
-					return SUCCESS;
-				}
-				else{
-					session.put("loggedin", false); // this marks the user as logged out
-					return LOGIN;
-				}
-
-			} catch (RemoteException e) {
-				e.printStackTrace();
-			}
-			return LOGIN;
+		if(this.facebook != null) {
+			this.getHeyBean();
+			System.out.println(this.getHeyBean());
+			this.getHeyBean().setUsername("FACEBOOK");
+			this.getHeyBean().setPassword("FACEBOOK");
+			session.put("username", "FACEBOOK");
+			return "facebook";
 		}
-		else
-			if(facebook != null) {
-				return "facebook";
+		else {
+			if (this.username != null && !username.equals("")) {
+				this.getHeyBean().setUsername(this.username);
+				this.getHeyBean().setPassword(this.password);
+
+				try {
+					if (this.username.equals("admin") && this.password.equals("admin")) {
+						return "admin";
+					}
+
+					if (this.getHeyBean().getUserMatchesPassword(this.username, this.password)) {
+						session.put("username", username);
+						session.put("loggedin", true); // this marks the user as logged in
+						return SUCCESS;
+					} else {
+						session.put("loggedin", false); // this marks the user as logged out
+						return LOGIN;
+					}
+
+				} catch (RemoteException e) {
+					e.printStackTrace();
+				}
+				return LOGIN;
 			}
+		}
+
 			return LOGIN;
 	}
 	

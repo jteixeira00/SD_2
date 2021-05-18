@@ -10,6 +10,7 @@
 </head>
 <body>
 
+
 	<c:redirect url="${HeyBean.authURL}"/>
 
 
