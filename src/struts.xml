@@ -8,7 +8,7 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
-
+	<constant name="struts.action.excludePattern" value="/ws"/>
   <!-- devMode equals debug information and reload everything for every request -->
   <constant name="struts.devMode" value="true" />
   <constant name="struts.ui.theme" value="simple" />
