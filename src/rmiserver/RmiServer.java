@@ -71,6 +71,7 @@ public class RmiServer extends UnicastRemoteObject implements RmiInterface {
     }
 
     public void notifyOfNewTable(String arg) throws RemoteException{
+        WS.sendMessage("New table connected at department " + arg);
         for(AdminTerminalInterface a:getTerminais()){
             try{
                 a.tableUpdate(arg);}
@@ -166,16 +167,18 @@ public class RmiServer extends UnicastRemoteObject implements RmiInterface {
             return false;
         }
         if (p.getPassword().equals(password)) {
-            WS.sendMessage("User log in");
+            WS.sendMessage("User with number " + numero + " logged in");
             return true;
         } else {
+            WS.sendMessage("User with number " + numero + " wrong password");
             return false;
         }
 
     }
 
     public void logout(String numero) throws RemoteException {
-        this.pessoasOnline.remove(getPessoabyNumber(numero));
+        WS.sendMessage("User with number " + numero + " logged out");
+        //this.pessoasOnline.remove(getPessoabyNumber(numero));
     }
 
     /* =============== Eleições e votar ===============*/
@@ -256,6 +259,7 @@ public class RmiServer extends UnicastRemoteObject implements RmiInterface {
             }
         }
         save();
+        WS.sendMessage("User with number " + number + " casted a vote");
         return true;
     }
 
@@ -1039,8 +1043,10 @@ public class RmiServer extends UnicastRemoteObject implements RmiInterface {
 
     //Avisa que se desconectou dos terminais - callback
     public void terminarMesa(String departamento) throws RemoteException{
+        WS.sendMessage("Table at department "+ departamento + " terminated");
         for(AdminTerminalInterface a:getTerminais()){
             try{
+
                 a.tableDisconnectedUpdate(departamento);}
             catch(RemoteException e){
                 //ignore
@@ -1050,6 +1056,7 @@ public class RmiServer extends UnicastRemoteObject implements RmiInterface {
 
     //Avisa que se conectou aos terminais - callback
     public void newTerminal(String departamento) throws RemoteException{
+        WS.sendMessage("New terminal at department " + departamento);
         for(AdminTerminalInterface a:getTerminais()){
             try{
                 a.terminalUpdate(departamento);}
