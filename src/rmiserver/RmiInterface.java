@@ -1,7 +1,5 @@
 package rmiserver;
 
-import hey.model.AdminTerminalInterface;
-
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -119,5 +117,6 @@ public interface RmiInterface extends Remote {
     public void setFacebookID_PessoabyNumber(String numero,String facebookID) throws RemoteException;
     public String getFacebookID_PessoabyNumber(String numero) throws RemoteException;
     public int findFacebookID_Pessoa(String facebookID) throws RemoteException;
+    public void subscribewebsocket(AdminTerminalInterface websocket) throws RemoteException;
 
 }

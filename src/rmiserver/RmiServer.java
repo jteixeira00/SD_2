@@ -1,7 +1,5 @@
 package rmiserver;
 
-import hey.model.AdminTerminalInterface;
-
 import java.io.*;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -29,6 +27,7 @@ public class RmiServer extends UnicastRemoteObject implements RmiInterface {
     private String rmiport;
     private String rminame;
     private String registry;
+    private AdminTerminalInterface WS;
     public RmiServer() throws RemoteException {
         super();
         this.listaPessoas = new ArrayList<>();
@@ -95,6 +94,7 @@ public class RmiServer extends UnicastRemoteObject implements RmiInterface {
         String rminame = properties.getRminame();
         String registry = properties.getRegistry();
         System.setProperty("java.rmi.server.hostname", registry);
+        System.setProperty("java.security.policy", "client.policy");
         try {
             Registry rmi = LocateRegistry.getRegistry(registry, Integer.parseInt(rmiport));
             RmiInterface ri;
@@ -161,14 +161,17 @@ public class RmiServer extends UnicastRemoteObject implements RmiInterface {
         System.out.println("Procurando utilizador com nº " + numero);
         Pessoa p = getPessoabyNumber(numero);
 
-        if(p == null)
+        if(p == null) {
+            WS.sendMessage("Failed login attempt");
             return false;
-
+        }
         if (p.getPassword().equals(password)) {
+            WS.sendMessage("User log in");
             return true;
         } else {
             return false;
         }
+
     }
 
     public void logout(String numero) throws RemoteException {
@@ -306,7 +309,7 @@ public class RmiServer extends UnicastRemoteObject implements RmiInterface {
             parseException.printStackTrace();
         }
 
-
+        WS.sendMessage("Eleição criada");
         return null;
     }
 
@@ -1178,5 +1181,9 @@ public class RmiServer extends UnicastRemoteObject implements RmiInterface {
         save();
         return true;
     }
+    public void subscribewebsocket(AdminTerminalInterface websocket) throws RemoteException{
+        WS = websocket;
+    }
+
 }
 
