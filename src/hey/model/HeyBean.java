@@ -46,7 +46,6 @@ public class HeyBean {
 
 
 	public HeyBean() {
-		System.out.println("START");
 		this.fb = new FacebookREST();
 
 		try {
@@ -68,6 +67,33 @@ public class HeyBean {
 			e.printStackTrace(); // what happens *after* we reach this line?
 		}
 
+	}
+
+	public void logout() throws RemoteException{
+		for (int i = 0; i <= 6; i++) {
+			try {
+
+				server.logout(this.username);
+				this.username = null;
+				this.password = null;
+				this.fb = null;
+				this.authURL = null;
+				this.authCode = null;
+				this.secretState = null;
+				this.accessToken = null;
+
+			} catch (RemoteException e) {
+				try {
+					server = (RmiInterface) LocateRegistry.getRegistry(registry, Integer.parseInt(rmiport)).lookup(rminame);
+				} catch (NotBoundException | RemoteException ignored) {
+
+				}
+				if (i == 6) {
+					System.out.println("Impossivel conectar aos servidores RMI");
+
+				}
+			}
+		}
 	}
 
 	public boolean tryRmi() throws RemoteException{
@@ -115,7 +141,7 @@ public class HeyBean {
 	public String getNumeroPessoa(int index) throws RemoteException {
 		try {
 			if(tryRmi()){
-				return server.getPessoas().get(index - 1).getNumero();
+				return server.getPessoas().get(index).getNumero();
 			}
 		}catch (RemoteException ignored){
 
@@ -677,7 +703,6 @@ public class HeyBean {
 	}
 
 	public String getAuthURL(){
-		System.out.println(this);
 		this.authURL = this.fb.getAuthorizationURL();
 		return authURL;
 	}

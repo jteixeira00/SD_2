@@ -147,6 +147,8 @@ public class Pessoa implements Serializable {
     }
 
     public String getFacebookID() {
+        if(facebookID == null)
+            return "";
         return facebookID;
     }
 

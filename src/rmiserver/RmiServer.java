@@ -631,15 +631,16 @@ public class RmiServer extends UnicastRemoteObject implements RmiInterface {
                 p.setFacebookID(facebookID);
             }
         }
+        save();
     }
 
     public int findFacebookID_Pessoa(String facebookID) throws RemoteException{
         int index = 0;
         for (Pessoa p : this.listaPessoas) {
-            index++;
             if (p.getFacebookID().equals(facebookID)) {
                 return index;
             }
+            index++;
         }
         return -1;
     }
