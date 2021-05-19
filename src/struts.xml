@@ -48,6 +48,10 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
 		  <result> index.jsp </result>
 	  </action>
 
+	  <action name="facebookTest">
+		  <result> /pages/FacebookTest.jsp </result>
+	  </action>
+
 
 	  <action name="fblogin" class="hey.action.FacebookLoginAction"  method="execute">
 		  <result name="error" type="">index.jsp</result>

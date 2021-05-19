@@ -25,5 +25,9 @@
             <button>Sair</button>
         </form>
 
+        <form action = "facebookTest">
+            <button>SHARE TEST</button>
+        </form>
+
 </body>
 </html>
