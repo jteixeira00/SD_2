@@ -112,7 +112,7 @@
 
 <div>
     <div id="container"><div id="history"></div></div>
-    <p><input type="text" placeholder="type to chat" id="chat"></p>
+
 </div>
 </body>
 </html>

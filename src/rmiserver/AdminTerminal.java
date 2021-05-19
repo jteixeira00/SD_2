@@ -1,9 +1,4 @@
-package hey.model;
-
-import rmiserver.Eleicao;
-import rmiserver.GetPropertyValues;
-import rmiserver.Lista;
-import rmiserver.RmiInterface;
+package rmiserver;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -1535,5 +1530,10 @@ public class AdminTerminal extends UnicastRemoteObject implements AdminTerminalI
         } catch (RemoteException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void sendMessage(String string){
+
     }
 }

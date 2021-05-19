@@ -1,4 +1,4 @@
-package hey.model;
+package rmiserver;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -10,4 +10,5 @@ public interface AdminTerminalInterface extends Remote {
     public void tableUpdate(String dep) throws RemoteException;
     public void tableDisconnectedUpdate(String dep) throws RemoteException;
     public void terminalUpdate(String departamento) throws RemoteException;
+    public void sendMessage(String text) throws RemoteException;
 }
