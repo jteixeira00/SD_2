@@ -31,7 +31,7 @@
         }
 
         function onOpen(event) {
-            writeToHistory('Connected to ' + window.location.host + '.');
+            //writeToHistory('Connected to ' + window.location.host + '.');
             document.getElementById('chat').onkeydown = function(key) {
                 if (key.keyCode == 13)
                     doSend(); // call doSend() on enter key press

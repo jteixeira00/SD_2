@@ -109,6 +109,9 @@ public class HeyBean {
 		}
 		return false;
 	}
+	public void logoutmsg() throws RemoteException {
+		server.logout(username);
+	}
 
 	public boolean checkTitulo(String titulo) throws RemoteException{
 		if(tryRmi()){
