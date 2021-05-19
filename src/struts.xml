@@ -238,10 +238,6 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
 		  <result name = "alreadyvoted">/pages/alreadyvoted.jsp</result>
 	  </action>
 
-	  <action name = "logoutAction">
-		  <result>/index.jsp</result>
-
-	  </action>
   </package>
 
 </struts>

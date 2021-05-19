@@ -26,6 +26,7 @@ public class LogoutAction extends ActionSupport implements SessionAware {
 		// any username is accepted without confirmation (should check using RMI)
 		//this.getHeyBean().logout();
 		session.put("loggedin",false);
+		this.getHeyBean().logout();
 		//session.put("username",null);
 		//session.put("password",null);
 		return SUCCESS;

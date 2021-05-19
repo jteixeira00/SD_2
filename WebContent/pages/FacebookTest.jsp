@@ -41,14 +41,12 @@
             display: 'popup',
             method: 'share',
             quote: "bruh moment",
-            href: 'http://localhost:8080/Hey/'
+            href: 'http://127.0.0.1:8080/Hey/'
         }, function(response){});
     }
 </script>
 
 
-
-
-
 </body>
+
 </html>

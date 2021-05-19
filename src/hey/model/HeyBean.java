@@ -74,13 +74,7 @@ public class HeyBean {
 			try {
 
 				server.logout(this.username);
-				this.username = null;
-				this.password = null;
-				this.fb = null;
-				this.authURL = null;
-				this.authCode = null;
-				this.secretState = null;
-				this.accessToken = null;
+
 
 			} catch (RemoteException e) {
 				try {
