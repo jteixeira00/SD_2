@@ -791,7 +791,7 @@ public class RmiServer extends UnicastRemoteObject implements RmiInterface {
                     listasS += "\n" + l.getNome();
                 }
             }
-            return "\n==================\nTitulo: " + eleicao.getTitulo() + "\nDescrição: " + eleicao.getDescricao() + "\nData de Inicio (dd-MM-yyyy  HH:mm): " + eleicao.dateToString(eleicao.getStartDate()) + "\nData de Fim (dd-MM-yyyy  HH:mm): " + eleicao.dateToString(eleicao.getEndDate()) + mesasS + listasS;
+            return "\n==================\nTitulo: " + eleicao.getTitulo() + "\nDescrição: " + eleicao.getDescricao() + "\nData de Inicio (dd-MM-yyyy  HH:mm): " + eleicao.dateToString(eleicao.getStartDate()) + "\nData de Fim (dd-MM-yyyy  HH:mm): " + eleicao.dateToString(eleicao.getEndDate()) + "\nTipo: " + eleicao.getTipoVoters() + mesasS + listasS;
         }
         return "";
     }
