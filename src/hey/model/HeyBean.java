@@ -202,6 +202,20 @@ public class HeyBean {
 		return new ArrayList<>();
 	}
 
+	public ArrayList<String> getVotosUsername() throws RemoteException {
+		try {
+			if(tryRmi()){
+				String array[] = server.showVotoDetalhesRMINome(username).split("\n");
+				List<String> al = new ArrayList<String>();
+				al = Arrays.asList(array);
+				return new ArrayList<>(al);
+			}
+		}catch (RemoteException ignored){
+
+		}
+		return new ArrayList<>();
+	}
+
 	public ArrayList<String> getAllCandidatos() throws RemoteException {
 		try {
 			if(tryRmi()){
