@@ -262,7 +262,15 @@ public class HeyBean {
 	}
 
 	public boolean getUserMatchesPassword(String username, String password) throws RemoteException {
-		return server.login(username, password);
+		try {
+			if(tryRmi()){
+				return server.login(username, password);
+			}
+		}catch (RemoteException ignored){
+
+		}
+		return false;
+
 	}
 	
 	public void setUsername(String username) {
@@ -704,29 +712,35 @@ public class HeyBean {
 
 	public boolean votar( String voto){
 		try {
-			System.out.println(eleicaoChoice);
-			System.out.println(voto);
-			return server.votarweb(eleicaoChoice, voto, username, "WEB");
+			if(tryRmi()) {
+				return server.votarweb(eleicaoChoice, voto, username, "WEB");
+			}
 		} catch (RemoteException e) {
 			return false;
 		}
+		return false;
 	}
 
 	public boolean votoBranco(){
-		try{
-			return server.votarbrancoweb(eleicaoChoice,username);
+		try {
+			if(tryRmi()) {
+				return server.votarbrancoweb(eleicaoChoice,username);
+			}
 		} catch (RemoteException e) {
 			return false;
 		}
-
+		return false;
 	}
+
 	public boolean votoNulo(){
-		try{
-			return server.votarnuloweb(eleicaoChoice,username);
+		try {
+			if(tryRmi()) {
+				return server.votarnuloweb(eleicaoChoice,username);
+			}
 		} catch (RemoteException e) {
 			return false;
 		}
-
+		return false;
 	}
 
 	public boolean setFacebookID(String id) {
