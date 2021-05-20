@@ -71,7 +71,9 @@ public class RmiServer extends UnicastRemoteObject implements RmiInterface {
     }
 
     public void notifyOfNewTable(String arg) throws RemoteException{
-        WS.sendMessage("New table connected at department " + arg);
+        if(WS!=null) {
+            WS.sendMessage("New table connected at department " + arg);
+        }
         for(AdminTerminalInterface a:getTerminais()){
             try{
                 a.tableUpdate(arg);}
@@ -163,21 +165,26 @@ public class RmiServer extends UnicastRemoteObject implements RmiInterface {
         Pessoa p = getPessoabyNumber(numero);
 
         if(p == null) {
-            WS.sendMessage("Failed login attempt");
+            if(WS!=null){
+            WS.sendMessage("Failed login attempt");}
             return false;
         }
         if (p.getPassword().equals(password)) {
-            WS.sendMessage("User with number " + numero + " logged in");
+            if(WS!=null){
+            WS.sendMessage("User with number " + numero + " logged in");}
             return true;
         } else {
-            WS.sendMessage("User with number " + numero + " wrong password");
+            if(WS!=null){
+            WS.sendMessage("User with number " + numero + " wrong password");}
             return false;
         }
 
     }
 
     public void logout(String numero) throws RemoteException {
-        WS.sendMessage("User with number " + numero + " logged out");
+        if(WS!=null) {
+            WS.sendMessage("User with number " + numero + " logged out");
+        }
         //this.pessoasOnline.remove(getPessoabyNumber(numero));
     }
 
@@ -259,7 +266,9 @@ public class RmiServer extends UnicastRemoteObject implements RmiInterface {
             }
         }
         save();
-        WS.sendMessage("User with number " + number + " casted a vote");
+        if(WS!=null) {
+            WS.sendMessage("User with number " + number + " casted a vote");
+        }
         return true;
     }
 
@@ -312,8 +321,9 @@ public class RmiServer extends UnicastRemoteObject implements RmiInterface {
         } catch (ParseException parseException) {
             parseException.printStackTrace();
         }
-
-        WS.sendMessage("Eleição criada");
+        if(WS!=null) {
+            WS.sendMessage("Eleição criada");
+        }
         return null;
     }
 
@@ -1101,7 +1111,9 @@ public class RmiServer extends UnicastRemoteObject implements RmiInterface {
 
     //Avisa que se desconectou dos terminais - callback
     public void terminarMesa(String departamento) throws RemoteException{
-        WS.sendMessage("Table at department "+ departamento + " terminated");
+        if(WS!=null) {
+            WS.sendMessage("Table at department " + departamento + " terminated");
+        }
         for(AdminTerminalInterface a:getTerminais()){
             try{
 
@@ -1114,7 +1126,9 @@ public class RmiServer extends UnicastRemoteObject implements RmiInterface {
 
     //Avisa que se conectou aos terminais - callback
     public void newTerminal(String departamento) throws RemoteException{
-        WS.sendMessage("New terminal at department " + departamento);
+        if(WS!=null) {
+            WS.sendMessage("New terminal at department " + departamento);
+        }
         for(AdminTerminalInterface a:getTerminais()){
             try{
                 a.terminalUpdate(departamento);}
