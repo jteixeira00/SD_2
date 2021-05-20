@@ -338,8 +338,10 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
 		  <result>/pages/eleicoesAgora.jsp</result>
 	  </action>
 
-	  <action name = "shares">
-		  <interceptor-ref name="loginStack" />
+
+	  <action name = "share">
+	  <interceptor-ref name="loginStack" />
+
 		  <result>/pages/eleicoesUser.jsp</result>
 		  <result name = "login">/index.jsp</result>
 	  </action>

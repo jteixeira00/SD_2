@@ -864,7 +864,7 @@ public class RmiServer extends UnicastRemoteObject implements RmiInterface {
     public String showVotoDetalhesRMI(int indx) throws RemoteException {
         Pessoa eleitor = listaPessoas.get(indx);
         String str = "";
-        int posicao = 0;
+        int posicao = 1;
         for(Eleicao e : getEleicoes()){
             for(Voto v : e.getVotos()){
                 if(v.getEleitor().getNome().equals(eleitor.getNome())){

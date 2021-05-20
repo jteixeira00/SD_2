@@ -112,10 +112,24 @@ public class HeyBean {
 	public void logoutmsg() throws RemoteException {
 		if(username== null || username.equals("admin") ){
 			return;
+		
 		}
-		server.logout(username);
-	}
+		for (int i = 0; i <= 6; i++) {
+			try {
+				server.logout(username);
+			} catch (RemoteException e) {
+				try {
+					server = (RmiInterface) LocateRegistry.getRegistry(registry, Integer.parseInt(rmiport)).lookup(rminame);
+				} catch (NotBoundException | RemoteException ignored) {
 
+				}
+				if (i == 6) {
+					System.out.println("Impossivel conectar aos servidores RMI");
+				}
+			}
+		}
+
+	}
 	public boolean checkTitulo(String titulo) throws RemoteException{
 		if(tryRmi()){
 			return server.checkNomeEleicao(titulo);
@@ -236,7 +250,7 @@ public class HeyBean {
 	public ArrayList<String> getDetalhesEleicaoChoice() throws RemoteException {
 		try {
 			if(tryRmi()){
-				String array[] = server.showEleicoesDetalhesAgora(choiceGerirEleicao - 1).split("\n");
+				String array[] = server.showEleicoesDetalhesAgora(choiceGerirEleicao).split("\n");
 				List<String> al = new ArrayList<String>();
 				al = Arrays.asList(array);
 				return new ArrayList<>(al);

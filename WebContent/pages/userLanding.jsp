@@ -21,10 +21,6 @@
 
         <p><a href="<c:out value="${HeyBean.authURL}"/>" /> Associate Facebook</p>
 
-        <form action = "logout">
-            <button>Sair</button>
-        </form>
-
         <c:choose>
             <c:when test="${(HeyBean.votosSize)== true}">
                 <form action = "share">
@@ -35,6 +31,12 @@
                 <br><button>Partilhar Resultados</button>
             </c:otherwise>
         </c:choose>
+
+        <form action = "logout">
+            <button>Sair</button>
+        </form>
+
+
 
 </body>
 </html>

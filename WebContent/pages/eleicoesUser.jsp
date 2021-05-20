@@ -23,6 +23,9 @@
     <s:text name="Eleicão Pretendida:"/><br>
     <s:textfield type ="choice" name = "choice"/>
 
+    <br><br>
+    <button type = "submit">Submeter</button>
+
 
 
 
