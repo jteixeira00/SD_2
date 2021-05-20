@@ -40,7 +40,7 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
     </action>
 
 	  <action name="escolherEleicao">
-		  <result> escolherEleicao.jsp </result>
+		  <result> /pages/escolherEleicao.jsp </result>
 	  </action>
 
 
@@ -237,6 +237,19 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
 		  <result name = "success">/logout.jsp</result>
 		  <result name = "alreadyvoted">/pages/alreadyvoted.jsp</result>
 	  </action>
+
+	  <action name = "eleicoesDetalhes" class = "hey.action.heyBeanStart" method = "execute">
+		  <result>/pages/eleicoesAgora.jsp</result>
+	  </action>
+
+	  <action name = "shares">
+		  <result>/pages/eleicoesUser.jsp</result>
+	  </action>
+
+	  <action name = "eleicoesuserform" class = "hey.action.eleicoesUserAction" method = "execute">
+		  <result name="success">/pages/eleicoesDetalhesChoice.jsp</result>
+	  </action>
+
 
   </package>
 

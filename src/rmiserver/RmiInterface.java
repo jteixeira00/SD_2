@@ -119,4 +119,7 @@ public interface RmiInterface extends Remote {
     public int findFacebookID_Pessoa(String facebookID) throws RemoteException;
     public void subscribewebsocket(AdminTerminalInterface websocket) throws RemoteException;
 
+    public String eleicoesAgoraRMI() throws RemoteException;
+    public String showEleicoesDetalhesAgora(int index) throws RemoteException;
+
 }

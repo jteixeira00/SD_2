@@ -18,6 +18,10 @@
 		<p><input type="submit" name="facebook" value="Login with Facebook" /></p>
 	</s:form>
 
+	<form action = "eleicoesDetalhes">
+		<button>Eleicoes Detalhes</button>
+	</form>
+
 
 
 

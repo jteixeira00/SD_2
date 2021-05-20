@@ -25,6 +25,19 @@
             <button>Sair</button>
         </form>
 
+        <c:choose>
+            <c:when test="${(heyBean.votosSser)== true}">
+                <form action = "share">
+                    <button>Partilhar Resultados</button>
+                </form>
+            </c:when>
+            <c:otherwise>
+                <br><button>Partilhar Resultados</button>
+            </c:otherwise>
+        </c:choose>
+
+
+
 
 
 </body>

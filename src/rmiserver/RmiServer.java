@@ -764,6 +764,29 @@ public class RmiServer extends UnicastRemoteObject implements RmiInterface {
     }
 
     @Override
+    public String showEleicoesDetalhesAgora(int index) throws RemoteException {
+        Eleicao eleicao = getEleicoes().get(index);
+        String mesasS = "";
+        String listasS = "";
+        if(eleicao.getEndDate().after(new Date())) {
+            if(eleicao.getMesas().size() > 0){
+                mesasS = "\n----------------\nMesas:";
+                for(Mesa m : eleicao.getMesas()){
+                    mesasS += "\n" + m.getDepartamento();
+                }
+            }
+            if(eleicao.getListasCandidatas().size() > 0){
+                listasS = "\n----------------\nListas:";
+                for(Lista l : eleicao.getListasCandidatas()){
+                    listasS += "\n" + l.getNome();
+                }
+            }
+            return "\n==================\nTitulo: " + eleicao.getTitulo() + "\nDescrição: " + eleicao.getDescricao() + "\nData de Inicio (dd-MM-yyyy  HH:mm): " + eleicao.dateToString(eleicao.getStartDate()) + "\nData de Fim (dd-MM-yyyy  HH:mm): " + eleicao.dateToString(eleicao.getEndDate()) + mesasS + listasS;
+        }
+        return "";
+    }
+
+    @Override
     public String showEleicoesDetalhesEnded(int index) throws RemoteException {
         Eleicao eleicao = getEleicoesEnded().get(index);
         return "\n1 - Titulo: " + eleicao.getTitulo() + "\n2 - Descrição: " + eleicao.getDescricao() + "\n3 - Data de Inicio (dd-MM-yyyy  HH:mm): " + eleicao.dateToString(eleicao.getStartDate()) + "\n4 - Data de Fim (dd-MM-yyyy  HH:mm): " + eleicao.dateToString(eleicao.getEndDate());
@@ -829,12 +852,14 @@ public class RmiServer extends UnicastRemoteObject implements RmiInterface {
     public String showVotoDetalhesRMI(int indx) throws RemoteException {
         Pessoa eleitor = listaPessoas.get(indx);
         String str = "";
+        int posicao = 0;
         for(Eleicao e : getEleicoes()){
             for(Voto v : e.getVotos()){
                 if(v.getEleitor().getNome().equals(eleitor.getNome())){
-                     str += "\n.................\nEleição: " + e.getTitulo() + "\nLocal de Voto: " + v.getLocal() + "\nMomento de Voto: " + v.getData() + "\n";
+                     str += "\n.................\n" + posicao + " - Eleição: " + e.getTitulo() + "\nLocal de Voto: " + v.getLocal() + "\nMomento de Voto: " + v.getData() + "\n";
                 }
             }
+            posicao++;
         }
         if(str.equals("")){
             return "\n.................\nO eleitor ainda não votou.\n.................\n";
@@ -896,6 +921,20 @@ public class RmiServer extends UnicastRemoteObject implements RmiInterface {
         }
         else{
             return "Impossivel Realizar Operação: Eleições Passadas Inexistentes.\n";
+        }
+        return str;
+    }
+
+
+    public String eleicoesAgoraRMI() throws RemoteException {
+        String str = "";
+        if(getEleicoes().size() != 0) {
+            for (int i = 0; i < getEleicoes().size(); i++) {
+                str += showEleicoesDetalhesAgora(i) + "\n";
+            }
+        }
+        else{
+            return "Impossivel Realizar Operação: Eleições Inexistentes.\n";
         }
         return str;
     }

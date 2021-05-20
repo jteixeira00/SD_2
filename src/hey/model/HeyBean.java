@@ -216,6 +216,20 @@ public class HeyBean {
 		return new ArrayList<>();
 	}
 
+	public ArrayList<String> getDetalhesEleicaoChoice() throws RemoteException {
+		try {
+			if(tryRmi()){
+				String array[] = server.showEleicoesDetalhesAgora(choiceGerirEleicao - 1).split("\n");
+				List<String> al = new ArrayList<String>();
+				al = Arrays.asList(array);
+				return new ArrayList<>(al);
+			}
+		}catch (RemoteException ignored){
+
+		}
+		return new ArrayList<>();
+	}
+
 	public boolean getUserMatchesPassword(String username, String password) throws RemoteException {
 		return server.login(username, password);
 	}
@@ -426,6 +440,18 @@ public class HeyBean {
 		return -1;
 	}
 
+	public boolean getVotosSize() {
+		try {
+			if(tryRmi()){
+				if(server.showVotoDetalhesRMI(choiceUser - 1) != "\n.................\nO eleitor ainda não votou.\n.................\n")
+					return true;
+			}
+		}catch (RemoteException e){
+			return false;
+		}
+		return false;
+	}
+
 	public String getRmiUserNome() {
 		System.out.println("HERE");
 		System.out.println(this.username);
@@ -455,6 +481,20 @@ public class HeyBean {
 		try {
 			if(tryRmi()){
 				String array[] = server.eleicoesEndedRMI().split("\n");
+				List<String> al = new ArrayList<String>();
+				al = Arrays.asList(array);
+				return new ArrayList<>(al);
+			}
+		}catch (RemoteException ignored){
+
+		}
+		return new ArrayList<>();
+	}
+
+	public ArrayList<String> getEleicoesAgora() throws RemoteException {
+		try {
+			if(tryRmi()){
+				String array[] = server.eleicoesAgoraRMI().split("\n");
 				List<String> al = new ArrayList<String>();
 				al = Arrays.asList(array);
 				return new ArrayList<>(al);

@@ -56,6 +56,7 @@ public class votingpageAction extends ActionSupport implements SessionAware
     public ArrayList<String> getListas(){
         return this.getHeyBean().getListasEleicao(choice);
     }
+
     public String get(){
         return SUCCESS;
     }

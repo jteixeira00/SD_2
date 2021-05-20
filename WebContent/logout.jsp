@@ -41,8 +41,8 @@
             FB.ui({
                 display: 'popup',
                 method: 'share',
-                quote: "bruh moment",
-                href: 'http://127.0.0.1:8080/Hey/'
+                quote: "Votem também!",
+                href: 'http://127.0.0.1:8080/Hey/eleicoesDetalhes'
             }, function(response){});
         }
     </script>
