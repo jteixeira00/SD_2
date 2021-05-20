@@ -81,4 +81,5 @@ public class votingpageAction extends ActionSupport implements SessionAware
         }
         return "alreadyvoted";
     }
+
 }

@@ -39,7 +39,7 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
 		<result name="facebook">/pages/loginFacebook.jsp</result>
     </action>
 
-	  <action name="escolherEleicao">
+	  <action name="escolherEleicao" class = "hey.action.votingpageAction" method = "get">
 		  <result> /pages/escolherEleicao.jsp </result>
 	  </action>
 
