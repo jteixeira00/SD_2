@@ -21,10 +21,5 @@
 	<form action = "eleicoesDetalhes">
 		<button>Eleicoes Detalhes</button>
 	</form>
-
-
-
-
-
 </body>
 </html>

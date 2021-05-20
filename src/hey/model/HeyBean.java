@@ -110,6 +110,9 @@ public class HeyBean {
 		return false;
 	}
 	public void logoutmsg() throws RemoteException {
+		if(username== null || username.equals("admin") ){
+			return;
+		}
 		server.logout(username);
 	}
 

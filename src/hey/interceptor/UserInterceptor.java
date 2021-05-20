@@ -14,7 +14,7 @@ public class UserInterceptor extends AbstractInterceptor {
         Map<String, Object> session =invocation.getInvocationContext().getSession();
 
 
-        if(session == null  || !((boolean) session.get("loggedin"))){
+        if(session.get("loggedin") == null  || !((boolean) session.get("loggedin"))){
             return "login";
         }
         else{

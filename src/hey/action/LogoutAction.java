@@ -27,6 +27,7 @@ public class LogoutAction extends ActionSupport implements SessionAware {
 		//this.getHeyBean().logout();
 		//this.getHeyBean().logout();
 		session.put("loggedin",false);
+
 		this.getHeyBean().logoutmsg();
 		//session.put("username",null);
 		//session.put("password",null);

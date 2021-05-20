@@ -24,6 +24,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	public String execute() {
 
 		// any username is accepted without confirmation (should check using RMI)
+
 		if(this.facebook != null) {
 			this.getHeyBean();
 			System.out.println(this.getHeyBean());
@@ -39,6 +40,8 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
 				try {
 					if (this.username.equals("admin") && this.password.equals("admin")) {
+						session.put("username", "admin");
+						session.put("loggedin", true);
 						return "admin";
 					}
 
