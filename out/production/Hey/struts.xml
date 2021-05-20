@@ -242,7 +242,7 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
 		  <result>/pages/eleicoesAgora.jsp</result>
 	  </action>
 
-	  <action name = "shares">
+	  <action name = "share">
 		  <result>/pages/eleicoesUser.jsp</result>
 	  </action>
 
