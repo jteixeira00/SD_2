@@ -26,7 +26,7 @@
         </form>
 
         <c:choose>
-            <c:when test="${(heyBean.votosSser)== true}">
+            <c:when test="${(HeyBean.votosSize)== true}">
                 <form action = "share">
                     <button>Partilhar Resultados</button>
                 </form>

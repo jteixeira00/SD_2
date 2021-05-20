@@ -867,6 +867,25 @@ public class RmiServer extends UnicastRemoteObject implements RmiInterface {
         return str;
     }
 
+    @Override
+    public String showVotoDetalhesRMINome(String nome) throws RemoteException {
+        Pessoa eleitor = getPessoabyNumber(nome);
+        String str = "";
+        int posicao = 0;
+        for(Eleicao e : getEleicoes()){
+            for(Voto v : e.getVotos()){
+                if(v.getEleitor().getNome().equals(eleitor.getNome())){
+                    str += "\n.................\n" + posicao + " - Eleição: " + e.getTitulo() + "\nLocal de Voto: " + v.getLocal() + "\nMomento de Voto: " + v.getData() + "\n";
+                }
+            }
+            posicao++;
+        }
+        if(str.equals("")){
+            return "\n.................\nO eleitor ainda não votou.\n.................\n";
+        }
+        return str;
+    }
+
     //devolve uma string com os resultados de uma eleição: lista - #votos|percentagem
     @Override
     public String showVotosRMI(Eleicao eleicao) throws RemoteException {

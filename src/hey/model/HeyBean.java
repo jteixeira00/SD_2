@@ -443,7 +443,7 @@ public class HeyBean {
 	public boolean getVotosSize() {
 		try {
 			if(tryRmi()){
-				if(server.showVotoDetalhesRMI(choiceUser - 1) != "\n.................\nO eleitor ainda não votou.\n.................\n")
+				if(server.showVotoDetalhesRMINome(username) != "\n.................\nO eleitor ainda não votou.\n.................\n")
 					return true;
 			}
 		}catch (RemoteException e){
