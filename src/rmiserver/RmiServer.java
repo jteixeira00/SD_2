@@ -266,9 +266,8 @@ public class RmiServer extends UnicastRemoteObject implements RmiInterface {
             }
         }
         save();
-        System.out.printf("vamos la ver se consigo mandar mensagem");
+
         if(WS!=null) {
-            System.out.println("devia estar a enviar uma mensagem");
             WS.sendMessage("User with number " + number + " casted a vote");
         }
         return true;

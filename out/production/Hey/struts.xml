@@ -169,7 +169,7 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
 
 	  <action name="gerirmesas">
 		  <interceptor-ref name="AdminStack" />
-		  <result>/pages/gerirMesas</result>
+		  <result>/pages/gerirMesas.jsp</result>
 		  <result name = "login">/index.jsp</result>
 	  </action>
 
