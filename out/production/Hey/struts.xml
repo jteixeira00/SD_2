@@ -53,7 +53,7 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
     <action name="login" class="hey.action.LoginAction"  method="execute">
 
         <result name="success">/pages/userLanding.jsp</result>
-	    <result name="admin" type="redirect">/pages/adminLanding</result>
+	    <result name="admin">/pages/adminLanding.jsp</result>
         <result name="login">/index.jsp</result>
 		<result name="facebook">/pages/loginFacebook.jsp</result>
 
@@ -169,19 +169,19 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
 
 	  <action name="gerirmesas">
 		  <interceptor-ref name="AdminStack" />
-		  <result type="redirect">/pages/gerirMesas.jsp</result>
+		  <result>/pages/gerirMesas</result>
 		  <result name = "login">/index.jsp</result>
 	  </action>
 
 	  <action name = "adicionarMesa">
 		  <interceptor-ref name="AdminStack" />
-		  <result type="redirect">/pages/adicionarMesa.jsp</result>
+		  <result>/pages/adicionarMesa.jsp</result>
 		  <result name = "login">/index.jsp</result>
 	  </action>
 
 	  <action name = "removerMesa">
 		  <interceptor-ref name="AdminStack" />
-		  <result type="redirect">/pages/removerMesa.jsp</result>
+		  <result>/pages/removerMesa.jsp</result>
 		  <result name = "login">/index.jsp</result>
 	  </action>
 
@@ -200,20 +200,20 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
 	  </action>
 
 	  <action name="gerirlistas">
-		  <interceptor-ref name="AdminStack" />
-		  <result type="redirect">/pages/gerirLista.jsp</result>
+		  <interceptor-ref name="AdminStack"/>
+		  <result>/pages/gerirLista.jsp</result>
 		  <result name = "login">/index.jsp</result>
 	  </action>
 
 	  <action name = "gerirDepartamentos">
 		  <interceptor-ref name="AdminStack" />
-		  <result type="redirect">/pages/gerirDepartamentos.jsp</result>
+		  <result>/pages/gerirDepartamentos.jsp</result>
 		  <result name = "login">/index.jsp</result>
 	  </action>
 
 	  <action name = "propriedadeseleicao">
 		  <interceptor-ref name="AdminStack" />
-		  <result type="redirect">/pages/propriedadesEleicao.jsp</result>
+		  <result >/pages/propriedadesEleicao.jsp</result>
 		  <result name = "login">/index.jsp</result>
 	  </action>
 
@@ -226,7 +226,7 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
 
 	  <action name = "adicionarDepartamento">
 		  <interceptor-ref name="AdminStack" />
-		  <result type="redirect">/pages/adicionarDepartamento.jsp</result>
+		  <result>/pages/adicionarDepartamento.jsp</result>
 		  <result name = "login">/index.jsp</result>
 	  </action>
 
@@ -252,7 +252,7 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
 
 	  <action name = "adicionarLista">
 		  <interceptor-ref name="AdminStack" />
-		  <result type="redirect">/pages/adicionarLista.jsp</result>
+		  <result>/pages/adicionarLista.jsp</result>
 		  <result name = "login">/index.jsp</result>
 	  </action>
 
@@ -270,7 +270,7 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
 
 	  <action name = "removerLista">
 		  <interceptor-ref name="AdminStack" />
-		  <result type="redirect">/pages/removerLista.jsp</result>
+		  <result>/pages/removerLista.jsp</result>
 		  <result name = "login">/index.jsp</result>
 	  </action>
 
