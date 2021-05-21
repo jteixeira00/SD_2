@@ -40,5 +40,9 @@
         </c:otherwise>
     </c:choose>
 
+    <form action = "adminLanding">
+        <button>Sair</button>
+    </form>
+
 </body>
 </html>
