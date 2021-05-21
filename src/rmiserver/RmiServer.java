@@ -800,7 +800,13 @@ public class RmiServer extends UnicastRemoteObject implements RmiInterface {
     @Override
     public String showEleicoesDetalhesEnded(int index) throws RemoteException {
         Eleicao eleicao = getEleicoesEnded().get(index);
-        return "\n1 - Titulo: " + eleicao.getTitulo() + "\n2 - Descrição: " + eleicao.getDescricao() + "\n3 - Data de Inicio (dd-MM-yyyy  HH:mm): " + eleicao.dateToString(eleicao.getStartDate()) + "\n4 - Data de Fim (dd-MM-yyyy  HH:mm): " + eleicao.dateToString(eleicao.getEndDate());
+        return "\nTitulo: " + eleicao.getTitulo() + "\nDescrição: " + eleicao.getDescricao() + "\nData de Inicio (dd-MM-yyyy  HH:mm): " + eleicao.dateToString(eleicao.getStartDate()) + "\nData de Fim (dd-MM-yyyy  HH:mm): " + eleicao.dateToString(eleicao.getEndDate());
+    }
+
+    @Override
+    public String showEleicoesDetalhesEndedSimple(int index) throws RemoteException {
+        Eleicao eleicao = getEleicoesEnded().get(index);
+        return eleicao.getTitulo() + "\n" + eleicao.getDescricao() + "\n" + eleicao.dateToString(eleicao.getStartDate()) + "\n" + eleicao.dateToString(eleicao.getEndDate());
     }
 
     //altera as propriedades textuais de uma eleição
@@ -940,6 +946,49 @@ public class RmiServer extends UnicastRemoteObject implements RmiInterface {
         return str;
     }
 
+    @Override
+    public String showVotosRMISimple(Eleicao eleicao) throws RemoteException {
+        int count;
+        int percent;
+        String countS;
+        String percentS;
+        String str = "";
+        if(eleicao.getListasCandidatas().size() != 0) {
+            for (Lista list : eleicao.getListasCandidatas()) {
+                count = list.getVotos();
+                if (eleicao.votosTotal() == 0)
+                    percent = 0;
+                else
+                    percent = (count * 100)/ eleicao.votosTotal();
+                countS = Integer.toString(count);
+                percentS = Integer.toString(percent);
+                str += "\n" + list.getNome() + "\n" + countS + " | " + percentS +"%";
+            }
+
+            count = eleicao.getVotosBrancos();
+            if (eleicao.votosTotal() == 0)
+                percent = 0;
+            else
+                percent = (count * 100)/ eleicao.votosTotal();
+            countS = Integer.toString(count);
+            percentS = Integer.toString(percent);
+            str += "\n" + "\n" + countS + " | " + percentS + "%";
+
+            count = eleicao.getVotosNulos();
+            if (eleicao.votosTotal() == 0)
+                percent = 0;
+            else
+                percent = (count * 100)/ eleicao.votosTotal();
+            countS = Integer.toString(count);
+            percentS = Integer.toString(percent);
+            str += "\n" + "\n" + countS + " | " + percentS + "%\n";
+        }
+        else
+            str = "";
+        return str;
+    }
+
+
     //devolve uma string com as eleições que já terminaram
     @Override
     public String eleicoesEndedRMI() throws RemoteException {
@@ -954,6 +1003,31 @@ public class RmiServer extends UnicastRemoteObject implements RmiInterface {
         }
         return str;
     }
+
+    @Override
+    public String eleicoesEndedRMIChoice(int i) throws RemoteException {
+        String str = "";
+        if(getEleicoesEnded().size() != 0) {
+            str += showEleicoesDetalhesEnded(i) + "\n" + showVotosRMI(getEleicoesEnded().get(i));
+        }
+        else{
+            return "Impossivel Realizar Operação: Eleições Passadas Inexistentes.\n";
+        }
+        return str;
+    }
+
+    @Override
+    public String eleicoesEndedRMIChoiceSimple(int i) throws RemoteException {
+        String str = "";
+        if(getEleicoesEnded().size() != 0) {
+            str += showEleicoesDetalhesEndedSimple(i) + "\n" + showVotosRMISimple(getEleicoesEnded().get(i));
+        }
+        else{
+            return "Impossivel Realizar Operação: Eleições Passadas Inexistentes.\n";
+        }
+        return str;
+    }
+
 
 
     public String eleicoesAgoraRMI() throws RemoteException {

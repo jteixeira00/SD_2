@@ -23,54 +23,38 @@ public class CriarEleicaoAction extends ActionSupport implements SessionAware {
         if(exit != null)
             return SUCCESS;
 
-        System.out.println(titulo);
-        System.out.println(descricao);
-        System.out.println(datainicio);
-        System.out.println(horainicio);
-        System.out.println(minutoinicio);
-        System.out.println(datafim);
-        System.out.println(horafim);
-        System.out.println(minutofim);
 
         if(titulo != null && descricao != null && datainicio != null && horainicio != null && minutoinicio != null && datafim != null && horafim != null && minutofim != null) {
-            System.out.println("HERE");
             try {
                 if (!this.getHeyBean().checkTitulo(titulo)) {
-                    System.out.println("TITULO");
                     return ERROR;
                 }
 
                 if (!isParsableDate(datainicio)) {
-                    System.out.println("dinicio");
                     return ERROR;
                 }
 
                 if (!isParsable(horainicio)) {
-                    System.out.println("hinicio");
                     return ERROR;
                 }
 
                 if (!isParsable(minutoinicio)) {
-                    System.out.println("minicio");
                     return ERROR;
                 }
 
                 if (!isParsableDate(datafim)) {
-                    System.out.println("dfim");
                     return ERROR;
                 }
 
                 if (!isParsable(horafim)) {
-                    System.out.println("hfim");
                     return ERROR;
                 }
 
                 if (!isParsable(minutofim)) {
-                    System.out.println("mfim");
                     return ERROR;
                 }
 
-                if (!tipovoter.equals("Estudantes") && !tipovoter.equals("Funcionários") && !tipovoter.equals("Funcionários")) {
+                if (!tipovoter.equals("Estudantes") && !tipovoter.equals("Funcionários") && !tipovoter.equals("Docentes")) {
                     System.out.println("TIPO VOTER");
                     return ERROR;
                 }
@@ -92,12 +76,9 @@ public class CriarEleicaoAction extends ActionSupport implements SessionAware {
                 return ERROR;
             }
         }
-        else {
-            System.out.println("ERROR");
+        else
             return ERROR;
-        }
 
-        System.out.println("SUCCESS");
         return SUCCESS;
     }
 

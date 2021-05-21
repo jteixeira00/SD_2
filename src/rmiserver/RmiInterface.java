@@ -122,5 +122,9 @@ public interface RmiInterface extends Remote {
     public String eleicoesAgoraRMI() throws RemoteException;
     public String showEleicoesDetalhesAgora(int index) throws RemoteException;
     public String showVotoDetalhesRMINome(String nome) throws RemoteException;
+    public String eleicoesEndedRMIChoice(int i) throws RemoteException;
+    public String showEleicoesDetalhesEndedSimple(int index) throws RemoteException;
+    public String showVotosRMISimple(Eleicao eleicao) throws RemoteException;
+    public String eleicoesEndedRMIChoiceSimple(int i) throws RemoteException;
 
 }
