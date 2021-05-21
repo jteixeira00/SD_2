@@ -31,6 +31,10 @@
             <button>Gerir Propriedades Eleição</button>
         </form>
 
+        <form action = "adminLanding">
+            <button>Sair</button>
+        </form>
+
 
 </body>
 </html>

@@ -15,60 +15,66 @@ public class CriarEleicaoAction extends ActionSupport implements SessionAware {
     private static final long serialVersionUID = 4L;
     private Map<String, Object> session;
     private String titulo = null, descricao = null, datainicio = null, horainicio = null, minutoinicio = null;
-    private String datafim = null, horafim = null, minutofim = null, tipovoter = null;
+    private String datafim = null, horafim = null, minutofim = null, tipovoter = null, exit = null;
     private ArrayList<String> tiposvoters = new ArrayList<String>();
     @Override
     public String execute() {
 
-        try {
-            if(!this.getHeyBean().checkTitulo(titulo)){
-                return ERROR;
+        if(exit != null)
+            return SUCCESS;
+
+        if(titulo != null && descricao != null && datainicio != null && horainicio != null && minutoinicio != null && datafim != null && horafim != null && minutofim != null && tipovoter != null) {
+            try {
+                if (!this.getHeyBean().checkTitulo(titulo)) {
+                    return ERROR;
+                }
+
+                if (!isParsableDate(datainicio)) {
+                    return ERROR;
+                }
+
+                if (!isParsable(horainicio)) {
+                    return ERROR;
+                }
+
+                if (!isParsable(minutoinicio)) {
+                    return ERROR;
+                }
+
+                if (!isParsableDate(datafim)) {
+                    return ERROR;
+                }
+
+                if (!isParsable(horafim)) {
+                    return ERROR;
+                }
+
+                if (!isParsable(minutofim)) {
+                    return ERROR;
+                }
+
+                if (!tipovoter.equals("Estudantes") && !tipovoter.equals("Funcionários") && !tipovoter.equals("Funcionários")) {
+                    return ERROR;
+                }
+
+            } catch (RemoteException e) {
+                e.printStackTrace();
             }
 
-            if(!isParsableDate(datainicio)){
+            String tipovoterint = "1";
+
+            if (tipovoter.equals("Funcionários")) {
+                tipovoterint = "3";
+            } else if (tipovoter.equals("Docentes")) {
+                tipovoterint = "2";
+            }
+            if (!this.getHeyBean().criaEleicao(titulo, descricao, datainicio, horainicio, minutoinicio, datafim, horafim, minutofim, "", tipovoterint)) {
+                //data invalida
                 return ERROR;
             }
-
-            if (!isParsable(horainicio)) {
-                return ERROR;
-            }
-
-            if (!isParsable(minutoinicio)) {
-                return ERROR;
-            }
-
-            if(!isParsableDate(datafim)){
-                return ERROR;
-            }
-
-            if (!isParsable(horafim)) {
-                return ERROR;
-            }
-
-            if (!isParsable(minutofim)) {
-                return ERROR;
-            }
-
-            if (!tipovoter.equals("Estudantes") && !tipovoter.equals("Funcionários") && !tipovoter.equals("Funcionários")) {
-                return ERROR;
-            }
-
-        }catch (RemoteException e){
-            e.printStackTrace();
         }
-
-        String tipovoterint = "1";
-
-        if (tipovoter.equals("Funcionários")){
-            tipovoterint = "3";
-        }
-        else if (tipovoter.equals("Docentes")){
-            tipovoterint = "2";
-        }
-        if(!this.getHeyBean().criaEleicao(titulo, descricao, datainicio, horainicio, minutoinicio, datafim, horafim, minutofim, "", tipovoterint)) {
-            //data invalida
+        else
             return ERROR;
-        }
 
         return SUCCESS;
     }
@@ -119,6 +125,10 @@ public class CriarEleicaoAction extends ActionSupport implements SessionAware {
 
     public void setTipovoter(String tipovoter) {
         this.tipovoter = tipovoter;
+    }
+
+    public void setExit(String exit) {
+        this.exit = exit;
     }
 
     @Override

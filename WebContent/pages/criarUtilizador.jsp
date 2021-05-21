@@ -20,13 +20,13 @@
     <s:select list="tiposusers" name ="tipo"/>
 
     <label><br>Nome: *<br></label>
-    <s:textfield name = "nome" required="true"/>
+    <s:textfield name = "nome"/>
 
     <label><br>Password: *<br></label>
-    <s:textfield name = "password" required="true"/>
+    <s:textfield name = "password"/>
 
     <label><br>Número da Universidade: *<br></label>
-    <s:textfield name = "numerouni" required="true"/>
+    <s:textfield name = "numerouni"/>
 
     <label><br>Numero Cartao Cidadao:<br></label>
     <s:textfield name = "ncc"/>
@@ -41,13 +41,14 @@
     <s:textfield name = "morada"/>
 
     <label><br>Departamento: *<br></label>
-    <s:textfield name = "departamento" required="true"/>
+    <s:textfield name = "departamento"/>
 
     <label><br>Faculdade: <br></label>
     <s:textfield name = "faculdade" />
 
     <br><br>
     <button type = "submit">Submeter</button>
+    <input type="submit" name="exit" value="Sair" />
 </form>
 </body>
 </html>

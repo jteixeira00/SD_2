@@ -4,7 +4,6 @@ import com.opensymphony.xwork2.ActionSupport;
 import hey.model.HeyBean;
 import org.apache.struts2.interceptor.SessionAware;
 
-import java.rmi.RemoteException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -15,29 +14,34 @@ public class CriarUserAction extends ActionSupport implements SessionAware {
     private static final long serialVersionUID = 4L;
     private Map<String, Object> session;
     private String tipo = "null", nome = "null", password = "null", numerouni = "null", ncc = "null", valcc = "10-10-2022";
-    private String numerotelefonico = "null", morada = "null", departamento = "null", faculdade = "null";
+    private String numerotelefonico = "null", morada = "null", departamento = "null", faculdade = "null", exit = null;
     private ArrayList<String> tiposusers = new ArrayList<String>();
     @Override
     public String execute() {
 
-        if(tipo.equals("Estudante")){
-            tipo = "1";
-        }
+        if(exit != null)
+            return SUCCESS;
 
-        else if (tipo.equals("Funcionário")){
-            tipo = "3";
-        }
-        else if (tipo.equals("Docente")){
-            tipo = "2";
-        }
+        if(nome != "null" && password != "null" && numerouni != "null" && departamento != "null") {
+            if (tipo.equals("Estudante")) {
+                tipo = "1";
+            } else if (tipo.equals("Funcionário")) {
+                tipo = "3";
+            } else if (tipo.equals("Docente")) {
+                tipo = "2";
+            }
 
 
-        if(!this.getHeyBean().createUser(tipo,nome,password,numerouni,ncc,valcc,numerotelefonico,morada,departamento,faculdade)){
-            //numerouni já existe
+            if (!this.getHeyBean().createUser(tipo, nome, password, numerouni, ncc, valcc, numerotelefonico, morada, departamento, faculdade)) {
+                //numerouni já existe
+                return ERROR;
+            }
+        }
+        else{
             return ERROR;
         }
 
-
+        System.out.println("SUCCESS");
         return SUCCESS;
     }
 
@@ -104,6 +108,8 @@ public class CriarUserAction extends ActionSupport implements SessionAware {
     public void setMorada(String morada) {
         this.morada = morada;
     }
+
+    public void setExit(String exit){this.exit = exit;}
 
     public void setDepartamento(String departamento) {
         this.departamento = departamento;
