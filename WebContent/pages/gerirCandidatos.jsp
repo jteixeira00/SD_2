@@ -25,11 +25,11 @@
     <c:choose>
         <c:when test="${(heyBean.sizeCandidatos > 0)== true}">
             <form action = "removerCandidatos">
-                <button>Remover Candidatos</button>
+                <button>Remover Candidatos</button><br>
             </form>
         </c:when>
         <c:otherwise>
-            <button>Remover Candidatos</button>
+            <button>Remover Candidatos</button><br>
         </c:otherwise>
     </c:choose>
 
