@@ -22,9 +22,18 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
 			  <interceptor-ref name="userInterceptor" />
 			  <interceptor-ref name="defaultStack" />
 		  </interceptor-stack>
+		  <interceptor class="hey.interceptor.AdminInterceptor" name="AdminInterceptor">
+		  </interceptor>
+		  <interceptor-stack name="AdminStack">
+			  <interceptor-ref name="AdminInterceptor" />
+			  <interceptor-ref name="defaultStack" />
+		  </interceptor-stack>
 	  </interceptors>
 
-	<default-action-ref name="index" />
+
+
+
+	  <default-action-ref name="index" />
 
 	<global-results>
 		<result name="error">/error.jsp</result>
@@ -51,7 +60,7 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
     </action>
 
 	  <action name="escolherEleicao" class = "hey.action.votingpageAction" method = "get">
-		  <interceptor-ref name="loginStack" />
+		  <interceptor-ref name="AdminStack" />
 		  <result> /pages/escolherEleicao.jsp </result>
 		  <result name = "login">/index.jsp</result>
 	  </action>
@@ -79,228 +88,228 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
 	  <!-- Admin Page -->
 
 	  <action name = "adminLanding">
-		  <interceptor-ref name="loginStack" />
+		  <interceptor-ref name="AdminStack" />
 		  <result>/pages/adminLanding.jsp</result>
 		  <result name = "login">/index.jsp</result>
 	  </action>
 
 
 	  <action name="criareleicao" class = "hey.action.CriarEleicaoAction" method = "get">
-		  <interceptor-ref name="loginStack" />
+		  <interceptor-ref name="AdminStack" />
 		  <result name="success">/pages/criarEleicao.jsp</result>
 		  <result name = "login">/index.jsp</result>
 	  </action>
 
 	  <action name="criarutilizador" class = "hey.action.CriarUserAction" method = "get">
-		  <interceptor-ref name="loginStack" />
+		  <interceptor-ref name="AdminStack" />
 		  <result name="success">/pages/criarUtilizador.jsp</result>
 		  <result name = "login">/index.jsp</result>
 	  </action>
 
 	  <action name = "gerireleicao" class = "hey.action.GerirEleicaoAction" method = "get">
-		  <interceptor-ref name="loginStack" />
+		  <interceptor-ref name="AdminStack" />
 		  <result name = "success">/pages/gerirEleicao.jsp</result>
 		  <result name = "login">/index.jsp</result>
 	  </action>
 
 	  <action name = "eleicoesPassadas">
-		  <interceptor-ref name="loginStack" />
+		  <interceptor-ref name="AdminStack" />
 		  <result>/pages/eleicoesPassadas.jsp</result>
 		  <result name = "login">/index.jsp</result>
 	  </action>
 
 	  <action name = "infouser">
-		  <interceptor-ref name="loginStack" />
+		  <interceptor-ref name="AdminStack" />
 		  <result>/pages/infoUser.jsp</result>
 		  <result name = "login">/index.jsp</result>
 	  </action>
 
 	  <!--actions concretas -->
 	  <action name = "votosuserform" class = "hey.action.votosUserAction" method= "execute">
-		  <interceptor-ref name="loginStack" />
+		  <interceptor-ref name="AdminStack" />
 		  <result name="success">/pages/adminLanding.jsp</result>
 		  <result name="error">/pages/infoUser.jsp</result>
 		  <result name = "login">/index.jsp</result>
 	  </action>
 
 	  <action name = "criarEleicaoForm" class = "hey.action.CriarEleicaoAction" method= "execute">
-		  <interceptor-ref name="loginStack" />
+		  <interceptor-ref name="AdminStack" />
 		  <result name="success">/pages/adminLanding.jsp</result>
 		  <result name="error">/pages/criarEleicao.jsp</result>
 		  <result name = "login">/index.jsp</result>
 	  </action>
 
 	  <action name = "criarUserForm" class = "hey.action.CriarUserAction" method= "execute">
-		  <interceptor-ref name="loginStack" />
+		  <interceptor-ref name="AdminStack" />
 		  <result name="success">/pages/adminLanding.jsp</result>
 		  <result name="error">/pages/criarUtilizador.jsp</result>
 		  <result name = "login">/index.jsp</result>
 	  </action>
 
 	  <action name = "eleicoespassadasform" class = "hey.action.EleicoesPassadasAction" method = "execute">
-		  <interceptor-ref name="loginStack" />
+		  <interceptor-ref name="AdminStack" />
 		  <result name="error">/pages/eleicoesPassadas.jsp</result>
 		  <result name="success">/pages/adminLanding.jsp</result>
 		  <result name = "login">/index.jsp</result>
 	  </action>
 
 	  <action name = "gerireleicaoform" class = "hey.action.GerirEleicaoAction" method = "execute">
-		  <interceptor-ref name="loginStack" />
+		  <interceptor-ref name="AdminStack" />
 		  <result name="error">/pages/gerirEleicao.jsp</result>
 		  <result name="success">/pages/gerirEleicaoChoice.jsp</result>
 		  <result name = "login">/index.jsp</result>
 	  </action>
 
 	  <action name = "gerireleicaochoiceform" class = "hey.action.GerirEleicaoChoiceAction" method = "execute">
-		  <interceptor-ref name="loginStack" />
+		  <interceptor-ref name="AdminStack" />
 		  <result name="error">/pages/gerirEleicaoChoice.jsp</result>
 		  <result name="success">/pages/adminLanding.jsp</result>
 		  <result name = "login">/index.jsp</result>
 	  </action>
 
 	  <action name="gerirmesas">
-		  <interceptor-ref name="loginStack" />
+		  <interceptor-ref name="AdminStack" />
 		  <result type="redirect">/pages/gerirMesas.jsp</result>
 		  <result name = "login">/index.jsp</result>
 	  </action>
 
 	  <action name = "adicionarMesa">
-		  <interceptor-ref name="loginStack" />
+		  <interceptor-ref name="AdminStack" />
 		  <result type="redirect">/pages/adicionarMesa.jsp</result>
 		  <result name = "login">/index.jsp</result>
 	  </action>
 
 	  <action name = "removerMesa">
-		  <interceptor-ref name="loginStack" />
+		  <interceptor-ref name="AdminStack" />
 		  <result type="redirect">/pages/removerMesa.jsp</result>
 		  <result name = "login">/index.jsp</result>
 	  </action>
 
 	  <action name = "adicionarmesaform" class = "hey.action.adicionarMesaAction" method = "execute">
-		  <interceptor-ref name="loginStack" />
+		  <interceptor-ref name="AdminStack" />
 		  <result name="error">/pages/adicionarMesa.jsp</result>
 		  <result name="success">/pages/adminLanding.jsp</result>
 		  <result name = "login">/index.jsp</result>
 	  </action>
 
 	  <action name = "removermesaform" class = "hey.action.removerMesaAction" method = "execute">
-		  <interceptor-ref name="loginStack" />
+		  <interceptor-ref name="AdminStack" />
 		  <result name="error">/pages/removerMesa.jsp</result>
 		  <result name="success">/pages/adminLanding.jsp</result>
 		  <result name = "login">/index.jsp</result>
 	  </action>
 
 	  <action name="gerirlistas">
-		  <interceptor-ref name="loginStack" />
+		  <interceptor-ref name="AdminStack" />
 		  <result type="redirect">/pages/gerirLista.jsp</result>
 		  <result name = "login">/index.jsp</result>
 	  </action>
 
 	  <action name = "gerirDepartamentos">
-		  <interceptor-ref name="loginStack" />
+		  <interceptor-ref name="AdminStack" />
 		  <result type="redirect">/pages/gerirDepartamentos.jsp</result>
 		  <result name = "login">/index.jsp</result>
 	  </action>
 
 	  <action name = "propriedadeseleicao">
-		  <interceptor-ref name="loginStack" />
+		  <interceptor-ref name="AdminStack" />
 		  <result type="redirect">/pages/propriedadesEleicao.jsp</result>
 		  <result name = "login">/index.jsp</result>
 	  </action>
 
 	  <action name = "propriedadeseleicaoform" class = "hey.action.propriedadesEleicaoAction" method = "execute">
-		  <interceptor-ref name="loginStack" />
+		  <interceptor-ref name="AdminStack" />
 		  <result name="error">/pages/propriedadesEleicao.jsp</result>
 		  <result name="success">/pages/adminLanding.jsp</result>
 		  <result name = "login">/index.jsp</result>
 	  </action>
 
 	  <action name = "adicionarDepartamento">
-		  <interceptor-ref name="loginStack" />
+		  <interceptor-ref name="AdminStack" />
 		  <result type="redirect">/pages/adicionarDepartamento.jsp</result>
 		  <result name = "login">/index.jsp</result>
 	  </action>
 
 	  <action name = "removerDepartamento" class = "hey.action.GerirEleicaoAction" method = "get">
-		  <interceptor-ref name="loginStack" />
+		  <interceptor-ref name="AdminStack" />
 		  <result name = "success">/pages/removerDepartamento.jsp</result>
 		  <result name = "login">/index.jsp</result>
 	  </action>
 
 	  <action name = "adicionardepartamentoform" class = "hey.action.adicionarDepartamentoAction" method = "execute">
-		  <interceptor-ref name="loginStack" />
+		  <interceptor-ref name="AdminStack" />
 		  <result name="error">/pages/adicionarDepartamento.jsp</result>
 		  <result name="success">/pages/adminLanding.jsp</result>
 		  <result name = "login">/index.jsp</result>
 	  </action>
 
 	  <action name = "removerdepartamentoform" class = "hey.action.removerDepartamentoAction" method = "execute">
-		  <interceptor-ref name="loginStack" />
+		  <interceptor-ref name="AdminStack" />
 		  <result name="error">/pages/removerDepartamento.jsp</result>
 		  <result name="success">/pages/adminLanding.jsp</result>
 		  <result name = "login">/index.jsp</result>
 	  </action>
 
 	  <action name = "adicionarLista">
-		  <interceptor-ref name="loginStack" />
+		  <interceptor-ref name="AdminStack" />
 		  <result type="redirect">/pages/adicionarLista.jsp</result>
 		  <result name = "login">/index.jsp</result>
 	  </action>
 
 	  <action name = "adicionarCandidatos" class = "hey.action.adicionarCandidatosAction" method="get">
-		  <interceptor-ref name="loginStack" />
+		  <interceptor-ref name="AdminStack" />
 		  <result name="success">/pages/adicionarCandidatos.jsp</result>
 		  <result name = "login">/index.jsp</result>
 	  </action>
 
 	  <action name = "removerCandidatos" class = "hey.action.removerCandidatosAction" method = "get">
-		  <interceptor-ref name="loginStack" />
+		  <interceptor-ref name="AdminStack" />
 		  <result name = "success">/pages/removerCandidatos.jsp</result>
 		  <result name = "login">/index.jsp</result>
 	  </action>
 
 	  <action name = "removerLista">
-		  <interceptor-ref name="loginStack" />
+		  <interceptor-ref name="AdminStack" />
 		  <result type="redirect">/pages/removerLista.jsp</result>
 		  <result name = "login">/index.jsp</result>
 	  </action>
 
 	  <action name = "escolherLista" class = "hey.action.escolherListaAction" method = "get">
-		  <interceptor-ref name="loginStack" />
+		  <interceptor-ref name="AdminStack" />
 		  <result name="success">/pages/escolherLista.jsp</result>
 		  <result name = "login">/index.jsp</result>
 	  </action>
 
 	  <action name = "escolherlistaform" class = "hey.action.escolherListaAction" method = "execute">
-		  <interceptor-ref name="loginStack" />
+		  <interceptor-ref name="AdminStack" />
 		  <result name="error">/pages/escolherLista.jsp</result>
 		  <result name="success">/pages/gerirCandidatos.jsp</result>
 		  <result name = "login">/index.jsp</result>
 	  </action>
 
 	  <action name = "adicionarlistaform" class = "hey.action.adicionarListaAction" method = "execute">
-		  <interceptor-ref name="loginStack" />
+		  <interceptor-ref name="AdminStack" />
 		  <result name="error">/pages/adicionarLista.jsp</result>
 		  <result name="success">/pages/adicionarCandidatos.jsp</result>
 		  <result name = "login">/index.jsp</result>
 	  </action>
 
 	  <action name = "adicionarcandidatosform" class = "hey.action.adicionarCandidatosAction" method = "execute">
-		  <interceptor-ref name="loginStack" />
+		  <interceptor-ref name="AdminStack" />
 		  <result name="error">/pages/adicionarCandidatos.jsp</result>
 		  <result name="success">/pages/adminLanding.jsp</result>
 		  <result name = "login">/index.jsp</result>
 	  </action>
 
 	  <action name = "removercandidatosform" class = "hey.action.removerCandidatosAction" method = "execute">
-		  <interceptor-ref name="loginStack" />
+		  <interceptor-ref name="AdminStack" />
 		  <result name="error">/pages/removerCandidatos.jsp</result>
 		  <result name="success">/pages/adminLanding.jsp</result>
 		  <result name = "login">/index.jsp</result>
 	  </action>
 
 	  <action name = "removerlistaform" class = "hey.action.removerListaAction" method = "execute">
-		  <interceptor-ref name="loginStack" />
+		  <interceptor-ref name="AdminStack" />
 		  <result name="error">/pages/removerLista.jsp</result>
 		  <result name="success">/pages/adminLanding.jsp</result>
 		  <result name = "login">/index.jsp</result>
