@@ -30,7 +30,6 @@ public class FacebookLoginAction extends ActionSupport implements SessionAware {
 				fb.setFacebookID(fb.getFacebookID());
 			}else{
 				if(fb.findFacebookIDUser(fb.getFacebookID()) != -1) {
-
 					String username = fb.getNumeroPessoa((fb.findFacebookIDUser(fb.getFacebookID())));
 
 					System.out.println(username);

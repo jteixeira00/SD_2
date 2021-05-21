@@ -4,7 +4,6 @@ import com.opensymphony.xwork2.ActionSupport;
 import hey.model.HeyBean;
 import org.apache.struts2.interceptor.SessionAware;
 
-import java.rmi.RemoteException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -18,7 +17,7 @@ public class adicionarDepartamentoAction extends ActionSupport implements Sessio
     @Override
     public String execute() {
 
-        if(this.getHeyBean().addDepatamento(nome))
+        if(nome != null && this.getHeyBean().addDepatamento(nome))
             return SUCCESS;
 
         return ERROR;

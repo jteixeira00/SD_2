@@ -110,6 +110,12 @@
                 </c:otherwise>
             </c:choose>
 
+            <form action = "logout">
+                <button>Sair</button>
+            </form>
+
+
+
 <div>
     <div id="container"><div id="history"></div></div>
 

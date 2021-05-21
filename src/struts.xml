@@ -51,7 +51,6 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
 
 	<!-- 'login' action calls 'execute' in 'LoginAction' -->
     <action name="login" class="hey.action.LoginAction"  method="execute">
-
         <result name="success">/pages/userLanding.jsp</result>
 	    <result name="admin">/pages/adminLanding.jsp</result>
         <result name="login">/index.jsp</result>
@@ -78,7 +77,6 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
 
 
 	  <action name="fblogin" class="hey.action.FacebookLoginAction"  method="execute">
-		  <interceptor-ref name="loginStack" />
 		  <result name="error" type="">index.jsp</result>
 		  <result name="success" type="">/pages/userLanding.jsp</result>
 		  <result name="facebook" type="">/pages/userLanding.jsp</result>

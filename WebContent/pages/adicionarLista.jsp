@@ -20,8 +20,12 @@
         <label>Nome da Lista: <br></label>
         <s:textfield name = "nome" required="true"/><br>
 
-        <br><br>
+        <br>
         <button type = "submit">Continuar</button>
+
+        <form action = "adminLanding">
+            <br><button>Sair</button>
+        </form>
 
 </body>
 </html>

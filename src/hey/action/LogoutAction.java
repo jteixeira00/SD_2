@@ -22,7 +22,7 @@ public class LogoutAction extends ActionSupport implements SessionAware {
 	private ArrayList<String> eleicoes = new ArrayList<>();
 	@Override
 	public String execute() throws RemoteException {
-
+		System.out.println("HERE");
 		// any username is accepted without confirmation (should check using RMI)
 		//this.getHeyBean().logout();
 		//this.getHeyBean().logout();

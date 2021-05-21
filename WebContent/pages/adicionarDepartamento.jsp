@@ -18,9 +18,13 @@
         <h1>Adiconar Departamento</h1>
 
         <label>Nome do Departamento: <br></label>
-        <s:textfield name = "nome" required="true"/>
+        <s:textfield name = "nome" />
         <br><br>
         <button type = "submit">Submeter</button>
+
+        <form action = "adminLanding">
+            <br><br><button>Sair</button>
+        </form>
 
 </body>
 </html>

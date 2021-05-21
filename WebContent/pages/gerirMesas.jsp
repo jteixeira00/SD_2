@@ -41,7 +41,7 @@
     </c:choose>
 
     <form action = "adminLanding">
-        <button>Sair</button>
+        <br><button>Sair</button>
     </form>
 
 </body>

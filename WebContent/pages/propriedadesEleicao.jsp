@@ -38,6 +38,10 @@
         <br><br>
         <button type = "submit">Submeter</button>
 
+        <form action = "adminLanding">
+            <br><br><button>Sair</button>
+        </form>
+
     </form>
 </body>
 </html>

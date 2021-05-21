@@ -13,8 +13,11 @@ public class eleicoesUserAction extends ActionSupport implements SessionAware {
     String choice = null;
     @Override
     public String execute() {
+        System.out.println("HERE?");
+        if(choice != null) {
+            this.getHeyBean().setChoiceGerirEleicao(Integer.parseInt(choice));
+        }
 
-        this.getHeyBean().setChoiceGerirEleicao(Integer.parseInt(choice));
 
         return SUCCESS;
     }

@@ -29,12 +29,12 @@
             </form>
         </c:when>
         <c:otherwise>
-            <button>Remover Departamentos</button>
+            <button>Remover Departamentos</button><br>
         </c:otherwise>
     </c:choose>
 
     <form action = "adminLanding">
-        <button>Sair</button>
+        <br><button>Sair</button>
     </form>
 
 

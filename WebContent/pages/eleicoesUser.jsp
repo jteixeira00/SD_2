@@ -25,6 +25,11 @@
 
     <br><br>
     <button type = "submit">Submeter</button>
+    </form>
+
+        <form action = "logout">
+            <br><br><button>Sair</button>
+        </form>
 
 
 
