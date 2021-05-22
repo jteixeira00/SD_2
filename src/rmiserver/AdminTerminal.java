@@ -157,7 +157,7 @@ public class AdminTerminal extends UnicastRemoteObject implements AdminTerminalI
         System.out.println("Descrição: ");
         String descricao = sc.nextLine();
 
-        System.out.println();
+        System.out.println("Data de Inicio (dd-MM-yyyy): ");
         while (true) {
             startDate = sc.nextLine();
             if(isParsableDate(startDate))

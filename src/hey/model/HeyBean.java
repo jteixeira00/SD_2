@@ -492,9 +492,7 @@ public class HeyBean {
 	}
 
 	public String getRmiUserNome() {
-		System.out.println("HERE");
-		System.out.println(this.username);
-		System.out.println(this);
+
 		try {
 			if(tryRmi()){
 				return server.getPessoabyNumber(username).getNome();
