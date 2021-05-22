@@ -250,9 +250,40 @@ public class HeyBean {
 	public ArrayList<String> getDetalhesEleicaoChoice() throws RemoteException {
 		try {
 			if(tryRmi()){
-				String array[] = server.showEleicoesDetalhesAgora(choiceGerirEleicao).split("\n");
+				String array[] = server.eleicoesEndedRMIChoice(choiceGerirEleicao - 1).split("\n");
 				List<String> al = new ArrayList<String>();
 				al = Arrays.asList(array);
+				return new ArrayList<>(al);
+			}
+		}catch (RemoteException ignored){
+
+		}
+		return new ArrayList<>();
+	}
+
+	public ArrayList<String> getDetalhesEleicaoChoiceSimple() throws RemoteException {
+		try {
+			if(tryRmi()){
+				String[] array = server.eleicoesEndedRMIChoiceSimple(choiceGerirEleicao - 1).split("\n");
+				for(int i = 0;i<array.length;i++){
+					System.out.println(i + " " + array[i]);
+				}
+				String[] array2 = new String[1];
+				array2[0] = "A Eleição " + array[0] + " - " + array[1] + " - com data de inicio a " + array[2];
+				array2[0] = array2[0] + " e data de fim a " + array[3] + " teve estes resultados: ";
+
+				for(int i = 5; i < array.length - 4; i++){
+					array2[0] =  array2[0] + array[i] + " : " + array[i+1] + " || ";
+					i+=1;
+				}
+
+
+				array2[0] = array2[0] + " || Votos em Branco : " + array[array.length - 3];
+				array2[0] = array2[0] + " || Votos Nulos : " + array[array.length - 1];
+
+
+				List<String> al = new ArrayList<String>();
+				al = Arrays.asList(array2);
 				return new ArrayList<>(al);
 			}
 		}catch (RemoteException ignored){
@@ -518,6 +549,25 @@ public class HeyBean {
 		try {
 			if(tryRmi()){
 				String array[] = server.eleicoesEndedRMI().split("\n");
+				List<String> al = new ArrayList<String>();
+				al = Arrays.asList(array);
+				return new ArrayList<>(al);
+			}
+		}catch (RemoteException ignored){
+
+		}
+		return new ArrayList<>();
+	}
+
+	public ArrayList<String> getEleicoesPassadasNomes() throws RemoteException {
+		try {
+			if(tryRmi()){
+				String result = "";
+				for(int i = 0; i < server.getEleicoesEnded().size(); i++){
+
+					result += (i + 1) + " - " + server.getEleicoesEnded().get(i).getTitulo() + "\n";
+				}
+				String array[] = result.split("\n");
 				List<String> al = new ArrayList<String>();
 				al = Arrays.asList(array);
 				return new ArrayList<>(al);

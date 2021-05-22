@@ -16,7 +16,7 @@
 
     <form action="eleicoesuserform" method="post">
 
-    <c:forEach items="${heyBean.votosUsername}" var="value">
+    <c:forEach items="${heyBean.eleicoesPassadasNomes}" var="value">
         <c:out value="${value}" /><br>
     </c:forEach>
 

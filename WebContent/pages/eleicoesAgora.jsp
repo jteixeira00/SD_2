@@ -10,15 +10,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Eleições a Decorrer</title>
+    <title>Eleições</title>
 </head>
 <body>
 
-    <c:forEach items="${heyBean.eleicoesAgora}" var="value">
+    <c:forEach items="${heyBean.eleicoesPassadas}" var="value">
         <c:out value="${value}" /><br>
     </c:forEach>
 
-    <br><form action = index>
+    <form action = adminLanding>
         <button>Exit</button>
     </form>
 

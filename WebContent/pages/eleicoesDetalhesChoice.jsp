@@ -44,11 +44,15 @@
             FB.ui({
                 display: 'popup',
                 method: 'share',
-                quote: "${heyBean.detalhesEleicaoChoice}",
+                quote: "${heyBean.detalhesEleicaoChoiceSimple}",
                 href: 'http://127.0.0.1:8080/Hey/eleicoesDetalhes'
             }, function(response){});
         }
     </script>
+
+    <form action = "logout">
+        <br><br><button>Sair</button>
+    </form>
 
 
 

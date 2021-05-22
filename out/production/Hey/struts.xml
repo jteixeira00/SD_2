@@ -55,11 +55,10 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
 	    <result name="admin">/pages/adminLanding.jsp</result>
         <result name="login">/index.jsp</result>
 		<result name="facebook">/pages/loginFacebook.jsp</result>
-
     </action>
 
 	  <action name="escolherEleicao" class = "hey.action.votingpageAction" method = "get">
-		  <interceptor-ref name="AdminStack" />
+		  <interceptor-ref name="loginStack" />
 		  <result> /pages/escolherEleicao.jsp </result>
 		  <result name = "login">/index.jsp</result>
 	  </action>

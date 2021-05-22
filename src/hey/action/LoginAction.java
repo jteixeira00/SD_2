@@ -27,7 +27,6 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
 		if(this.facebook != null) {
 			this.getHeyBean();
-			System.out.println(this.getHeyBean());
 			this.getHeyBean().setUsername("FACEBOOK");
 			this.getHeyBean().setPassword("FACEBOOK");
 			session.put("username", "FACEBOOK");

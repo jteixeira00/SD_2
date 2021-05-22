@@ -41,7 +41,7 @@
     <s:textfield name = "minutofim"/>
 
     <label><br>Restringir eleição<br> </label>
-    <s:select list="tiposvoters"/>
+    <s:select list="tiposvoters" name = "tipovoter"/>
     <br><br>
     <button type = "submit">Submeter</button>
     <input type="submit" name="exit" value="Sair" />
